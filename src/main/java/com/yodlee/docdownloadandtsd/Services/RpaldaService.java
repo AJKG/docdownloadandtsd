@@ -6,14 +6,15 @@ import com.yodlee.docdownloadandtsd.DAO.RpaldaRepository;
 
 import java.util.ArrayList;
 
+@Service
 public class RpaldaService {
 
 
     @Autowired
     RpaldaRepository rpaldaRepository;
 
-    public ArrayList<String> getDiff(String sumInfo, boolean fromCache) throws Exception {
-        return rpaldaRepository.getDiff(sumInfo,fromCache);
+    public ArrayList<String> getDiff() throws Exception {
+        return rpaldaRepository.getDiff();
     }
 
 }

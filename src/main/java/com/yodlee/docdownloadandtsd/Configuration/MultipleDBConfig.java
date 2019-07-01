@@ -24,6 +24,7 @@ public class MultipleDBConfig {
         return new JdbcTemplate(dssitep);
     }
 
+
     @Bean(name = "repalda")
     @ConfigurationProperties(prefix = "spring.repaldadatasource")
     public DataSource repaldaDataSource() {
@@ -33,6 +34,17 @@ public class MultipleDBConfig {
     @Bean(name = "repaldaJdbcTemplate")
     public JdbcTemplate repaldaJdbcTemplate(@Qualifier("repalda") DataSource dsrepalda) {
         return new JdbcTemplate(dsrepalda);
+    }
+
+    @Bean(name = "rpalda")
+    @ConfigurationProperties(prefix = "spring.rpaldadatasource")
+    public DataSource rpaldaDataSource() {
+        return DataSourceBuilder.create().build();
+    }
+
+    @Bean(name = "rpaldaJdbcTemplate")
+    public JdbcTemplate rpaldaJdbcTemplate(@Qualifier("rpalda") DataSource dsrpalda) {
+        return new JdbcTemplate(dsrpalda);
     }
 
 }
