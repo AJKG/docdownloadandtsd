@@ -36,6 +36,8 @@ public class DDTsdController {
             }
         }
 
+        return resultList;
+
     }
 
     @RequestMapping(value="/DocDownloadData",method={RequestMethod.GET})
