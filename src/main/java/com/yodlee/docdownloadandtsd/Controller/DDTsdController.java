@@ -24,7 +24,18 @@ public class DDTsdController {
     @ResponseBody
     public List<Object> getDBPushDifference() throws Exception{
         System.out.println("Controller");
-        return rpaldaService.getDiff();
+        List<Object> resultList = rpaldaService.getDiff();
+
+        for(Object res : resultList) {
+            if(res instanceof DocDownloadVO) {
+                if(((DocDownloadVO) res).getDocDownloadProd().equals("1")) {
+                    docDownloadEnabled((DocDownloadVO)res);
+                }else if(((DocDownloadVO) res).getDocDownloadProd().equals("0")) {
+                    docDownloadDisabled((DocDownloadVO)res);
+                }
+            }
+        }
+
     }
 
     @RequestMapping(value="/DocDownloadData",method={RequestMethod.GET})
@@ -64,6 +75,14 @@ public class DDTsdController {
             }
         }
         return cacheRunVOList;
+    }
+
+    public static void docDownloadEnabled(DocDownloadVO ddvo) {
+
+    }
+
+    public static void docDownloadDisabled(DocDownloadVO ddvo) {
+
     }
 
 }
