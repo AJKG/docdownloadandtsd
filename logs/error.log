@@ -1,0 +1,17 @@
+2019-07-04 17:30:50 [restartedMain] ERROR o.s.b.d.LoggingFailureAnalysisReporter -
+
+				
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field jdbc in com.yodlee.docdownloadandtsd.DAO.RpaldaRepository required a bean of type 'org.springframework.jdbc.core.JdbcTemplate' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'org.springframework.jdbc.core.JdbcTemplate' in your configuration.
+
