@@ -18,138 +18,77 @@
     </properties>
 
     <dependencies>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-mongodb</artifactId>
-        </dependency>
-
-
-        <dependency>
-
-            <groupId>net.sf.supercsv</groupId>
-
-            <artifactId>super-csv</artifactId>
-
-            <version>2.1.0</version>
-
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.google.code.scriptengines/scriptengines-javascript -->
-
-        <dependency>
-
-            <groupId>com.google.code.scriptengines</groupId>
-
-            <artifactId>scriptengines-javascript</artifactId>
-
-            <version>1.1.1</version>
-
-        </dependency>
-
-        <dependency>
-
-            <groupId>org.seleniumhq.selenium</groupId>
-
-            <artifactId>selenium-java</artifactId>
-
-            <version>3.4.0</version>
-
-        </dependency>
-
-        <dependency>
-
-            <groupId>org.glassfish.jersey.core</groupId>
-
-            <artifactId>jersey-client</artifactId>
-
-            <version>2.25.1</version>
-
-        </dependency>
-
-        <dependency>
-
-            <groupId>org.glassfish.jersey.media</groupId>
-
-            <artifactId>jersey-media-json-jackson</artifactId>
-
-            <version>2.25.1</version>
-
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-mail</artifactId>
-        </dependency>
-        <dependency>
-
-            <groupId>log4j</groupId>
-
-            <artifactId>apache-log4j-extras</artifactId>
-
-            <version>1.2.17</version>
-
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
-
-        <dependency>
-
-            <groupId>org.jsoup</groupId>
-
-            <artifactId>jsoup</artifactId>
-
-            <version>1.11.3</version>
-
-        </dependency>
-
-
-
-        <dependency>
-
-
-
-            <groupId>com.github.wnameless</groupId>
-
-
-
-            <artifactId>json-flattener</artifactId>
-
-
-
-            <version>0.2.2</version>
-
-
-
-        </dependency>
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version><!--$NO-MVN-MAN-VER$ -->
             <scope>test</scope>
         </dependency>
+
+       <!-- <dependency>
+            <groupId>com.yodlee.Application</groupId>
+            <artifactId>AjaxAgentTool </artifactId>
+            <version>1-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>
+                C:/Users/cbatra/Perforce/cbatra_IN-L1499_4593/razor/iaetools/ajaxservices/target/AjaxAgentTool-1-SNAPSHOT.jar
+            </systemPath>
+        </dependency>-->
+
         <!-- https://mvnrepository.com/artifact/com.oracle.jdbc/ojdbc8 -->
-        <dependency>
+       <dependency>
             <groupId>com.oracle.jdbc</groupId>
             <artifactId>ojdbc8</artifactId>
             <version>18.3.0.0</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.json/json -->
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20180813</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>angularjs</artifactId>
             <version>1.5.4</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.supercsv</groupId>
+            <artifactId>super-csv</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.scriptengines</groupId>
+            <artifactId>scriptengines-javascript</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+           <artifactId>jersey-client</artifactId>
+            <version>2.25.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-json-jackson</artifactId>
+            <version>2.25.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>apache-log4j-extras</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.11.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.wnameless</groupId>
+            <artifactId>json-flattener</artifactId>
+            <version>0.2.2</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

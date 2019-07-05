@@ -1,6 +1,6 @@
 package com.yodlee.docdownloadandtsd.Controller;
 
-
+import com.yodlee.docdownloadandtsd.Services.DocDownloadRecertificationService;
 import com.yodlee.docdownloadandtsd.Services.RpaldaService;
 import com.yodlee.docdownloadandtsd.VO.CacheRunVO;
 import com.yodlee.docdownloadandtsd.VO.DocDownloadVO;
@@ -11,14 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class DDTsdController {
 
     @Autowired
     RpaldaService rpaldaService;
+
+    @Autowired
+    DocDownloadRecertificationService docDownloadRecService;
 
     @RequestMapping(value="/TestClob",method={RequestMethod.GET})
     @ResponseBody
@@ -28,10 +30,10 @@ public class DDTsdController {
 
         for(Object res : resultList) {
             if(res instanceof DocDownloadVO) {
-                if(((DocDownloadVO) res).getDocDownloadProd().equals("1")) {
-                    docDownloadEnabled((DocDownloadVO)res);
-                }else if(((DocDownloadVO) res).getDocDownloadProd().equals("0")) {
-                    docDownloadDisabled((DocDownloadVO)res);
+                if(((DocDownloadVO) res).getDocDownloadSeed().equals("1")) {
+                    docDownloadRecService.docDownloadEnabled((DocDownloadVO)res);
+                }else if(((DocDownloadVO) res).getDocDownloadSeed().equals("0")) {
+                    docDownloadRecService.docDownloadDisabled((DocDownloadVO)res);
                 }
             }
         }
@@ -79,12 +81,5 @@ public class DDTsdController {
         return cacheRunVOList;
     }
 
-    public static void docDownloadEnabled(DocDownloadVO ddvo) {
-
-    }
-
-    public static void docDownloadDisabled(DocDownloadVO ddvo) {
-
-    }
 
 }

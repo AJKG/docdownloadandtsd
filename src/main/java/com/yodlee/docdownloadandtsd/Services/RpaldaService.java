@@ -1,6 +1,5 @@
 package com.yodlee.docdownloadandtsd.Services;
 
-import com.yodlee.docdownloadandtsd.VO.DocDownloadVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -12,7 +11,6 @@ import java.util.List;
 @Service
 @CacheConfig(cacheNames={"differences"})
 public class RpaldaService {
-
 
     @Autowired
     RpaldaRepository rpaldaRepository;
