@@ -19,6 +19,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yodlee.docdownloadandtsd.VO.FirememExtractedAjaxResponse;
+import com.yodlee.docdownloadandtsd.VO.FirememExtractedResponseForDocumentDownload;
 import com.yodlee.docdownloadandtsd.VO.ItemDetailsVO;
 import com.yodlee.docdownloadandtsd.authenticator.Authorization;
 import com.yodlee.docdownloadandtsd.exceptionhandling.GeneralErrorHandler;
@@ -128,10 +129,10 @@ public class HammerServicesImpl {
 				break;
 			}
 			HashMap<String, String> itemDetailMap = new HashMap<String, String>();
-			itemDetailMap.put("itemId", yuvaItemDetails.getCacheItemId());
+			itemDetailMap.put("itemId", yuvaItemDetails.getMemSiteAccId());
 			itemDetailMap.put("dbName", yuvaItemDetails.getDataBase());
 			itemDetailMap.put("description","Ajax Batch Testing");
-			itemDetailMap.put("itemType", "2");
+			itemDetailMap.put("itemType", "3");
 			itemDetailList.add(itemDetailMap);
 		}
 
@@ -170,9 +171,12 @@ public class HammerServicesImpl {
 		/*Request Body to trigger the batch*/
 		HashMap<String, Object> batchTriggerRequestBody = new HashMap<String, Object>();
 		HashMap<String, Object> batchTriggerRequestParams = new HashMap<String, Object>();
-		
+
+		ArrayList<String> al = new ArrayList<>();
+		al.add("3");
+
 		batchTriggerRequestParams.put("serverType", "I");
-		batchTriggerRequestParams.put("requestTypes", new ArrayList<>());
+		batchTriggerRequestParams.put("requestTypes", al);
 		batchTriggerRequestParams.put("prodCertified", true);
 		batchTriggerRequestParams.put("agentFileType", "JAVA");
 		batchTriggerRequestParams.put("customrefreshRoute", customrefreshRoute);
@@ -464,7 +468,7 @@ public class HammerServicesImpl {
 		ClientHttpRequestFactory requestFactory = getClientHttpRequestFactory();
 		RestTemplate restTemplate = new RestTemplate(requestFactory);
 
-		HashMap<String,Object> firememExtractedAjaxResponseListMap= new HashMap<String,Object>();
+		HashMap<String,Object> docDownloadResponseMap= new HashMap<String,Object>();
 
 		for(String jDapItemId: jDapItemListFromBatch.keySet()) {
 			logger.info("Item ID :"+jDapItemId);
@@ -496,23 +500,26 @@ public class HammerServicesImpl {
 
 			// JDAP Firemem Access and retrive
 			String jDapFirememResponse= restTemplate.getForObject(jDApDumpUrl, String.class);
+
 			String jDapFirememXML = fetchFinalSiteXML(jDapFirememResponse);
 			logger.info("JDAP FIRMEM => jDapFirememXML : "+jDapFirememXML);
 			String jDapAccountSummaryXML=getAccountSummaryXML(jDapFirememResponse);
 			logger.info("JDAP FIRMEM => jDapAccountSummaryXML : "+jDapAccountSummaryXML);
 
 
-			HashMap<String, HashMap<String, ArrayList<String>>> ajaxFirememResponseColleection = null;
-			FirememExtractedAjaxResponse firememExtractedAjaxResponse = new FirememExtractedAjaxResponse();
-			firememExtractedAjaxResponse.setjDapAccountSummaryXML(jDapAccountSummaryXML);
-			firememExtractedAjaxResponse.setjDapFirememXML(jDapFirememXML);
-			firememExtractedAjaxResponse.setjDapfmCode(jDapFmCode);
-			firememExtractedAjaxResponse.setjDapfmLatency(jDapFmLatency);
-			firememExtractedAjaxResponse.setJdapDumpUrl(jDApDumpUrlToSend);
+			FirememExtractedResponseForDocumentDownload docResponse = new FirememExtractedResponseForDocumentDownload();
+			docResponse.setJdapXMLResponse(jDapFirememXML);
+			docResponse.setErrorCode(jDapFmCode);
+			docResponse.setJdapDumpUrl(jDApDumpUrlToSend);
+			if(jDapFirememXML.contains("DOC_DOWNLOADED") && jDapFirememXML.contains("<documentId>")) {
+				docResponse.setDocPresent(true);
+			}else{
+				docResponse.setDocPresent(false);
+			}
 
-			firememExtractedAjaxResponseListMap.put(jDapItemId,firememExtractedAjaxResponse);
+			docDownloadResponseMap.put(jDapItemId,docResponse);
 		}
-		return firememExtractedAjaxResponseListMap;
+		return docDownloadResponseMap;
 	}
 
 	public String getAllDataFromFiremem(String firememResponse) {
@@ -660,6 +667,11 @@ public class HammerServicesImpl {
 		}else if(firememResponse.contains(secondIdentifier)){
 			firememXML=firememResponse.substring(firememResponse.indexOf(secondIdentifier)+secondIdentifier.length(),firememResponse.lastIndexOf("</PRE>"));
 			firememXML = firememXML.substring(firememXML.indexOf("<PRE>")+ "<PRE>".length());
+			firememXML= firememXML.replaceAll("&lt;","<").replaceAll("&gt;",">").replaceAll("&quot;","\"");
+			firememXML.replaceAll("&#10;"," ");
+			firememXML= firememXML.replaceAll("&#10;"," ");
+		}else if(firememResponse.contains("<site name=")){
+			firememXML=firememResponse.substring(firememResponse.indexOf("<site name=")+secondIdentifier.length(),firememResponse.indexOf("</site>"));
 			firememXML= firememXML.replaceAll("&lt;","<").replaceAll("&gt;",">").replaceAll("&quot;","\"");
 			firememXML.replaceAll("&#10;"," ");
 			firememXML= firememXML.replaceAll("&#10;"," ");

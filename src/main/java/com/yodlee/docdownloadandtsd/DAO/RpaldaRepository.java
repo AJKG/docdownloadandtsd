@@ -43,7 +43,7 @@ public class RpaldaRepository {
         Map<String, String> tsdParamValues = new HashMap<>();
 
         try{
-            String sql = "select mig_id,sum_info_id,migrated_by,data_diff,request_date from migration_request where REQUEST_DATE > sysdate-1 and data_diff is not null and migrated_by is not null";
+            String sql = "select * from migration_request where REQUEST_DATE > sysdate-15 and data_diff is not null and migrated_by is not null and IS_DOWNLOADED_FROM_BB = 1";
             List<Map<String, Object>> rows = jdbc.queryForList(sql);
 
             for (Map row : rows) {

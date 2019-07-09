@@ -3,6 +3,7 @@ package com.yodlee.docdownloadandtsd.Services;
 
 import com.yodlee.docdownloadandtsd.DAO.SplunkRepository;
 import com.yodlee.docdownloadandtsd.VO.DocDownloadVO;
+import com.yodlee.docdownloadandtsd.VO.FirememExtractedResponseForDocumentDownload;
 import com.yodlee.docdownloadandtsd.VO.ItemDetailsVO;
 import com.yodlee.docdownloadandtsd.exceptionhandling.LoginExceptionHandler;
 import com.yodlee.docdownloadandtsd.exceptionhandling.NullPointerExceptionHandler;
@@ -34,11 +35,11 @@ public class DocDownloadRecertificationService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public void docDownloadEnabled(DocDownloadVO ddvo) throws Exception{
+    public String docDownloadEnabled(DocDownloadVO ddvo) throws Exception{
 
         System.out.println("here===");
 
-        String sumInfoId = ddvo.getSumInfoId();
+        String sumInfoId = "663";
         String agentName = splunkService.getAgentName(sumInfoId);
 
         ItemDetailsVO[] yuvaPojo = null;
@@ -77,7 +78,7 @@ public class DocDownloadRecertificationService {
         ArrayList<String> ignoreItemList = new ArrayList<String>();
 
         Integer batchDetailsId = hammerServices.createBatch(yuvaPojo, accessTokenId, agentBaseName);
-        Integer batchReqDetailsId = hammerServices.triggerBatch(batchDetailsId, accessTokenId, "DL", "D");
+        Integer batchReqDetailsId = hammerServices.triggerBatch(batchDetailsId, accessTokenId, "DL", "");
         JSONObject batchResultList = hammerServices.pollingTriggerBatch(batchReqDetailsId, accessTokenId);
 
         JSONArray jDapBatchResultArray = batchResultList.getJSONArray("batchResultList");
@@ -105,10 +106,27 @@ public class DocDownloadRecertificationService {
 
         HashMap<String, Object> allFirememDataMap = hammerServices.retriveDataFromFirememForDocDownload(jDapItemListFromBatch);
 
-        System.out.println(allFirememDataMap);
+        System.out.println(""+allFirememDataMap);
 
-        // JSONArray jObject= new JSONArray(yuvaString);
-        Map<String, Object> responseMap = new HashMap<String, Object>();
+        for(Map.Entry<String, Object> fmData : allFirememDataMap.entrySet()) {
+
+            Object ob = fmData.getValue();
+
+            if(ob instanceof FirememExtractedResponseForDocumentDownload) {
+
+                System.out.println(""+((FirememExtractedResponseForDocumentDownload) ob).isDocPresent());
+
+                if (((FirememExtractedResponseForDocumentDownload) ob).isDocPresent()) {
+                    return "Yes";
+                }else if(((FirememExtractedResponseForDocumentDownload) ob).getErrorCode().equals("518")) {
+                    return "Unable to verify for MFA users";
+                }
+
+            }
+
+        }
+
+        return "No";
 
     }
 

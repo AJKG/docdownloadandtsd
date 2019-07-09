@@ -27,16 +27,23 @@ public class DDTsdController {
     public List<Object> getDBPushDifference() throws Exception{
         System.out.println("Controller");
         List<Object> resultList = rpaldaService.getDiff();
+        Map<Object, String> mp = new HashMap<>();
 
-        for(Object res : resultList) {
+
+        /*for(Object res : resultList) {
             if(res instanceof DocDownloadVO) {
                 if(((DocDownloadVO) res).getDocDownloadSeed().equals("1")) {
-                    docDownloadRecService.docDownloadEnabled((DocDownloadVO)res);
+                    String reslt = docDownloadRecService.docDownloadEnabled((DocDownloadVO)res);
+                    System.out.println(reslt+""+res);
+                    if(reslt.equalsIgnoreCase("yes")) {
+                        mp.put(res, reslt);
+                    }
                 }else if(((DocDownloadVO) res).getDocDownloadSeed().equals("0")) {
                     docDownloadRecService.docDownloadDisabled((DocDownloadVO)res);
+                    mp.put(res, "No");
                 }
             }
-        }
+        }*/
 
         return resultList;
 

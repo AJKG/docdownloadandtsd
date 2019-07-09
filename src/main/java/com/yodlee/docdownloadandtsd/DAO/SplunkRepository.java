@@ -570,12 +570,12 @@ public class SplunkRepository {
 
 		for (int j = 0; j < arr.length(); j++) {
 			JSONObject obj = arr.getJSONObject(j);
-			splunk = splunk + " (CACHE_ITEM_ID="+obj.getString("cacheItemID")+" AND COBRAND_ID= "+obj.getString("cobrandId")+") OR ";
+			splunk = splunk + " (MEM_SITE_ACC_ID="+obj.getString("memSiteAccID")+" AND COBRAND_ID= "+obj.getString("cobrandId")+") OR ";
 		}
 
 		splunk = splunk.substring(0, splunk.length()-3);
 
-		query2 = query2 + splunk +" TYPE_OF_ERROR=0 | eval MATCH=if(NEW_TRANSACTIONS>2 AND NUM_ITEM_ACCOUNTS>1 AND NUM_SUCCESSFUL_REFRESH>50,1,0) | eval temp=CACHE_ITEM_ID.DBID |dedup temp |Table SUM_INFO_ID,CACHE_ITEM_ID,DBID,NUM_SUCCESSFUL_REFRESH,NUM_ITEM_ACCOUNTS,NEW_TRANSACTIONS MATCH| sort 0 -MATCH ";
+		query2 = query2 + splunk +" TYPE_OF_ERROR=0 MEM_SITE_ACC_ID!=-1 CACHE_ITEM_ID!=-1| eval MATCH=if(NEW_TRANSACTIONS>2 AND NUM_ITEM_ACCOUNTS>1 AND NUM_SUCCESSFUL_REFRESH>50,1,0) | eval temp=CACHE_ITEM_ID.DBID |dedup temp |Table SUM_INFO_ID,MEM_SITE_ACC_ID,CACHE_ITEM_ID,DBID,NUM_SUCCESSFUL_REFRESH,NUM_ITEM_ACCOUNTS,NEW_TRANSACTIONS MATCH| sort 0 -MATCH ";
 		System.out.println(query2);
 
 		System.out.println("splunkSession :"+splunkSession);
@@ -617,6 +617,7 @@ public class SplunkRepository {
 			JSONObject obj = new JSONObject();
 
 			obj.put("cacheItemId", agentObject.getString("CACHE_ITEM_ID"));
+			obj.put("memSiteAccId", agentObject.getString("MEM_SITE_ACC_ID"));
 
 			if(dbMapping.get(agentObject.getString("DBID")) != null) {
 				obj.put("dataBase",dbMapping.get(agentObject.getString("DBID")));
@@ -644,7 +645,7 @@ public class SplunkRepository {
 		System.out.println("...getUsersFromSplunk..."+suminfo);
 		String query2="";
 		if(suminfo!=null && !suminfo.isEmpty()) {
-			query2="search index=itemerrors sourcetype=item_errors SUM_INFO_ID="+suminfo+" TYPE_OF_ERROR=0 DBID!=sdbcaf06  CACHE_ITEM_ID!=-1 |eval cachMSA=CACHE_ITEM_ID.MEM_SITE_ACC_ID | dedup cachMSA | eval temp=CACHE_ITEM_ID.DBID | dedup temp |eval MATCH=if(NEW_TRANSACTIONS>2 AND NUM_ITEM_ACCOUNTS>1 AND NUM_SUCCESSFUL_REFRESH>50,1,0)| Table SUM_INFO_ID,CACHE_ITEM_ID,DBID,NUM_SUCCESSFUL_REFRESH,NUM_ITEM_ACCOUNTS,NEW_TRANSACTIONS MATCH |sort 0 -MATCH| Head 40";
+			query2="search index=itemerrors sourcetype=item_errors SUM_INFO_ID="+suminfo+" TYPE_OF_ERROR=0 DBID!=sdbcaf06  CACHE_ITEM_ID!=-1 MEM_SITE_ACC_ID!=-1 |eval cachMSA=CACHE_ITEM_ID.MEM_SITE_ACC_ID | dedup cachMSA | eval temp=CACHE_ITEM_ID.DBID | dedup temp |eval MATCH=if(NEW_TRANSACTIONS>2 AND NUM_ITEM_ACCOUNTS>1 AND NUM_SUCCESSFUL_REFRESH>50,1,0)| Table SUM_INFO_ID,MEM_SITE_ACC_ID,CACHE_ITEM_ID,DBID,NUM_SUCCESSFUL_REFRESH,NUM_ITEM_ACCOUNTS,NEW_TRANSACTIONS MATCH |sort 0 -MATCH| Head 40";
 		}
 
 		System.out.println("splunkSession at the top  :"+splunkSession);
@@ -683,6 +684,7 @@ public class SplunkRepository {
 			JSONObject obj = new JSONObject();
 
 			obj.put("cacheItemId", agentObject.getString("CACHE_ITEM_ID"));
+			obj.put("memSiteAccId", agentObject.getString("MEM_SITE_ACC_ID"));
 
 			if(dbMapping.get(agentObject.getString("DBID")) != null) {
 				obj.put("dataBase",dbMapping.get(agentObject.getString("DBID")));
