@@ -2244,3 +2244,836 @@ java.io.IOException: An established connection was aborted by the software in yo
 2019-07-09 11:34:57.840  INFO 8328 --- [http-nio-8091-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
 2019-07-09 11:34:58.162  INFO 8328 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
 2019-07-09 11:35:02.788  INFO 8328 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-07-09 11:51:29.312  INFO 8328 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2019-07-09 11:51:32.354  INFO 8328 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2019-07-09 11:51:33.365 ERROR 8328 --- [http-nio-8091-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: StatementCallback; bad SQL grammar [select sum_info_id,sum_info_param_value_id from sum_info_param_value where sum_info_id in (16745,23641,22818,28006,10465,34749,34746,34748,16663,13005,16663,13005,26037,13091,32516,24697,28613,20099,9084,9084,25729,25728,9084,8333,8334,8335,8336,8887,8333,8334,8335,8887,8336,12485,9084,19672,19627,19297,20756,19270,23065,19416,12819,17921,18977,10206,37987,16237,4547,12918,26515,803,13438,18891,3309,24099,4547,803,12918,16237,26515,4479,36286,24967,28340,17512,26255,26253,26248,26254,7826,7829,7827,7828,7830,21341,21387,21400,21399,33489,4518,15380,4872,4920,34214,4457,26423,19672,23065,19270,19297,19416,20756,19627,10371,26138,26096,26143,26141,26142,4518,15380,4872,4920,34214,4457,26423,15865,15869,15864,22127,16119,16116,16117,27756,14270,16118,35154,35152,35155,22724,28340,37254,30785,12511,28329,27756,16119,14270,16118,16116,16117,32686,32684,19270,19297,19672,20756,23065,19627,19416,12042,26941,26942,38039,38040,38041,28622,8333,8334,8336,8887,8335,22127,22724,15808,28080,26370,26367,26369,32299,26942,26941,4721,10778,34052,15293,9698,9696,37726,3076,6014,6064,6066,38032,30558,15349,15353,29046,13237,25278,29669,4787,30127,30128,30125,30126,25729,25728,18273,22859,19274,3585,4442,13287,28679,38044,38032,38033,38031,25859,25860,3867,10788,13561,30700,15886,15238,12919,37366,30446,25859,25860,37565,9084,25859,25860,13331,19835,32636,19719,18932,465,18298,18893,9103,9126,13035,14058,28172,26298,5950,26299,26300,9084,25559,13801,38046,27669,36893,36907,35662,35963,35961,20352,35962,36110,15553,5132,13707,12975,3585,4442,22859,19274,13287,27618,38047,13819,17731,17736,13441,23807,28694,30198,18788,38048,8075,8077,8078,8074,13705,23779,31900,19096,9305,28268,37676,11193,23198,22827,37867,29391,29392,37860,37983,35048,35047,14681,24090,4830,30693,24089,6170,35670,38025,38049,11890,8235,765,12636,10932,11726,3589,15349,15353,13237,29046,36233,15349,13237,15353,29046,26376,26375,19672,19270,19297,19416,20756,23065,19627,9574,15750,492,28695,35635,38050,38051,13449,6170,35670,38053,15979,14164,12896,38054,38055,37928,37926,26347,13895,38056,7808,7809,1223,24972,24973,21558,11332,11431,7100,663,12071,3163,3483,11707,11708,11706,12049,11709,11767,19323,3861,10441,12242,14769,35086,38057,38058,13403,19164,3191,16529,29337,18820,22128,10615,21558,8983,12234,7808,7809,1223,38059,12636,11726,3589,8235,10932,765,25186,25187,25188,25190,25191,25192,24151,24154,18086,18788,30198,34277,37983,33673,7808,7809,1223,22853,18086,23270,14776,14777,14783,14784,16545,16745,23641,22818,29666,29665,23105,38060,8950,23038,37577,3411,24099,34181,34189,35906,33482,34181,34189,8950,34397,34394,22675,18201,18205,17235,18207,33673,9844,9837,9836,27579,35906,33482,34659,16640,16639,34659,25711,36796,9696,9698,37726,22060,22190,32137,36172,26066,26065,26065,26066,35535,28123,38061,663,7100,11332,3163,11707,11708,11431,12049,12071,3483,11706,11709,11767,19323,3861,12242,10441,37748,9210,12945,12946,12985,4736,37744,33649,33664,23976,28679,38044,663,7100,11332,11431,12049,12071,3163,3483,11706,11707,11708,11709,11767,12242,19323,3861,10441,4576,4602,12860,12916,3559,3660,663,11332,12071,3483,11431,12049,3163,11706,7100,11707,11709,11767,12242,19323,3861,10441,11708,3559,4576,4602,12860,12916,3660,36233,27309,19862,12810,9698,9696,37726,37887,7906,7909,7910,7907,7908,17912,17914,17916,37845,105,19146,12503,23200,23198,11193,22827,17912,17914,17916,11520,19406,19663,19801,11519,11523,12219,14204,16223,16224,9210,12945,12946,4736,12985,11520,11523,12219,19406,19663,11519,19801,33482,35906,32059,19310,13257,25529,10028,10072,3750,15785,11956,28417,34765,7643,7644,7645,7646,27554,32516,13091,24697,16916,24530,24531,24532,14208,18916,7143,7145,7142,7146,7144,16562,16576,10199,32012,3842,22941,4660,5062,9610,17696,17699,26271,26270,34650,6728,16916,24531,24532,24530,16711,29834,34711,7913,7915,7916,7917,7914,21682,19353,24923,24921,22363,28417,3411,24099,8734,8552,14169,14053,34765,33649,33664,33575,24923,24921,19663,19801,11519,11520,11523,12219,19406,28417,3411,24099,28400,38022,27309,19862,35990,15568,16383,765,8235,11726,3589,12636,10932,27165,4800,26735,26850,27384,722,16735,722,16735,25186,25191,25192,25187,25188,25190,32464,14401,1185,5152,36444,14204,16223,16224,4721,10778,33068,765,12636,11726,3589,8235,10932,11956,37765,21493,21494,21656,21655,21475,21476,21464,21465,37765,28245,29949,29950,12810,13005,16663,16663,13005,22509,22511,12328,22746,37559,27820,19310,13257,18916,14208,26270,6728,34650,26271,7913,7917,7916,7915,7914,28473,10072,10028,3750,15785,10199,32012,16576,16562,5062,9610,17699,17696,16711,29834,34711,27290,21682,3842,22941,4660,31103,37880,13005,16663,7998,8000,7999,8001,8002,22863,11925,20053,32854,29428,32601,22509,22511,29658,15557,22739,32054,32938,16880,18127,18131,18134,18123,27069,27068,38064,29909,15333,35172,13370,34911,32806,31700,312,17085,30981,23849,16346,27642,19256,23849,16346,27642,19256,22097,4800,26850,26735,27165,27384,312,30981,17085,20897,26329,26327,26325,26326,26328,31893,12117,33491,33386,9715,28250,37724,30832,27788,28310,28250,37724,16776,14860,22107,34992,29681,15839,25429,33984,13370,12067,30998,13719,21047,32335,34391,32343,32344,34390,34797,37585,37655,37706,14155,29669,32283,32286,32293,32283,32286,32293,32283,32286,32293,3597,8610,10614,10249,33595,17331,17336,17325,17330,29368,35935,9715,26065,26066,19119,85,30128,30125,30126,30127,9715,312,30981,17085,34797,37585,13370,22667,23268,23269,23274,23276,5674,34068,5909,34510,34509,28447,28448,23270,9696,9698,37726,16880,18127,18131,18123,18134,38066,38067,30226,38068,15353,29046,15349,13237,38070,38068,3497,38071,38068,38070,38072,36344,11985,38073,27549,38074,11012,105,12503,19146,11985,38075,17312,34138,38076,38073,38077,10316,15149,18833,28310,28448,28447,23270,25778,25784,25780,25785,25787,25779,26096,26143,26141,26142,26138,37491,30226,35668,31454,27290,14200,26138,26143,26142,26096,26141,18066,37600,36319,37672,13366,13366,7808,7809,1223,26964,26370,26369,32299,26367,28080,11869,9715,27360,8946,33902,15863,10803,10808,3834,4650,38058,4940,4986,22489,4988,23032,15353,15349,29046,13237,4787,31454,10582,36102,14657,20099,7312,7308,7309,7310,7311,31258,16098,16797,16877,17001,14657,28794,14657,5620,14657,32556,32555,19824,12953,14473,38069,21341,21387,21399,21400,29960,4561,4638,4972,37792,33812,33835,19920,35561,4561,4638,4972,37792,11315,15863,12642,30192,24655,24654,28970,33576,35647,33577,23941,16663,13005,32145,13178,19824,8953,12649,8949,5523,665,4930,37667,33384,16486,24299,29960,12988,29960,16508,26103,29960,33229,29960,33280,37689,16275,16344,28198,24654,24655,30861,30289,30287,30861,33577,35647,28970,33576,27360,8946,33902,26732,26284,30861,32555,32556,14756,14757,14759,14761,14762,15663,14764,32556,32555,26103,13999,18039,19440,14400,38079,38061,38080,38077,38081,38082,38082,38083,10232,25574,34788,29343,38085,38052,27309,19862,20438,21178,33614,34051,27309,19862,14400,19440,27309,19862,27309,19862,27309,19862,24734,38084,38082,38083,38078,38063,7809,1223,7808,23641,16745,22818,14400,19440,27183,27170,14756,14757,14759,14762,14764,15663,14761,10232,34788,25574,33595,10614,10249,34495,34496,26138,26096,26143,26141,26142,4495,29080,9828,8983,4815,4567,4818,28187,4685,15557,29658,23198,11193,22827,38086,12485,38087,32137,9255,38088,16889,17648,17663,38089,38091,38089,38092,38093,38094,312,17085,30981,38090,4569,4809,4817,4874,10780,4569,4809,4817,4874,10780,15848,16787,5739,38096,38097,22060,22190,38097,38098,38090,13057,30925,38099,28359,10523,27107,27069,27068,38100,37702,38101,13445,35854,35654,33125,30590,18166,38102,38103,30289,30287,18499,18512,16960,19824,33605,36219,35566,28006,10465,38104,11967) and sum_info_param_key_id = 34]; nested exception is java.sql.SQLSyntaxErrorException: ORA-01795: maximum number of expressions in a list is 1000
+] with root cause
+
+oracle.jdbc.OracleDatabaseException: ORA-01795: maximum number of expressions in a list is 1000
+
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:498) ~[ojdbc8-18.3.0.0.jar:18.3.0.0.0]
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:446) ~[ojdbc8-18.3.0.0.jar:18.3.0.0.0]
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1052) ~[ojdbc8-18.3.0.0.jar:18.3.0.0.0]
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:537) ~[ojdbc8-18.3.0.0.jar:18.3.0.0.0]
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:255) ~[ojdbc8-18.3.0.0.jar:18.3.0.0.0]
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:610) ~[ojdbc8-18.3.0.0.jar:18.3.0.0.0]
+	at oracle.jdbc.driver.T4CStatement.doOall8(T4CStatement.java:213) ~[ojdbc8-18.3.0.0.jar:18.3.0.0.0]
+	at oracle.jdbc.driver.T4CStatement.doOall8(T4CStatement.java:37) ~[ojdbc8-18.3.0.0.jar:18.3.0.0.0]
+	at oracle.jdbc.driver.T4CStatement.executeForDescribe(T4CStatement.java:724) ~[ojdbc8-18.3.0.0.jar:18.3.0.0.0]
+	at oracle.jdbc.driver.OracleStatement.executeMaybeDescribe(OracleStatement.java:921) ~[ojdbc8-18.3.0.0.jar:18.3.0.0.0]
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1099) ~[ojdbc8-18.3.0.0.jar:18.3.0.0.0]
+	at oracle.jdbc.driver.OracleStatement.executeQuery(OracleStatement.java:1293) ~[ojdbc8-18.3.0.0.jar:18.3.0.0.0]
+	at oracle.jdbc.driver.OracleStatementWrapper.executeQuery(OracleStatementWrapper.java:366) ~[ojdbc8-18.3.0.0.jar:18.3.0.0.0]
+	at com.zaxxer.hikari.pool.ProxyStatement.executeQuery(ProxyStatement.java:111) ~[HikariCP-2.7.8.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.executeQuery(HikariProxyStatement.java) ~[HikariCP-2.7.8.jar:na]
+	at org.springframework.jdbc.core.JdbcTemplate$1QueryStatementCallback.doInStatement(JdbcTemplate.java:433) ~[spring-jdbc-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:376) ~[spring-jdbc-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:446) ~[spring-jdbc-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:456) ~[spring-jdbc-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.jdbc.core.JdbcTemplate.queryForList(JdbcTemplate.java:484) ~[spring-jdbc-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at com.yodlee.docdownloadandtsd.DAO.RpaldaRepository.getDiff(RpaldaRepository.java:75) ~[classes/:na]
+	at com.yodlee.docdownloadandtsd.Services.RpaldaService.getDiff(RpaldaService.java:20) ~[classes/:na]
+	at com.yodlee.docdownloadandtsd.Controller.DDTsdController.getDBPushDifference(DDTsdController.java:29) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_192]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_192]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_192]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_192]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:209) ~[spring-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:136) ~[spring-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102) ~[spring-webmvc-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:870) ~[spring-webmvc-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:776) ~[spring-webmvc-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:991) ~[spring-webmvc-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:925) ~[spring-webmvc-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:978) ~[spring-webmvc-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:870) ~[spring-webmvc-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:687) ~[javax.servlet-api-3.1.0.jar:3.1.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:855) ~[spring-webmvc-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790) ~[javax.servlet-api-3.1.0.jar:3.1.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) ~[tomcat-embed-websocket-8.5.28.jar:8.5.28]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) ~[spring-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199) ~[tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:496) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:803) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:790) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1459) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_192]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_192]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_192]
+
+2019-07-09 11:55:36.291  INFO 18356 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-07-09 11:55:36.294  INFO 18356 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.28
+2019-07-09 11:55:36.298  INFO 18356 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_192\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\oraclexe\app\oracle\product\10.2.0\server\bin;C:\XEClient\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Perforce;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;C:\Softwares\apache-maven-3.6.1\bin;C:\Softwares\node-v10.16.0-win-x64;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Python27;;C:\Users\cbatra\AppData\Local\Programs\Microsoft VS Code\bin;.]
+2019-07-09 11:55:36.608  INFO 18356 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-07-09 11:55:54.728  INFO 18356 --- [http-nio-8091-exec-10] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-07-09 11:55:54.936  INFO 18356 --- [http-nio-8091-exec-10] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-07-09 11:55:57.848  INFO 18356 --- [http-nio-8091-exec-10] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-07-09 12:10:30.937  INFO 18356 --- [http-nio-8091-exec-10] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2019-07-09 12:10:33.802  INFO 18356 --- [http-nio-8091-exec-10] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2019-07-09 18:25:22.639  INFO 21240 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-07-09 18:25:22.645  INFO 21240 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.28
+2019-07-09 18:25:22.675  INFO 21240 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_192\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\oraclexe\app\oracle\product\10.2.0\server\bin;C:\XEClient\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Perforce;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;C:\Softwares\apache-maven-3.6.1\bin;C:\Softwares\node-v10.16.0-win-x64;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Python27;;C:\Users\cbatra\AppData\Local\Programs\Microsoft VS Code\bin;.]
+2019-07-09 18:25:23.266  INFO 21240 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-07-09 18:25:32.581  INFO 21240 --- [http-nio-8091-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-07-09 18:25:32.749  INFO 21240 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-07-09 18:25:35.900  INFO 21240 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-07-09 18:25:53.451  INFO 21240 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2019-07-09 18:25:56.071  INFO 21240 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2019-07-09 18:26:25.591  INFO 11080 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-07-09 18:26:25.593  INFO 11080 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.28
+2019-07-09 18:26:25.599  INFO 11080 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_192\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\oraclexe\app\oracle\product\10.2.0\server\bin;C:\XEClient\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Perforce;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;C:\Softwares\apache-maven-3.6.1\bin;C:\Softwares\node-v10.16.0-win-x64;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Python27;;C:\Users\cbatra\AppData\Local\Programs\Microsoft VS Code\bin;.]
+2019-07-09 18:26:25.896  INFO 11080 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-07-09 18:26:28.078  INFO 11080 --- [http-nio-8091-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-07-09 18:26:28.283  INFO 11080 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-07-09 18:26:31.176  INFO 11080 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-07-09 18:26:48.901  INFO 11080 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2019-07-09 18:26:51.566  INFO 11080 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2019-07-09 18:26:57.008  INFO 11080 --- [http-nio-8091-exec-1] c.y.d.DAO.SplunkRepository               : ...agentName : Fiserv
+2019-07-09 18:27:03.216  INFO 11080 --- [http-nio-8091-exec-1] c.y.d.Services.YuvaGatewayImpl           : ..resposne of new YUVA API : {"status":"SUCCESS","messages":["No successful user found with search depth 5 for Feature: 'SDG_ADD_ACCOUNT' and State: 'LOGIN'","No successful user found with search depth 5 for Feature: 'ADD_ACCOUNT' and State: 'ACCOUNT_SUMMARY'","No successful user found with search depth 5 for Feature: 'ADD_ACCOUNT' and State: 'ACCOUNT_DETAILS'","No successful user found with search depth 5 for Feature: 'ADD_ACCOUNT' and State: 'ACCOUNT_TRANSACTIONS'","No successful user found with search depth 5 for Feature: 'ADD_ACCOUNT' and State: 'LOGIN'","No successful user found with search depth 5 for Feature: 'ADD_ACCOUNT' and State: 'IS_ACCOUNT_TRANSACTIONS'","No successful user found with search depth 5 for Feature: 'ADD_ACCOUNT' and State: 'IS_ACCOUNT_DETAILS'","No successful user found with search depth 5 for Feature: 'PFM' and State: 'LOGOUT'"],"totalPages":1,"result":[{"feature":"SDG","distinctUsers":["15901712"],"states":[{"name":"ACCOUNT_SUMMARY","users":[[{"segmentId":"97b57b6b3fc3a3237bf77d3eb593b988","cacheItemID":"15901712","memSiteAccID":"15900977","cobrandId":"33410018556","segmentCount":1,"volumecount":2,"segmentCoverage":"100%"}]]},{"name":"ACCOUNT_DETAILS","users":[[{"segmentId":"6c1a6b5182a3dad6b2f65bc6cddf74f1","cacheItemID":"15901712","memSiteAccID":"15900977","cobrandId":"33410018556","segmentCount":1,"volumecount":2,"segmentCoverage":"100%"}]]},{"name":"ACCOUNT_TRANSACTIONS","users":[[{"segmentId":"22c4c8f584e4f057cabfdd12d528f4a7","cacheItemID":"15901712","memSiteAccID":"15900977","cobrandId":"33410018556","segmentCount":1,"volumecount":2,"segmentCoverage":"100%"}]]},{"name":"LOGIN","users":[[{"segmentId":"6dedf59c8a90d70cc01c498f9d742aee","cacheItemID":"15901712","memSiteAccID":"15900977","cobrandId":"33410018556","segmentCount":1,"volumecount":2,"segmentCoverage":"100%"}]]},{"name":"IS_ACCOUNT_TRANSACTIONS","users":[[{"segmentId":"dd538a106207328075dbc977f26de9f6","cacheItemID":"15901712","memSiteAccID":"15900977","cobrandId":"33410018556","segmentCount":1,"volumecount":2,"segmentCoverage":"50.0%"}]]},{"name":"IS_ACCOUNT_DETAILS","users":[[{"segmentId":"023c0b06a67121bc8dc41001c3803a37","cacheItemID":"15901712","memSiteAccID":"15900977","cobrandId":"33410018556","segmentCount":1,"volumecount":2,"segmentCoverage":"50.0%"}]]}]},{"feature":"PFM","distinctUsers":["19359920","23144487"],"states":[{"name":"ACCOUNT_SUMMARY","users":[[{"segmentId":"8727b733c26bbc6203086d53977f2a50","cacheItemID":"23144487","memSiteAccID":"12899039","cobrandId":"10012356","segmentCount":8,"volumecount":16,"segmentCoverage":"100%"}]]},{"name":"ACCOUNT_DETAILS","users":[[{"segmentId":"4faf2e15c5d514e0e0584e71e4ef5754","cacheItemID":"19359920","memSiteAccID":null,"cobrandId":"10005780","segmentCount":4,"volumecount":8,"segmentCoverage":"100%"}]]},{"name":"ACCOUNT_TRANSACTIONS","users":[[{"segmentId":"d70cb406d90f58199192daa8d1b30209","cacheItemID":"19359920","memSiteAccID":null,"cobrandId":"10005780","segmentCount":4,"volumecount":8,"segmentCoverage":"100%"}]]},{"name":"LOGIN","users":[[{"segmentId":"d4df6202d718ae92596bf650f8fa4724","cacheItemID":"23144487","memSiteAccID":"12899039","cobrandId":"10012356","segmentCount":18,"volumecount":36,"segmentCoverage":"100%"}]]},{"name":"IS_ACCOUNT_TRANSACTIONS","users":[[{"segmentId":"37ccc0f48c16803d6951a10d4f03ce29","cacheItemID":"23144487","memSiteAccID":"12899039","cobrandId":"10012356","segmentCount":2,"volumecount":4,"segmentCoverage":"100%"}]]},{"name":"IS_ACCOUNT_DETAILS","users":[[{"segmentId":"daaa5ad31adbd3b737649f4489228786","cacheItemID":"23144487","memSiteAccID":"12899039","cobrandId":"10012356","segmentCount":2,"volumecount":4,"segmentCoverage":"100%"}]]}]}]}
+2019-07-09 18:27:03.225  INFO 11080 --- [http-nio-8091-exec-1] c.y.d.DAO.SplunkRepository               : clear the session 
+2019-07-09 18:27:09.452  INFO 11080 --- [http-nio-8091-exec-1] c.y.d.DAO.SplunkRepository               : clear the session 
+2019-07-09 18:27:09.453  INFO 11080 --- [http-nio-8091-exec-1] c.y.d.DAO.SplunkRepository               : clear the session 
+2019-07-09 18:27:13.830  INFO 11080 --- [http-nio-8091-exec-1] c.y.d.DAO.SplunkRepository               : clear the session 
+2019-07-09 18:27:13.899  INFO 11080 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-09 18:27:15.752 ERROR 11080 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MjY3ODgzNSwiaXAiOiIxOTIuMTY4LjE0OS4xNzEifQ.gRGFxaqiNIgafA-CnRqZM2lLxNWfyKKLR2CRBGPvmdueLaaCTK7o6iEi-z3lxI7uUqDIMveMFfmyCjIBZyIQrA
+2019-07-09 18:27:21.633  INFO 11080 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### createBatch #########################################
+2019-07-09 18:27:21.646  INFO 11080 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Request body of batch Creation : {nickName=FiservBase, agentName=FiservBase, description=FiservBase, items={Add=[{itemId=17824349, itemType=3, dbName=sdbcac03, description=Ajax Batch Testing}, {itemId=15900977, itemType=3, dbName=sdbcat20, description=Ajax Batch Testing}, {itemId=12899039, itemType=3, dbName=sdbcae05, description=Ajax Batch Testing}, {itemId=10899529, itemType=3, dbName=sdbcau21, description=Ajax Batch Testing}]}}
+2019-07-09 18:27:22.953  INFO 11080 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Batch Creation Response :{"batchName":"FiservBase_API_09_Jul_2019_05_57_22","agentName":null,"batchRequestDate":null,"noOfItemsInBatch":null,"lastUpdated":null,"lastRequestStatus":null,"statusMsg":"Batch created successfully for agent name : FiservBase, Batch name : FiservBase_API_09_Jul_2019_05_57_22","appRequestId":null,"batchDetailList":[],"batchReqDetailList":[],"agentList":[],"agentMap":{},"userList":[],"batchType":{},"itemType":{},"batchResultList":[],"glogErrors":[],"batchStatus":5,"batchItemList":[{"batchItemDetailsId":163733,"itemId":15900977,"itemTypeId":3,"dbName":"sdbcat20","cobrandId":33410018556,"source":"{\"type\":\"manual\",\"user\":\"ajaxtool\"}","deleted":false,"deletedBy":null,"description":"default - Ajax Batch Testing","sumInfoId":0,"siteId":13901,"batchCriteriaId":1,"batchDetailsId":50197,"code":0,"duplicate":false},{"batchItemDetailsId":163736,"itemId":12899039,"itemTypeId":3,"dbName":"sdbcae05","cobrandId":10012356,"source":"{\"type\":\"manual\",\"user\":\"ajaxtool\"}","deleted":false,"deletedBy":null,"description":"default - Ajax Batch Testing","sumInfoId":0,"siteId":13901,"batchCriteriaId":1,"batchDetailsId":50197,"code":0,"duplicate":false},{"batchItemDetailsId":163735,"itemId":10899529,"itemTypeId":3,"dbName":"sdbcau21","cobrandId":10019056,"source":"{\"type\":\"manual\",\"user\":\"ajaxtool\"}","deleted":false,"deletedBy":null,"description":"default - Ajax Batch Testing","sumInfoId":0,"siteId":13901,"batchCriteriaId":1,"batchDetailsId":50197,"code":0,"duplicate":false},{"batchItemDetailsId":163734,"itemId":17824349,"itemTypeId":3,"dbName":"sdbcac03","cobrandId":10002812,"source":"{\"type\":\"manual\",\"user\":\"ajaxtool\"}","deleted":false,"deletedBy":null,"description":"default - Ajax Batch Testing","sumInfoId":0,"siteId":13901,"batchCriteriaId":1,"batchDetailsId":50197,"code":0,"duplicate":false}],"batchStatusMap":{},"dataCenter":{"0":"QE","1":"Stage","2":"SC9","3":"India","99":"All Prod","4":"Canada","5":"Australia","6":"Malaysia","7":"UK"},"dataSetInfo":null,"dbs":null,"cirteriaTypes":{"1":"default","2":"error code","3":"latency","4":"soft errors","5":"exception","6":"number of accounts","7":"account types","8":"vip users","9":"segment id"},"errorItems":[],"maxItemsInBatch":0,"batchDetailsId":50197,"batchReqDetailsId":null,"valid":false}
+2019-07-09 18:27:22.956  INFO 11080 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Create Batch => batchDetailsId:50197
+2019-07-09 18:27:22.956  INFO 11080 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### triggerBatch #########################################
+2019-07-09 18:27:22.964  INFO 11080 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Batch Trigger Request Body :{batchRefreshParams={docDownloadRequest={statementRequest={taxDurationType=, stmtDurationType=}, docDownloadRequest=false, pfm=false, taxDurationType=, allAccounts=true, durationType=, latest=false}, agentFileType=JAVA, customrefreshRoute=DL, serverType=I, prodCertified=true, customRoute=, iavRequest={paramKeyValues={}, accountNumberMatchSuffix=, accountNumberMatchPrefix=, iavPlusRequest={iavPlus=false, paramKeyValues={}}}, requestTypes=[3]}, batchDetailsId=50197, userName=ajaxtool}
+2019-07-09 18:27:23.844  INFO 11080 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Batch Trigger => batchReqDetailsId:44540
+2019-07-09 18:27:23.845  INFO 11080 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### pollingTriggerBatch #########################################
+2019-07-09 18:28:37.997  INFO 11080 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : batch Polling Response :{"batchName":null,"agentName":null,"batchRequestDate":null,"noOfItemsInBatch":null,"lastUpdated":null,"lastRequestStatus":null,"statusMsg":null,"appRequestId":null,"batchDetailList":[{"batchDetailsId":50197,"userName":"ajaxtool","batchName":"FiservBase_API_09_Jul_2019_05_57_22","batchNickName":"FiservBase","baseAgentName":"FiservBase","batchTypeId":1,"glogSourceId":99,"description":"FiservBase","expiryDate":1565269042000,"expired":false,"deleted":false,"batchLastUpdated":1562677042000,"reqInitiated":1562677042000,"reqCompleted":1562677042000,"userInputs":"{\"ServerType\":\"INSTANT\",\"ItemType\":\"Cache Item Id\",\"IsDefaultCriteria\":true}","filterCriteria":null,"batchStatusId":5,"statusMsg":"Successfully created batch with items","rowLastUpdated":1562677042000,"batchItemDetailList":[{"batchItemDetailsId":163733,"itemId":15900977,"itemTypeId":3,"dbName":"sdbcat20","cobrandId":33410018556,"source":"{\"type\":\"manual\",\"user\":\"ajaxtool\"}","deleted":false,"deletedBy":null,"description":"default - Ajax Batch Testing","sumInfoId":0,"siteId":13901,"batchCriteriaId":1,"batchDetailsId":50197,"code":0,"duplicate":false},{"batchItemDetailsId":163734,"itemId":17824349,"itemTypeId":3,"dbName":"sdbcac03","cobrandId":10002812,"source":"{\"type\":\"manual\",\"user\":\"ajaxtool\"}","deleted":false,"deletedBy":null,"description":"default - Ajax Batch Testing","sumInfoId":0,"siteId":13901,"batchCriteriaId":1,"batchDetailsId":50197,"code":0,"duplicate":false},{"batchItemDetailsId":163735,"itemId":10899529,"itemTypeId":3,"dbName":"sdbcau21","cobrandId":10019056,"source":"{\"type\":\"manual\",\"user\":\"ajaxtool\"}","deleted":false,"deletedBy":null,"description":"default - Ajax Batch Testing","sumInfoId":0,"siteId":13901,"batchCriteriaId":1,"batchDetailsId":50197,"code":0,"duplicate":false},{"batchItemDetailsId":163736,"itemId":12899039,"itemTypeId":3,"dbName":"sdbcae05","cobrandId":10012356,"source":"{\"type\":\"manual\",\"user\":\"ajaxtool\"}","deleted":false,"deletedBy":null,"description":"default - Ajax Batch Testing","sumInfoId":0,"siteId":13901,"batchCriteriaId":1,"batchDetailsId":50197,"code":0,"duplicate":false}]}],"batchReqDetailList":[{"batchReqDetailsId":44540,"batchDetailsId":50197,"userName":"ajaxtool","numItems":4,"refreshRoute":"DEFAULT,DAP,PROD","agentRouting":"JAVA","userLocale":null,"docDownload":true,"addAccount":false,"is401K":false,"reqFeatures":"{\"ServerType\":\"I\",\"prodCertified\":true,\"sequentialProcessing\":false}","reqInitiated":1562677043000,"reqCompleted":1562677106000,"reqLatency":63205.0,"statusMsg":null,"batchStatusId":5,"rowLastUpdated":1562677043000,"appReqId":"0c4969e9-4f46-495d-b9e8-a6caab8581ed","batchDetail":{"batchDetailsId":50197,"userName":"ajaxtool","batchName":"FiservBase_API_09_Jul_2019_05_57_22","batchNickName":"FiservBase","baseAgentName":"FiservBase","batchTypeId":1,"glogSourceId":99,"description":"FiservBase","expiryDate":1565269042000,"expired":false,"deleted":false,"batchLastUpdated":1562677042000,"reqInitiated":1562677042000,"reqCompleted":1562677042000,"userInputs":"{\"ServerType\":\"INSTANT\",\"ItemType\":\"Cache Item Id\",\"IsDefaultCriteria\":true}","filterCriteria":null,"batchStatusId":5,"statusMsg":"Successfully created batch with items","rowLastUpdated":1562677042000,"batchItemDetailList":[{"batchItemDetailsId":163733,"itemId":15900977,"itemTypeId":3,"dbName":"sdbcat20","cobrandId":33410018556,"source":"{\"type\":\"manual\",\"user\":\"ajaxtool\"}","deleted":false,"deletedBy":null,"description":"default - Ajax Batch Testing","sumInfoId":0,"siteId":13901,"batchCriteriaId":1,"batchDetailsId":50197,"code":0,"duplicate":false},{"batchItemDetailsId":163734,"itemId":17824349,"itemTypeId":3,"dbName":"sdbcac03","cobrandId":10002812,"source":"{\"type\":\"manual\",\"user\":\"ajaxtool\"}","deleted":false,"deletedBy":null,"description":"default - Ajax Batch Testing","sumInfoId":0,"siteId":13901,"batchCriteriaId":1,"batchDetailsId":50197,"code":0,"duplicate":false},{"batchItemDetailsId":163735,"itemId":10899529,"itemTypeId":3,"dbName":"sdbcau21","cobrandId":10019056,"source":"{\"type\":\"manual\",\"user\":\"ajaxtool\"}","deleted":false,"deletedBy":null,"description":"default - Ajax Batch Testing","sumInfoId":0,"siteId":13901,"batchCriteriaId":1,"batchDetailsId":50197,"code":0,"duplicate":false},{"batchItemDetailsId":163736,"itemId":12899039,"itemTypeId":3,"dbName":"sdbcae05","cobrandId":10012356,"source":"{\"type\":\"manual\",\"user\":\"ajaxtool\"}","deleted":false,"deletedBy":null,"description":"default - Ajax Batch Testing","sumInfoId":0,"siteId":13901,"batchCriteriaId":1,"batchDetailsId":50197,"code":0,"duplicate":false}]}}],"agentList":[],"agentMap":{},"userList":[],"batchType":{"1":"Functional","2":"Regression"},"itemType":{"1":"Mem Item Id","2":"Cache Item Id","3":"Mem Site Acc Id"},"batchResultList":[{"siteId":13901,"sumInfoId":16482,"scriptName":"Fiserv","container":"bank","fmItemType":null,"itemTypeId":3,"itemId":10899529,"dbName":"sdbcau21","cobrandId":10019056,"source":"user\"\"ajaxtool\"","batchCriteriaId":1,"fmLatency":45289,"prodLatency":null,"numNav":2,"cpuUtil":0,"fmCode":0,"prodCode":0,"fmScriptVersion":4512,"prodScriptVersion":null,"softError":null,"dumpUrl":"https://fmdumps.tools.yodlee.com/dumpdispatcher/dumps?id=10785528.172.17.15.94.2019.07.09.05.58.14.157.html&dbName=sdbcau21&cobrandID=10019056","refreshDeniedReason":null,"batchDetailsId":50197,"description":"default - Ajax Batch Testing","responseType":"loginComplete","refreshable":true,"baseScriptName":"FiservBase","baseScriptVersion":null,"noOfAccounts":null,"refreshMode":null,"responseXml":null,"dumpServerIp":null,"errorMessage":null,"htmlDumpUrlOrigin":null,"sequential":false},{"siteId":13901,"sumInfoId":16482,"scriptName":"Fiserv","container":"bank","fmItemType":null,"itemTypeId":3,"itemId":10899529,"dbName":"sdbcau21","cobrandId":10019056,"source":"user\"\"ajaxtool\"","batchCriteriaId":1,"fmLatency":47138,"prodLatency":null,"numNav":2,"cpuUtil":0,"fmCode":0,"prodCode":0,"fmScriptVersion":4512,"prodScriptVersion":null,"softError":null,"dumpUrl":"https://fmdumps.tools.yodlee.com/dumpdispatcher/dumps?id=10785528.172.17.15.94.2019.07.09.05.58.16.026.html&dbName=sdbcau21&cobrandID=10019056","refreshDeniedReason":null,"batchDetailsId":50197,"description":"default - Ajax Batch Testing","responseType":"accountSummary","refreshable":true,"baseScriptName":"FiservBase","baseScriptVersion":null,"noOfAccounts":null,"refreshMode":null,"responseXml":null,"dumpServerIp":null,"errorMessage":null,"htmlDumpUrlOrigin":null,"sequential":false},{"siteId":13901,"sumInfoId":16482,"scriptName":"Fiserv","container":"bank","fmItemType":null,"itemTypeId":3,"itemId":10899529,"dbName":"sdbcau21","cobrandId":10019056,"source":"user\"\"ajaxtool\"","batchCriteriaId":1,"fmLatency":53803,"prodLatency":null,"numNav":4,"cpuUtil":0,"fmCode":403,"prodCode":0,"fmScriptVersion":4512,"prodScriptVersion":null,"softError":null,"dumpUrl":"https://fmdumps.tools.yodlee.com/dumpdispatcher/dumps?id=10785528.172.17.15.94.2019.07.09.05.58.22.814.html&dbName=sdbcau21&cobrandID=10019056","refreshDeniedReason":null,"batchDetailsId":50197,"description":"default - Ajax Batch Testing","responseType":"documentDownload","refreshable":true,"baseScriptName":"FiservBase","baseScriptVersion":null,"noOfAccounts":null,"refreshMode":null,"responseXml":null,"dumpServerIp":null,"errorMessage":null,"htmlDumpUrlOrigin":null,"sequential":false},{"siteId":13901,"sumInfoId":16482,"scriptName":"Fiserv","container":"bank","fmItemType":null,"itemTypeId":3,"itemId":12899039,"dbName":"sdbcae05","cobrandId":10012356,"source":"user\"\"ajaxtool\"","batchCriteriaId":1,"fmLatency":47651,"prodLatency":null,"numNav":2,"cpuUtil":0,"fmCode":0,"prodCode":0,"fmScriptVersion":4512,"prodScriptVersion":null,"softError":null,"dumpUrl":"https://fmdumps.tools.yodlee.com/dumpdispatcher/dumps?id=94010542.172.17.15.94.2019.07.09.05.58.15.537.html&dbName=sdbcae05&cobrandID=10012356","refreshDeniedReason":null,"batchDetailsId":50197,"description":"default - Ajax Batch Testing","responseType":"loginComplete","refreshable":true,"baseScriptName":"FiservBase","baseScriptVersion":null,"noOfAccounts":null,"refreshMode":null,"responseXml":null,"dumpServerIp":null,"errorMessage":null,"htmlDumpUrlOrigin":null,"sequential":false},{"siteId":13901,"sumInfoId":16482,"scriptName":"Fiserv","container":"bank","fmItemType":null,"itemTypeId":3,"itemId":12899039,"dbName":"sdbcae05","cobrandId":10012356,"source":"user\"\"ajaxtool\"","batchCriteriaId":1,"fmLatency":50785,"prodLatency":null,"numNav":2,"cpuUtil":0,"fmCode":0,"prodCode":0,"fmScriptVersion":4512,"prodScriptVersion":null,"softError":null,"dumpUrl":"https://fmdumps.tools.yodlee.com/dumpdispatcher/dumps?id=94010542.172.17.15.94.2019.07.09.05.58.18.668.html&dbName=sdbcae05&cobrandID=10012356","refreshDeniedReason":null,"batchDetailsId":50197,"description":"default - Ajax Batch Testing","responseType":"accountSummary","refreshable":true,"baseScriptName":"FiservBase","baseScriptVersion":null,"noOfAccounts":null,"refreshMode":null,"responseXml":null,"dumpServerIp":null,"errorMessage":null,"htmlDumpUrlOrigin":null,"sequential":false},{"siteId":13901,"sumInfoId":16482,"scriptName":"Fiserv","container":"bank","fmItemType":null,"itemTypeId":3,"itemId":12899039,"dbName":"sdbcae05","cobrandId":10012356,"source":"user\"\"ajaxtool\"","batchCriteriaId":1,"fmLatency":57983,"prodLatency":null,"numNav":4,"cpuUtil":0,"fmCode":403,"prodCode":0,"fmScriptVersion":4512,"prodScriptVersion":null,"softError":null,"dumpUrl":"https://fmdumps.tools.yodlee.com/dumpdispatcher/dumps?id=94010542.172.17.15.94.2019.07.09.05.58.25.914.html&dbName=sdbcae05&cobrandID=10012356","refreshDeniedReason":null,"batchDetailsId":50197,"description":"default - Ajax Batch Testing","responseType":"documentDownload","refreshable":true,"baseScriptName":"FiservBase","baseScriptVersion":null,"noOfAccounts":null,"refreshMode":null,"responseXml":null,"dumpServerIp":null,"errorMessage":null,"htmlDumpUrlOrigin":null,"sequential":false},{"siteId":13901,"sumInfoId":16482,"scriptName":"Fiserv","container":"bank","fmItemType":null,"itemTypeId":3,"itemId":15900977,"dbName":"sdbcat20","cobrandId":33410018556,"source":"user\"\"ajaxtool\"","batchCriteriaId":1,"fmLatency":46112,"prodLatency":null,"numNav":2,"cpuUtil":0,"fmCode":0,"prodCode":0,"fmScriptVersion":4512,"prodScriptVersion":null,"softError":null,"dumpUrl":"https://fmdumps.tools.yodlee.com/dumpdispatcher/dumps?id=14254997.172.17.15.94.2019.07.09.05.58.12.682.html&dbName=sdbcat20&cobrandID=33410018556","refreshDeniedReason":null,"batchDetailsId":50197,"description":"default - Ajax Batch Testing","responseType":"loginComplete","refreshable":true,"baseScriptName":"FiservBase","baseScriptVersion":null,"noOfAccounts":null,"refreshMode":null,"responseXml":null,"dumpServerIp":null,"errorMessage":null,"htmlDumpUrlOrigin":null,"sequential":false},{"siteId":13901,"sumInfoId":16482,"scriptName":"Fiserv","container":"bank","fmItemType":null,"itemTypeId":3,"itemId":15900977,"dbName":"sdbcat20","cobrandId":33410018556,"source":"user\"\"ajaxtool\"","batchCriteriaId":1,"fmLatency":49221,"prodLatency":null,"numNav":2,"cpuUtil":0,"fmCode":0,"prodCode":0,"fmScriptVersion":4512,"prodScriptVersion":null,"softError":null,"dumpUrl":"https://fmdumps.tools.yodlee.com/dumpdispatcher/dumps?id=14254997.172.17.15.94.2019.07.09.05.58.15.793.html&dbName=sdbcat20&cobrandID=33410018556","refreshDeniedReason":null,"batchDetailsId":50197,"description":"default - Ajax Batch Testing","responseType":"accountSummary","refreshable":true,"baseScriptName":"FiservBase","baseScriptVersion":null,"noOfAccounts":null,"refreshMode":null,"responseXml":null,"dumpServerIp":null,"errorMessage":null,"htmlDumpUrlOrigin":null,"sequential":false},{"siteId":13901,"sumInfoId":16482,"scriptName":"Fiserv","container":"bank","fmItemType":null,"itemTypeId":3,"itemId":15900977,"dbName":"sdbcat20","cobrandId":33410018556,"source":"user\"\"ajaxtool\"","batchCriteriaId":1,"fmLatency":55925,"prodLatency":null,"numNav":4,"cpuUtil":0,"fmCode":403,"prodCode":0,"fmScriptVersion":4512,"prodScriptVersion":null,"softError":null,"dumpUrl":"https://fmdumps.tools.yodlee.com/dumpdispatcher/dumps?id=14254997.172.17.15.94.2019.07.09.05.58.22.569.html&dbName=sdbcat20&cobrandID=33410018556","refreshDeniedReason":null,"batchDetailsId":50197,"description":"default - Ajax Batch Testing","responseType":"documentDownload","refreshable":true,"baseScriptName":"FiservBase","baseScriptVersion":null,"noOfAccounts":null,"refreshMode":null,"responseXml":null,"dumpServerIp":null,"errorMessage":null,"htmlDumpUrlOrigin":null,"sequential":false},{"siteId":13901,"sumInfoId":16482,"scriptName":"Fiserv","container":"bank","fmItemType":null,"itemTypeId":3,"itemId":17824349,"dbName":"sdbcac03","cobrandId":10002812,"source":"user\"\"ajaxtool\"","batchCriteriaId":1,"fmLatency":44673,"prodLatency":null,"numNav":2,"cpuUtil":0,"fmCode":0,"prodCode":0,"fmScriptVersion":4512,"prodScriptVersion":null,"softError":null,"dumpUrl":"https://fmdumps.tools.yodlee.com/dumpdispatcher/dumps?id=12921640.172.17.15.93.2019.07.09.05.58.14.621.html&dbName=sdbcac03&cobrandID=10002812","refreshDeniedReason":null,"batchDetailsId":50197,"description":"default - Ajax Batch Testing","responseType":"loginComplete","refreshable":true,"baseScriptName":"FiservBase","baseScriptVersion":null,"noOfAccounts":null,"refreshMode":null,"responseXml":null,"dumpServerIp":null,"errorMessage":null,"htmlDumpUrlOrigin":null,"sequential":false},{"siteId":13901,"sumInfoId":16482,"scriptName":"Fiserv","container":"bank","fmItemType":null,"itemTypeId":3,"itemId":17824349,"dbName":"sdbcac03","cobrandId":10002812,"source":"user\"\"ajaxtool\"","batchCriteriaId":1,"fmLatency":47511,"prodLatency":null,"numNav":2,"cpuUtil":0,"fmCode":0,"prodCode":0,"fmScriptVersion":4512,"prodScriptVersion":null,"softError":null,"dumpUrl":"https://fmdumps.tools.yodlee.com/dumpdispatcher/dumps?id=12921640.172.17.15.93.2019.07.09.05.58.17.493.html&dbName=sdbcac03&cobrandID=10002812","refreshDeniedReason":null,"batchDetailsId":50197,"description":"default - Ajax Batch Testing","responseType":"accountSummary","refreshable":true,"baseScriptName":"FiservBase","baseScriptVersion":null,"noOfAccounts":null,"refreshMode":null,"responseXml":null,"dumpServerIp":null,"errorMessage":null,"htmlDumpUrlOrigin":null,"sequential":false},{"siteId":13901,"sumInfoId":16482,"scriptName":"Fiserv","container":"bank","fmItemType":null,"itemTypeId":3,"itemId":17824349,"dbName":"sdbcac03","cobrandId":10002812,"source":"user\"\"ajaxtool\"","batchCriteriaId":1,"fmLatency":54675,"prodLatency":null,"numNav":4,"cpuUtil":0,"fmCode":403,"prodCode":0,"fmScriptVersion":4512,"prodScriptVersion":null,"softError":null,"dumpUrl":"https://fmdumps.tools.yodlee.com/dumpdispatcher/dumps?id=12921640.172.17.15.94.2019.07.09.05.58.24.696.html&dbName=sdbcac03&cobrandID=10002812","refreshDeniedReason":null,"batchDetailsId":50197,"description":"default - Ajax Batch Testing","responseType":"documentDownload","refreshable":true,"baseScriptName":"FiservBase","baseScriptVersion":null,"noOfAccounts":null,"refreshMode":null,"responseXml":null,"dumpServerIp":null,"errorMessage":null,"htmlDumpUrlOrigin":null,"sequential":false}],"glogErrors":[],"batchStatus":null,"batchItemList":[],"batchStatusMap":{"1":"Rejected","2":"Queued","3":"Processing","4":"Failed","5":"Completed","6":"Notified","7":"Partially Completed"},"dataCenter":{"0":"QE","1":"Stage","2":"SC9","3":"India","99":"All Prod","4":"Canada","5":"Australia","6":"Malaysia","7":"UK"},"dataSetInfo":null,"dbs":null,"cirteriaTypes":{"1":"default","2":"error code","3":"latency","4":"soft errors","5":"exception","6":"number of accounts","7":"account types","8":"vip users","9":"segment id"},"errorItems":[],"maxItemsInBatch":0,"batchDetailsId":null,"batchReqDetailsId":null,"valid":false}
+2019-07-09 18:28:38.000  INFO 11080 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### retriveDataFromFiremem #########################################
+2019-07-09 18:28:38.005  INFO 11080 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :10899529|sdbcau21
+2019-07-09 18:28:39.735  INFO 11080 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : JDAP FIRMEM => jDapFirememXML : null
+2019-07-09 18:28:39.737  INFO 11080 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : JDAP FIRMEM => jDapAccountSummaryXML : null
+2019-07-09 18:28:39.756 ERROR 11080 --- [http-nio-8091-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException] with root cause
+
+java.lang.NullPointerException: null
+	at com.yodlee.docdownloadandtsd.Services.HammerServicesImpl.retriveDataFromFirememForDocDownload(HammerServicesImpl.java:514) ~[classes/:na]
+	at com.yodlee.docdownloadandtsd.Services.DocDownloadRecertificationService.docDownloadEnabled(DocDownloadRecertificationService.java:109) ~[classes/:na]
+	at com.yodlee.docdownloadandtsd.Controller.DDTsdController.getDBPushDifference(DDTsdController.java:38) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_192]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_192]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_192]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_192]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:209) ~[spring-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:136) ~[spring-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102) ~[spring-webmvc-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:870) ~[spring-webmvc-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:776) ~[spring-webmvc-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:991) ~[spring-webmvc-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:925) ~[spring-webmvc-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:978) ~[spring-webmvc-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:870) ~[spring-webmvc-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:687) ~[javax.servlet-api-3.1.0.jar:3.1.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:855) ~[spring-webmvc-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790) ~[javax.servlet-api-3.1.0.jar:3.1.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) ~[tomcat-embed-websocket-8.5.28.jar:8.5.28]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) ~[spring-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199) ~[tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:496) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:803) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:790) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1459) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_192]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_192]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_192]
+
+2019-07-09 18:43:12.170  INFO 20108 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-07-09 18:43:12.174  INFO 20108 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.28
+2019-07-09 18:43:12.183  INFO 20108 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_192\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\oraclexe\app\oracle\product\10.2.0\server\bin;C:\XEClient\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Perforce;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;C:\Softwares\apache-maven-3.6.1\bin;C:\Softwares\node-v10.16.0-win-x64;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Python27;;C:\Users\cbatra\AppData\Local\Programs\Microsoft VS Code\bin;.]
+2019-07-09 18:43:20.717  INFO 20108 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-07-09 18:43:56.177  INFO 20108 --- [http-nio-8091-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-07-09 18:43:56.460  INFO 20108 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-07-09 18:43:59.745  INFO 20108 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-07-09 18:44:18.286  INFO 20108 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2019-07-09 18:44:21.004  INFO 20108 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2019-07-09 18:44:25.073  INFO 20108 --- [http-nio-8091-exec-1] c.y.d.DAO.SplunkRepository               : ...agentName : ChaseBank
+2019-07-09 18:44:25.784  INFO 20108 --- [http-nio-8091-exec-2] c.y.d.DAO.SplunkRepository               : ...agentName : ChaseBank
+2019-07-09 18:44:43.373  INFO 22740 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-07-09 18:44:43.377  INFO 22740 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.28
+2019-07-09 18:44:43.387  INFO 22740 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_192\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\oraclexe\app\oracle\product\10.2.0\server\bin;C:\XEClient\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Perforce;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;C:\Softwares\apache-maven-3.6.1\bin;C:\Softwares\node-v10.16.0-win-x64;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Python27;;C:\Users\cbatra\AppData\Local\Programs\Microsoft VS Code\bin;.]
+2019-07-09 18:44:43.813  INFO 22740 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-07-09 18:45:10.178  INFO 22740 --- [http-nio-8091-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-07-09 18:45:10.661  INFO 22740 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-07-09 18:45:13.677  INFO 22740 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-07-09 18:45:32.032  INFO 22740 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2019-07-09 18:45:34.689  INFO 22740 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2019-07-09 18:45:38.681  INFO 22740 --- [http-nio-8091-exec-1] c.y.d.DAO.SplunkRepository               : ...agentName : ChaseBank
+2019-07-09 18:53:03.782  INFO 18500 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-07-09 18:53:03.785  INFO 18500 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.28
+2019-07-09 18:53:03.790  INFO 18500 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_192\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\oraclexe\app\oracle\product\10.2.0\server\bin;C:\XEClient\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Perforce;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;C:\Softwares\apache-maven-3.6.1\bin;C:\Softwares\node-v10.16.0-win-x64;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Python27;;C:\Users\cbatra\AppData\Local\Programs\Microsoft VS Code\bin;.]
+2019-07-09 18:53:04.119  INFO 18500 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-07-09 18:53:12.534  INFO 18500 --- [http-nio-8091-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-07-09 18:53:12.718  INFO 18500 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-07-09 18:53:15.642  INFO 18500 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-07-09 18:53:33.745  INFO 18500 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2019-07-09 18:53:37.217  INFO 18500 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2019-07-09 18:53:52.875  INFO 23140 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-07-09 18:53:52.878  INFO 23140 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.28
+2019-07-09 18:53:52.883  INFO 23140 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_192\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\oraclexe\app\oracle\product\10.2.0\server\bin;C:\XEClient\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Perforce;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;C:\Softwares\apache-maven-3.6.1\bin;C:\Softwares\node-v10.16.0-win-x64;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Python27;;C:\Users\cbatra\AppData\Local\Programs\Microsoft VS Code\bin;.]
+2019-07-09 18:53:53.191  INFO 23140 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-07-09 18:54:03.018  INFO 23140 --- [http-nio-8091-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-07-09 18:54:03.340  INFO 23140 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-07-09 18:54:06.295  INFO 23140 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-07-09 18:54:24.563  INFO 23140 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2019-07-09 18:54:27.553  INFO 23140 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2019-07-09 18:54:32.776  INFO 23140 --- [http-nio-8091-exec-1] c.y.d.DAO.SplunkRepository               : ...agentName : TDWaterhouseAdvisorClient
+2019-07-09 18:55:06.683  INFO 23140 --- [http-nio-8091-exec-1] c.y.d.Services.YuvaGatewayImpl           : ..resposne of new YUVA API : {"status":"SUCCESS","messages":["No successful user found with search depth 5 for Feature: 'PFM' and State: 'IS_ACCOUNT_SUMMARY'","No successful user found with search depth 5 for Feature: 'SDG_ADD_ACCOUNT' and State: 'ACCOUNT_SUMMARY'","No successful user found with search depth 5 for Feature: 'SDG_ADD_ACCOUNT' and State: 'HOLDINGS'"],"totalPages":1,"result":[{"feature":"PFM","distinctUsers":["23201624","10311405","23369590","16336124M","25028223","35276353","78083883","10307716","10078700","27423239"],"states":[{"name":"LISTING","users":[[{"segmentId":"900bbd2313c760af475333fb9231eb5f","cacheItemID":"10307716","memSiteAccID":"10253753","cobrandId":"10019356","segmentCount":3,"volumecount":6,"segmentCoverage":"100%"}]]},{"name":"LOGOUT","users":[[{"segmentId":"4faa1c78e95c0f4369b1cfa72e3a9f68","cacheItemID":"23201624","memSiteAccID":"15004108","cobrandId":"10002812","segmentCount":100,"volumecount":1470,"segmentCoverage":"100%"}]]},{"name":"HOLDINGS","users":[[{"segmentId":"3214421d4020ffee1809d06ead459ea8","cacheItemID":null,"memSiteAccID":"16336124","cobrandId":"5010018556","segmentCount":9,"volumecount":84,"segmentCoverage":"100%"}]]},{"name":"ACCOUNT_DETAILS","users":[[{"segmentId":"062e79e39d2f88dfce8a315572e7d70e","cacheItemID":"25028223","memSiteAccID":"16864134","cobrandId":"10002812","segmentCount":3,"volumecount":3,"segmentCoverage":"100%"}]]},{"name":"ACCOUNT_TRANSACTIONS","users":[[{"segmentId":"000274a2389c1b72376f52d87c1df3c0","cacheItemID":"10307716","memSiteAccID":"10253753","cobrandId":"10019356","segmentCount":3,"volumecount":6,"segmentCoverage":"100%"}]]},{"name":"IS_TRANSACTIONS_ENRICHMENT","users":[[{"segmentId":"742b2b2b9d598a5a695397b0fcc5f245","cacheItemID":"10311405","memSiteAccID":"10301574","cobrandId":"10019356","segmentCount":76,"volumecount":152,"segmentCoverage":"100%"}]]},{"name":"IS_ACCOUNT_TRANSACTIONS","users":[[{"segmentId":"5ff80267b797380300a1ba3572f959ab","cacheItemID":"10311405","memSiteAccID":"10301574","cobrandId":"10019356","segmentCount":78,"volumecount":156,"segmentCoverage":"100%"}]]},{"name":"TRANSACTIONS_ENRICHMENT","users":[[{"segmentId":"4d45ac90c2809d3ee0b60f17741eecd6","cacheItemID":"27423239","memSiteAccID":"19422913","cobrandId":"10002812","segmentCount":100,"volumecount":4694,"segmentCoverage":"100%"}]]},{"name":"ACCOUNT_SUMMARY","users":[[{"segmentId":"8f579979c807e899f35485384b3010d8","cacheItemID":"27423239","memSiteAccID":"19422913","cobrandId":"10002812","segmentCount":1,"volumecount":2,"segmentCoverage":"100%"}]]},{"name":"IS_HOLDINGS","users":[[{"segmentId":"3c83b23b9b220affd18c3edd61a8ab91","cacheItemID":"10078700","memSiteAccID":"10078532","cobrandId":"10019356","segmentCount":2,"volumecount":4,"segmentCoverage":"100%"}]]},{"name":"LOGIN","users":[[{"segmentId":"6e73b53c5e01ad6fe12e10048e71e118","cacheItemID":"35276353","memSiteAccID":"24582422","cobrandId":"10005640","segmentCount":18,"volumecount":55,"segmentCoverage":"100%"}]]},{"name":"IS_LISTING","users":[[{"segmentId":"74d5627e514d8be1183cf948524383f4","cacheItemID":"10311405","memSiteAccID":"10301574","cobrandId":"10019356","segmentCount":76,"volumecount":152,"segmentCoverage":"100%"}]]},{"name":"UNKNOWN","users":[[{"segmentId":"d785f443cf3749eb351a688e48f54b21","cacheItemID":"78083883","memSiteAccID":"14801132","cobrandId":"10001372","segmentCount":3,"volumecount":6,"segmentCoverage":"100%"}]]},{"name":"IS_ACCOUNT_DETAILS","users":[[{"segmentId":"31188a9deedb0e185c6bcd54e7463bff","cacheItemID":"23369590","memSiteAccID":null,"cobrandId":"10001568","segmentCount":1,"volumecount":1,"segmentCoverage":"100%"}]]}]},{"feature":"SDG","distinctUsers":["14829677","12221783","14941541","12028323","13810545"],"states":[{"name":"TRANSACTIONS_ENRICHMENT","users":[[{"segmentId":"e21470f728f7eb13a87a0c35a37a9025","cacheItemID":"14941541","memSiteAccID":"20528010","cobrandId":"10018820","segmentCount":100,"volumecount":260,"segmentCoverage":"100%"}]]},{"name":"LISTING","users":[[{"segmentId":"8dd6ff3ad36b985d45b7cc73650600d3","cacheItemID":"14941541","memSiteAccID":"20528010","cobrandId":"10018820","segmentCount":100,"volumecount":260,"segmentCoverage":"100%"}]]},{"name":"ACCOUNT_SUMMARY","users":[[{"segmentId":"005f23951037bb2c02c900d9c6570e23","cacheItemID":"14829677","memSiteAccID":"20386626","cobrandId":"10018820","segmentCount":5,"volumecount":10,"segmentCoverage":"100%"}]]},{"name":"LOGOUT","users":[[{"segmentId":"324032fd4f9227588a1581b72edd3400","cacheItemID":"13810545","memSiteAccID":"19135060","cobrandId":"10018820","segmentCount":37,"volumecount":74,"segmentCoverage":"100%"}]]},{"name":"HOLDINGS","users":[[{"segmentId":"304235e36488c0c9bcd6c2e2a8af113b","cacheItemID":"12028323","memSiteAccID":"12466574","cobrandId":"10018820","segmentCount":2,"volumecount":2,"segmentCoverage":"100%"}]]},{"name":"ACCOUNT_DETAILS","users":[[{"segmentId":"42d0bfbb729ab63d711249a6e8ba1a96","cacheItemID":"13810545","memSiteAccID":"19135060","cobrandId":"10018820","segmentCount":2,"volumecount":2,"segmentCoverage":"100%"}]]},{"name":"IS_HOLDINGS","users":[[{"segmentId":"a3bae2bd4cdfc4f7480ea28ba63f4828","cacheItemID":"12221783","memSiteAccID":"13997350","cobrandId":"10018820","segmentCount":1,"volumecount":2,"segmentCoverage":"100%"}]]},{"name":"ACCOUNT_TRANSACTIONS","users":[[{"segmentId":"d8225723a49afca935cc760ba3702c85","cacheItemID":"14941541","memSiteAccID":"20528010","cobrandId":"10018820","segmentCount":100,"volumecount":264,"segmentCoverage":"100%"}]]},{"name":"LOGIN","users":[[{"segmentId":"a7a5052d781d54c7e8805e475be9f89b","cacheItemID":"14829677","memSiteAccID":"20386626","cobrandId":"10018820","segmentCount":2,"volumecount":4,"segmentCoverage":"100%"}]]},{"name":"IS_TRANSACTIONS_ENRICHMENT","users":[[{"segmentId":"3a0a56afd60d53ff3275a9e484fb1eb8","cacheItemID":"14941541","memSiteAccID":"20528010","cobrandId":"10018820","segmentCount":100,"volumecount":260,"segmentCoverage":"100%"}]]},{"name":"IS_LISTING","users":[[{"segmentId":"32d9128705df530a1bb2d2b98cdf122a","cacheItemID":"14941541","memSiteAccID":"20528010","cobrandId":"10018820","segmentCount":100,"volumecount":260,"segmentCoverage":"100%"}]]},{"name":"IS_ACCOUNT_TRANSACTIONS","users":[[{"segmentId":"3e2256c52a6da1492214134d5da28789","cacheItemID":"14941541","memSiteAccID":"20528010","cobrandId":"10018820","segmentCount":100,"volumecount":264,"segmentCoverage":"100%"}]]},{"name":"IS_ACCOUNT_DETAILS","users":[[{"segmentId":"ac0c77f89e4943182b026a46b0829af4","cacheItemID":"12221783","memSiteAccID":"13997350","cobrandId":"10018820","segmentCount":1,"volumecount":2,"segmentCoverage":"100%"}]]}]},{"feature":"SDG_ADD_ACCOUNT","distinctUsers":["15041528","14470012M","14941541","10360010M","20670939M"],"states":[{"name":"TRANSACTIONS_ENRICHMENT","users":[[{"segmentId":"3210fd94a3469276acf20a70d30a9f05","cacheItemID":"14941541","memSiteAccID":"20528010","cobrandId":"10018820","segmentCount":48,"volumecount":96,"segmentCoverage":"100%"}]]},{"name":"LISTING","users":[[{"segmentId":"8bb7506566281755a453b8e76e761978","cacheItemID":"14941541","memSiteAccID":"20528010","cobrandId":"10018820","segmentCount":48,"volumecount":96,"segmentCoverage":"100%"}]]},{"name":"LOGOUT","users":[[{"segmentId":"3b8802153f3e8209ef600768e76c2412","cacheItemID":null,"memSiteAccID":"10360010","cobrandId":"10018968","segmentCount":6,"volumecount":12,"segmentCoverage":"100%"}]]},{"name":"ACCOUNT_DETAILS","users":[[{"segmentId":"7043f60b8fa41a599459b9d133e5ff90","cacheItemID":null,"memSiteAccID":"20670939","cobrandId":"10018820","segmentCount":1,"volumecount":2,"segmentCoverage":"100%"}]]},{"name":"IS_HOLDINGS","users":[[{"segmentId":"69bc2af282d7412a9cba05adada65fc4","cacheItemID":null,"memSiteAccID":"14470012","cobrandId":"10005808","segmentCount":1,"volumecount":1,"segmentCoverage":"100%"}]]},{"name":"ACCOUNT_TRANSACTIONS","users":[[{"segmentId":"ec9a413c75d4c47e2aad48dadcaafa5a","cacheItemID":"14941541","memSiteAccID":"20528010","cobrandId":"10018820","segmentCount":48,"volumecount":96,"segmentCoverage":"100%"}]]},{"name":"LOGIN","users":[[{"segmentId":"80f9a090479a4ab4251eaa060bcf2240","cacheItemID":"15041528","memSiteAccID":"20647488","cobrandId":"10018820","segmentCount":4,"volumecount":8,"segmentCoverage":"100%"}]]},{"name":"IS_TRANSACTIONS_ENRICHMENT","users":[[{"segmentId":"ee8f7a7be596cf773fea02ad920ef0c5","cacheItemID":"14941541","memSiteAccID":"20528010","cobrandId":"10018820","segmentCount":48,"volumecount":96,"segmentCoverage":"100%"}]]},{"name":"IS_LISTING","users":[[{"segmentId":"c034c3be60a18c1607c358b97c04b548","cacheItemID":"14941541","memSiteAccID":"20528010","cobrandId":"10018820","segmentCount":48,"volumecount":96,"segmentCoverage":"100%"}]]},{"name":"IS_ACCOUNT_TRANSACTIONS","users":[[{"segmentId":"a7b01f5255d06ac252028e4ae9608b29","cacheItemID":"14941541","memSiteAccID":"20528010","cobrandId":"10018820","segmentCount":48,"volumecount":96,"segmentCoverage":"100%"}]]},{"name":"IS_ACCOUNT_DETAILS","users":[[{"segmentId":"2e6dbcb0c61f62965a1bc503bf8bfd23","cacheItemID":null,"memSiteAccID":"14470012","cobrandId":"10005808","segmentCount":1,"volumecount":1,"segmentCoverage":"100%"}]]}]},{"feature":"ADD_ACCOUNT","distinctUsers":["10311405","34856191M","20103891M","34693984M","20062582M","20315628M"],"states":[{"name":"TRANSACTIONS_ENRICHMENT","users":[[{"segmentId":"1f8dc1b03d9136acf722b558cfedecc7","cacheItemID":null,"memSiteAccID":"20315628","cobrandId":"10002812","segmentCount":100,"volumecount":510,"segmentCoverage":"100%"}]]},{"name":"LISTING","users":[[{"segmentId":"985e075373bdd63422f0724c8161015f","cacheItemID":null,"memSiteAccID":"20315628","cobrandId":"10002812","segmentCount":100,"volumecount":510,"segmentCoverage":"100%"}]]},{"name":"ACCOUNT_SUMMARY","users":[[{"segmentId":"0f8b394ef12cfc8e1e7f3a3ad699861b","cacheItemID":null,"memSiteAccID":"20315628","cobrandId":"10002812","segmentCount":3,"volumecount":6,"segmentCoverage":"50.0%"}]]},{"name":"LOGOUT","users":[[{"segmentId":"34fb484e76c476b8f286ab55145c6292","cacheItemID":null,"memSiteAccID":"20103891","cobrandId":"10002812","segmentCount":66,"volumecount":132,"segmentCoverage":"100%"}]]},{"name":"HOLDINGS","users":[[{"segmentId":"3af7236f19bf4a00afb2975d5b1a5e3a","cacheItemID":null,"memSiteAccID":"34693984","cobrandId":"37110008380","segmentCount":6,"volumecount":6,"segmentCoverage":"100%"}]]},{"name":"ACCOUNT_DETAILS","users":[[{"segmentId":"732fde1d1faa7c4101ed7105f85b68a7","cacheItemID":null,"memSiteAccID":"34856191","cobrandId":"37110008380","segmentCount":4,"volumecount":8,"segmentCoverage":"100%"}]]},{"name":"IS_HOLDINGS","users":[[{"segmentId":"c65509f71ae65af4d05149094ba594d4","cacheItemID":null,"memSiteAccID":"20062582","cobrandId":"10002812","segmentCount":1,"volumecount":1,"segmentCoverage":"100%"}]]},{"name":"ACCOUNT_TRANSACTIONS","users":[[{"segmentId":"d822b1b914010a5c8a64082de6235612","cacheItemID":null,"memSiteAccID":"20315628","cobrandId":"10002812","segmentCount":100,"volumecount":515,"segmentCoverage":"100%"}]]},{"name":"LOGIN","users":[[{"segmentId":"18404bffacbf9c9974e1a63abfc358b9","cacheItemID":null,"memSiteAccID":"20103891","cobrandId":"10002812","segmentCount":17,"volumecount":35,"segmentCoverage":"100%"}]]},{"name":"IS_TRANSACTIONS_ENRICHMENT","users":[[{"segmentId":"637513cf4112491081a94ad172d6bb54","cacheItemID":"10311405","memSiteAccID":"10301574","cobrandId":"10019356","segmentCount":17,"volumecount":34,"segmentCoverage":"100%"}]]},{"name":"IS_LISTING","users":[[{"segmentId":"ccd3e440a934a87cb305b068408a2f70","cacheItemID":"10311405","memSiteAccID":"10301574","cobrandId":"10019356","segmentCount":17,"volumecount":34,"segmentCoverage":"100%"}]]},{"name":"IS_ACCOUNT_TRANSACTIONS","users":[[{"segmentId":"1cfefe4132503a98b176993e2e82914c","cacheItemID":"10311405","memSiteAccID":"10301574","cobrandId":"10019356","segmentCount":17,"volumecount":34,"segmentCoverage":"100%"}]]},{"name":"IS_ACCOUNT_DETAILS","users":[[{"segmentId":"0238627df87a69209caf41fe6587bd96","cacheItemID":null,"memSiteAccID":"20062582","cobrandId":"10002812","segmentCount":1,"volumecount":1,"segmentCoverage":"100%"}]]}]}]}
+2019-07-09 18:55:06.689  INFO 23140 --- [http-nio-8091-exec-1] c.y.d.DAO.SplunkRepository               : clear the session 
+2019-07-09 18:55:14.121  INFO 23140 --- [http-nio-8091-exec-1] c.y.d.DAO.SplunkRepository               : clear the session 
+2019-07-09 18:55:14.174  INFO 23140 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-09 18:55:16.018 ERROR 23140 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MjY4MDUxNSwiaXAiOiIxOTIuMTY4LjE0OS4xNzEifQ.Muim-l_pUnhbI-KLJ7cqmHP6fwho4Z5oS1VP_Dqf5dg37Up_qhb3jDBYjTTgGcHOlnDs2JuaFltvtXYkIbZpdg
+2019-07-09 18:55:21.809  INFO 23140 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### createBatch #########################################
+2019-07-09 18:55:21.817  INFO 23140 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Request body of batch Creation : {nickName=TDWaterhouseAdvisor, agentName=TDWaterhouseAdvisorClient, description=TDWaterhouseAdvisor, items={Add=[{itemId=10078532, itemType=3, dbName=sdbcba01, description=Ajax Batch Testing}, {itemId=15004108, itemType=3, dbName=sdbcac03, description=Ajax Batch Testing}, {itemId=16336124, itemType=3, dbName=sdbcat20, description=Ajax Batch Testing}, {itemId=10301574, itemType=3, dbName=sdbcba01, description=Ajax Batch Testing}]}}
+2019-07-09 18:55:22.958  INFO 23140 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Batch Creation Response :{"batchName":"TDWaterhouseAdvisorClient_API_09_Jul_2019_06_25_22","agentName":null,"batchRequestDate":null,"noOfItemsInBatch":null,"lastUpdated":null,"lastRequestStatus":null,"statusMsg":"Batch created successfully for agent name : TDWaterhouseAdvisorClient, Batch name : TDWaterhouseAdvisorClient_API_09_Jul_2019_06_25_22","appRequestId":null,"batchDetailList":[],"batchReqDetailList":[],"agentList":[],"agentMap":{},"userList":[],"batchType":{},"itemType":{},"batchResultList":[],"glogErrors":[],"batchStatus":5,"batchItemList":[{"batchItemDetailsId":163700,"itemId":10078532,"itemTypeId":3,"dbName":"sdbcba01","cobrandId":10019356,"source":"{\"type\":\"manual\",\"user\":\"ajaxtool\"}","deleted":false,"deletedBy":null,"description":"default - Ajax Batch Testing","sumInfoId":0,"siteId":9528,"batchCriteriaId":1,"batchDetailsId":50269,"code":0,"duplicate":false},{"batchItemDetailsId":163803,"itemId":15004108,"itemTypeId":3,"dbName":"sdbcac03","cobrandId":10002812,"source":"{\"type\":\"manual\",\"user\":\"ajaxtool\"}","deleted":false,"deletedBy":null,"description":"default - Ajax Batch Testing","sumInfoId":0,"siteId":9528,"batchCriteriaId":1,"batchDetailsId":50269,"code":0,"duplicate":false},{"batchItemDetailsId":163802,"itemId":16336124,"itemTypeId":3,"dbName":"sdbcat20","cobrandId":5010018556,"source":"{\"type\":\"manual\",\"user\":\"ajaxtool\"}","deleted":false,"deletedBy":null,"description":"default - Ajax Batch Testing","sumInfoId":0,"siteId":9528,"batchCriteriaId":1,"batchDetailsId":50269,"code":0,"duplicate":false},{"batchItemDetailsId":163801,"itemId":10301574,"itemTypeId":3,"dbName":"sdbcba01","cobrandId":10019356,"source":"{\"type\":\"manual\",\"user\":\"ajaxtool\"}","deleted":false,"deletedBy":null,"description":"default - Ajax Batch Testing","sumInfoId":0,"siteId":9528,"batchCriteriaId":1,"batchDetailsId":50269,"code":0,"duplicate":false}],"batchStatusMap":{},"dataCenter":{"0":"QE","1":"Stage","2":"SC9","3":"India","99":"All Prod","4":"Canada","5":"Australia","6":"Malaysia","7":"UK"},"dataSetInfo":null,"dbs":null,"cirteriaTypes":{"1":"default","2":"error code","3":"latency","4":"soft errors","5":"exception","6":"number of accounts","7":"account types","8":"vip users","9":"segment id"},"errorItems":[],"maxItemsInBatch":0,"batchDetailsId":50269,"batchReqDetailsId":null,"valid":false}
+2019-07-09 18:55:22.959  INFO 23140 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Create Batch => batchDetailsId:50269
+2019-07-09 18:55:22.959  INFO 23140 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### triggerBatch #########################################
+2019-07-09 18:55:22.963  INFO 23140 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Batch Trigger Request Body :{batchRefreshParams={docDownloadRequest={statementRequest={taxDurationType=, stmtDurationType=}, docDownloadRequest=false, pfm=false, taxDurationType=, allAccounts=true, durationType=, latest=false}, agentFileType=JAVA, customrefreshRoute=DL, serverType=I, prodCertified=true, customRoute=, iavRequest={paramKeyValues={}, accountNumberMatchSuffix=, accountNumberMatchPrefix=, iavPlusRequest={iavPlus=false, paramKeyValues={}}}, requestTypes=[3]}, batchDetailsId=50269, userName=ajaxtool}
+2019-07-09 18:55:23.735  INFO 23140 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Batch Trigger => batchReqDetailsId:44541
+2019-07-09 18:55:23.735  INFO 23140 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### pollingTriggerBatch #########################################
+2019-07-09 18:57:14.514  INFO 23140 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : batch Polling Response :{"batchName":null,"agentName":null,"batchRequestDate":null,"noOfItemsInBatch":null,"lastUpdated":null,"lastRequestStatus":null,"statusMsg":null,"appRequestId":null,"batchDetailList":[{"batchDetailsId":50269,"userName":"ajaxtool","batchName":"TDWaterhouseAdvisorClient_API_09_Jul_2019_06_25_22","batchNickName":"TDWaterhouseAdvisor","baseAgentName":"TDWaterhouseAdvisorClient","batchTypeId":1,"glogSourceId":99,"description":"TDWaterhouseAdvisor","expiryDate":1565270722000,"expired":false,"deleted":false,"batchLastUpdated":1562678722000,"reqInitiated":1562678722000,"reqCompleted":1562678722000,"userInputs":"{\"ServerType\":\"INSTANT\",\"ItemType\":\"Cache Item Id\",\"IsDefaultCriteria\":true}","filterCriteria":null,"batchStatusId":5,"statusMsg":"Successfully created batch with items","rowLastUpdated":1562678722000,"batchItemDetailList":[{"batchItemDetailsId":163700,"itemId":10078532,"itemTypeId":3,"dbName":"sdbcba01","cobrandId":10019356,"source":"{\"type\":\"manual\",\"user\":\"ajaxtool\"}","deleted":false,"deletedBy":null,"description":"default - Ajax Batch Testing","sumInfoId":0,"siteId":9528,"batchCriteriaId":1,"batchDetailsId":50269,"code":0,"duplicate":false},{"batchItemDetailsId":163801,"itemId":10301574,"itemTypeId":3,"dbName":"sdbcba01","cobrandId":10019356,"source":"{\"type\":\"manual\",\"user\":\"ajaxtool\"}","deleted":false,"deletedBy":null,"description":"default - Ajax Batch Testing","sumInfoId":0,"siteId":9528,"batchCriteriaId":1,"batchDetailsId":50269,"code":0,"duplicate":false},{"batchItemDetailsId":163802,"itemId":16336124,"itemTypeId":3,"dbName":"sdbcat20","cobrandId":5010018556,"source":"{\"type\":\"manual\",\"user\":\"ajaxtool\"}","deleted":false,"deletedBy":null,"description":"default - Ajax Batch Testing","sumInfoId":0,"siteId":9528,"batchCriteriaId":1,"batchDetailsId":50269,"code":0,"duplicate":false},{"batchItemDetailsId":163803,"itemId":15004108,"itemTypeId":3,"dbName":"sdbcac03","cobrandId":10002812,"source":"{\"type\":\"manual\",\"user\":\"ajaxtool\"}","deleted":false,"deletedBy":null,"description":"default - Ajax Batch Testing","sumInfoId":0,"siteId":9528,"batchCriteriaId":1,"batchDetailsId":50269,"code":0,"duplicate":false}]}],"batchReqDetailList":[{"batchReqDetailsId":44541,"batchDetailsId":50269,"userName":"ajaxtool","numItems":4,"refreshRoute":"DEFAULT,DAP,PROD","agentRouting":"JAVA","userLocale":null,"docDownload":true,"addAccount":false,"is401K":false,"reqFeatures":"{\"ServerType\":\"I\",\"prodCertified\":true,\"sequentialProcessing\":false}","reqInitiated":1562678723000,"reqCompleted":1562678819000,"reqLatency":96791.0,"statusMsg":null,"batchStatusId":5,"rowLastUpdated":1562678723000,"appReqId":"f4ff01b3-a4fa-4936-befe-8bfa012bdead","batchDetail":{"batchDetailsId":50269,"userName":"ajaxtool","batchName":"TDWaterhouseAdvisorClient_API_09_Jul_2019_06_25_22","batchNickName":"TDWaterhouseAdvisor","baseAgentName":"TDWaterhouseAdvisorClient","batchTypeId":1,"glogSourceId":99,"description":"TDWaterhouseAdvisor","expiryDate":1565270722000,"expired":false,"deleted":false,"batchLastUpdated":1562678722000,"reqInitiated":1562678722000,"reqCompleted":1562678722000,"userInputs":"{\"ServerType\":\"INSTANT\",\"ItemType\":\"Cache Item Id\",\"IsDefaultCriteria\":true}","filterCriteria":null,"batchStatusId":5,"statusMsg":"Successfully created batch with items","rowLastUpdated":1562678722000,"batchItemDetailList":[{"batchItemDetailsId":163700,"itemId":10078532,"itemTypeId":3,"dbName":"sdbcba01","cobrandId":10019356,"source":"{\"type\":\"manual\",\"user\":\"ajaxtool\"}","deleted":false,"deletedBy":null,"description":"default - Ajax Batch Testing","sumInfoId":0,"siteId":9528,"batchCriteriaId":1,"batchDetailsId":50269,"code":0,"duplicate":false},{"batchItemDetailsId":163801,"itemId":10301574,"itemTypeId":3,"dbName":"sdbcba01","cobrandId":10019356,"source":"{\"type\":\"manual\",\"user\":\"ajaxtool\"}","deleted":false,"deletedBy":null,"description":"default - Ajax Batch Testing","sumInfoId":0,"siteId":9528,"batchCriteriaId":1,"batchDetailsId":50269,"code":0,"duplicate":false},{"batchItemDetailsId":163802,"itemId":16336124,"itemTypeId":3,"dbName":"sdbcat20","cobrandId":5010018556,"source":"{\"type\":\"manual\",\"user\":\"ajaxtool\"}","deleted":false,"deletedBy":null,"description":"default - Ajax Batch Testing","sumInfoId":0,"siteId":9528,"batchCriteriaId":1,"batchDetailsId":50269,"code":0,"duplicate":false},{"batchItemDetailsId":163803,"itemId":15004108,"itemTypeId":3,"dbName":"sdbcac03","cobrandId":10002812,"source":"{\"type\":\"manual\",\"user\":\"ajaxtool\"}","deleted":false,"deletedBy":null,"description":"default - Ajax Batch Testing","sumInfoId":0,"siteId":9528,"batchCriteriaId":1,"batchDetailsId":50269,"code":0,"duplicate":false}]}}],"agentList":[],"agentMap":{},"userList":[],"batchType":{"1":"Functional","2":"Regression"},"itemType":{"1":"Mem Item Id","2":"Cache Item Id","3":"Mem Site Acc Id"},"batchResultList":[{"siteId":9528,"sumInfoId":11729,"scriptName":"TDWaterhouseAdvisorClient","container":"stocks","fmItemType":null,"itemTypeId":3,"itemId":10078532,"dbName":"sdbcba01","cobrandId":10019356,"source":"user\"\"ajaxtool\"","batchCriteriaId":1,"fmLatency":15797,"prodLatency":null,"numNav":2,"cpuUtil":0,"fmCode":0,"prodCode":0,"fmScriptVersion":1756,"prodScriptVersion":null,"softError":null,"dumpUrl":"https://fmdumps.tools.yodlee.com/dumpdispatcher/dumps?id=10093668.172.17.15.94.2019.07.09.06.25.45.207.html&dbName=sdbcba01&cobrandID=10019356","refreshDeniedReason":null,"batchDetailsId":50269,"description":"default - Ajax Batch Testing","responseType":"loginComplete","refreshable":true,"baseScriptName":"AgentBase","baseScriptVersion":null,"noOfAccounts":null,"refreshMode":null,"responseXml":null,"dumpServerIp":null,"errorMessage":null,"htmlDumpUrlOrigin":null,"sequential":false},{"siteId":9528,"sumInfoId":11729,"scriptName":"TDWaterhouseAdvisorClient","container":"stocks","fmItemType":null,"itemTypeId":3,"itemId":10078532,"dbName":"sdbcba01","cobrandId":10019356,"source":"user\"\"ajaxtool\"","batchCriteriaId":1,"fmLatency":21821,"prodLatency":null,"numNav":5,"cpuUtil":0,"fmCode":0,"prodCode":0,"fmScriptVersion":1756,"prodScriptVersion":null,"softError":null,"dumpUrl":"https://fmdumps.tools.yodlee.com/dumpdispatcher/dumps?id=10093668.172.17.15.93.2019.07.09.06.25.51.704.html&dbName=sdbcba01&cobrandID=10019356","refreshDeniedReason":null,"batchDetailsId":50269,"description":"default - Ajax Batch Testing","responseType":"accountSummary","refreshable":true,"baseScriptName":"AgentBase","baseScriptVersion":null,"noOfAccounts":null,"refreshMode":null,"responseXml":null,"dumpServerIp":null,"errorMessage":null,"htmlDumpUrlOrigin":null,"sequential":false},{"siteId":9528,"sumInfoId":11729,"scriptName":"TDWaterhouseAdvisorClient","container":"stocks","fmItemType":null,"itemTypeId":3,"itemId":10078532,"dbName":"sdbcba01","cobrandId":10019356,"source":"user\"\"ajaxtool\"","batchCriteriaId":1,"fmLatency":62718,"prodLatency":null,"numNav":13,"cpuUtil":0,"fmCode":0,"prodCode":0,"fmScriptVersion":1756,"prodScriptVersion":null,"softError":null,"dumpUrl":"https://fmdumps.tools.yodlee.com/dumpdispatcher/dumps?id=10093668.172.17.15.94.2019.07.09.06.26.32.758.html&dbName=sdbcba01&cobrandID=10019356","refreshDeniedReason":null,"batchDetailsId":50269,"description":"default - Ajax Batch Testing","responseType":"documentDownload","refreshable":true,"baseScriptName":"AgentBase","baseScriptVersion":null,"noOfAccounts":null,"refreshMode":null,"responseXml":null,"dumpServerIp":null,"errorMessage":null,"htmlDumpUrlOrigin":null,"sequential":false},{"siteId":9528,"sumInfoId":11729,"scriptName":"TDWaterhouseAdvisorClient","container":"stocks","fmItemType":null,"itemTypeId":3,"itemId":10301574,"dbName":"sdbcba01","cobrandId":10019356,"source":"user\"\"ajaxtool\"","batchCriteriaId":1,"fmLatency":16346,"prodLatency":null,"numNav":2,"cpuUtil":0,"fmCode":0,"prodCode":0,"fmScriptVersion":1756,"prodScriptVersion":null,"softError":null,"dumpUrl":"https://fmdumps.tools.yodlee.com/dumpdispatcher/dumps?id=10162343.172.17.15.94.2019.07.09.06.25.45.623.html&dbName=sdbcba01&cobrandID=10019356","refreshDeniedReason":null,"batchDetailsId":50269,"description":"default - Ajax Batch Testing","responseType":"loginComplete","refreshable":true,"baseScriptName":"AgentBase","baseScriptVersion":null,"noOfAccounts":null,"refreshMode":null,"responseXml":null,"dumpServerIp":null,"errorMessage":null,"htmlDumpUrlOrigin":null,"sequential":false},{"siteId":9528,"sumInfoId":11729,"scriptName":"TDWaterhouseAdvisorClient","container":"stocks","fmItemType":null,"itemTypeId":3,"itemId":10301574,"dbName":"sdbcba01","cobrandId":10019356,"source":"user\"\"ajaxtool\"","batchCriteriaId":1,"fmLatency":23666,"prodLatency":null,"numNav":6,"cpuUtil":0,"fmCode":0,"prodCode":0,"fmScriptVersion":1756,"prodScriptVersion":null,"softError":null,"dumpUrl":"https://fmdumps.tools.yodlee.com/dumpdispatcher/dumps?id=10162343.172.17.15.94.2019.07.09.06.25.53.787.html&dbName=sdbcba01&cobrandID=10019356","refreshDeniedReason":null,"batchDetailsId":50269,"description":"default - Ajax Batch Testing","responseType":"accountSummary","refreshable":true,"baseScriptName":"AgentBase","baseScriptVersion":null,"noOfAccounts":null,"refreshMode":null,"responseXml":null,"dumpServerIp":null,"errorMessage":null,"htmlDumpUrlOrigin":null,"sequential":false},{"siteId":9528,"sumInfoId":11729,"scriptName":"TDWaterhouseAdvisorClient","container":"stocks","fmItemType":null,"itemTypeId":3,"itemId":10301574,"dbName":"sdbcba01","cobrandId":10019356,"source":"user\"\"ajaxtool\"","batchCriteriaId":1,"fmLatency":88555,"prodLatency":null,"numNav":17,"cpuUtil":0,"fmCode":0,"prodCode":0,"fmScriptVersion":1756,"prodScriptVersion":null,"softError":null,"dumpUrl":"https://fmdumps.tools.yodlee.com/dumpdispatcher/dumps?id=10162343.172.17.15.93.2019.07.09.06.26.59.446.html&dbName=sdbcba01&cobrandID=10019356","refreshDeniedReason":null,"batchDetailsId":50269,"description":"default - Ajax Batch Testing","responseType":"documentDownload","refreshable":true,"baseScriptName":"AgentBase","baseScriptVersion":null,"noOfAccounts":null,"refreshMode":null,"responseXml":null,"dumpServerIp":null,"errorMessage":null,"htmlDumpUrlOrigin":null,"sequential":false},{"siteId":9528,"sumInfoId":11729,"scriptName":"TDWaterhouseAdvisorClient","container":"stocks","fmItemType":null,"itemTypeId":3,"itemId":15004108,"dbName":"sdbcac03","cobrandId":10002812,"source":"user\"\"ajaxtool\"","batchCriteriaId":1,"fmLatency":16356,"prodLatency":null,"numNav":2,"cpuUtil":0,"fmCode":0,"prodCode":0,"fmScriptVersion":1756,"prodScriptVersion":null,"softError":null,"dumpUrl":"https://fmdumps.tools.yodlee.com/dumpdispatcher/dumps?id=12567737.172.17.15.94.2019.07.09.06.25.43.747.html&dbName=sdbcac03&cobrandID=10002812","refreshDeniedReason":null,"batchDetailsId":50269,"description":"default - Ajax Batch Testing","responseType":"loginComplete","refreshable":true,"baseScriptName":"AgentBase","baseScriptVersion":null,"noOfAccounts":null,"refreshMode":null,"responseXml":null,"dumpServerIp":null,"errorMessage":null,"htmlDumpUrlOrigin":null,"sequential":false},{"siteId":9528,"sumInfoId":11729,"scriptName":"TDWaterhouseAdvisorClient","container":"stocks","fmItemType":null,"itemTypeId":3,"itemId":15004108,"dbName":"sdbcac03","cobrandId":10002812,"source":"user\"\"ajaxtool\"","batchCriteriaId":1,"fmLatency":19491,"prodLatency":null,"numNav":5,"cpuUtil":0,"fmCode":0,"prodCode":0,"fmScriptVersion":1756,"prodScriptVersion":null,"softError":null,"dumpUrl":"https://fmdumps.tools.yodlee.com/dumpdispatcher/dumps?id=12567737.172.17.15.94.2019.07.09.06.25.47.472.html&dbName=sdbcac03&cobrandID=10002812","refreshDeniedReason":null,"batchDetailsId":50269,"description":"default - Ajax Batch Testing","responseType":"accountSummary","refreshable":true,"baseScriptName":"AgentBase","baseScriptVersion":null,"noOfAccounts":null,"refreshMode":null,"responseXml":null,"dumpServerIp":null,"errorMessage":null,"htmlDumpUrlOrigin":null,"sequential":false},{"siteId":9528,"sumInfoId":11729,"scriptName":"TDWaterhouseAdvisorClient","container":"stocks","fmItemType":null,"itemTypeId":3,"itemId":15004108,"dbName":"sdbcac03","cobrandId":10002812,"source":"user\"\"ajaxtool\"","batchCriteriaId":1,"fmLatency":40879,"prodLatency":null,"numNav":9,"cpuUtil":0,"fmCode":0,"prodCode":0,"fmScriptVersion":1756,"prodScriptVersion":null,"softError":null,"dumpUrl":"https://fmdumps.tools.yodlee.com/dumpdispatcher/dumps?id=12567737.172.17.15.94.2019.07.09.06.26.08.936.html&dbName=sdbcac03&cobrandID=10002812","refreshDeniedReason":null,"batchDetailsId":50269,"description":"default - Ajax Batch Testing","responseType":"documentDownload","refreshable":true,"baseScriptName":"AgentBase","baseScriptVersion":null,"noOfAccounts":null,"refreshMode":null,"responseXml":null,"dumpServerIp":null,"errorMessage":null,"htmlDumpUrlOrigin":null,"sequential":false},{"siteId":9528,"sumInfoId":11729,"scriptName":"TDWaterhouseAdvisorClient","container":"stocks","fmItemType":null,"itemTypeId":3,"itemId":16336124,"dbName":"sdbcat20","cobrandId":5010018556,"source":"user\"\"ajaxtool\"","batchCriteriaId":1,"fmLatency":15480,"prodLatency":null,"numNav":2,"cpuUtil":0,"fmCode":0,"prodCode":0,"fmScriptVersion":1756,"prodScriptVersion":null,"softError":null,"dumpUrl":"https://fmdumps.tools.yodlee.com/dumpdispatcher/dumps?id=14578233.172.17.15.93.2019.07.09.06.25.43.785.html&dbName=sdbcat20&cobrandID=5010018556","refreshDeniedReason":null,"batchDetailsId":50269,"description":"default - Ajax Batch Testing","responseType":"loginComplete","refreshable":true,"baseScriptName":"AgentBase","baseScriptVersion":null,"noOfAccounts":null,"refreshMode":null,"responseXml":null,"dumpServerIp":null,"errorMessage":null,"htmlDumpUrlOrigin":null,"sequential":false},{"siteId":9528,"sumInfoId":11729,"scriptName":"TDWaterhouseAdvisorClient","container":"stocks","fmItemType":null,"itemTypeId":3,"itemId":16336124,"dbName":"sdbcat20","cobrandId":5010018556,"source":"user\"\"ajaxtool\"","batchCriteriaId":1,"fmLatency":18465,"prodLatency":null,"numNav":5,"cpuUtil":0,"fmCode":0,"prodCode":0,"fmScriptVersion":1756,"prodScriptVersion":null,"softError":null,"dumpUrl":"https://fmdumps.tools.yodlee.com/dumpdispatcher/dumps?id=14578233.172.17.15.93.2019.07.09.06.25.47.017.html&dbName=sdbcat20&cobrandID=5010018556","refreshDeniedReason":null,"batchDetailsId":50269,"description":"default - Ajax Batch Testing","responseType":"accountSummary","refreshable":true,"baseScriptName":"AgentBase","baseScriptVersion":null,"noOfAccounts":null,"refreshMode":null,"responseXml":null,"dumpServerIp":null,"errorMessage":null,"htmlDumpUrlOrigin":null,"sequential":false},{"siteId":9528,"sumInfoId":11729,"scriptName":"TDWaterhouseAdvisorClient","container":"stocks","fmItemType":null,"itemTypeId":3,"itemId":16336124,"dbName":"sdbcat20","cobrandId":5010018556,"source":"user\"\"ajaxtool\"","batchCriteriaId":1,"fmLatency":74967,"prodLatency":null,"numNav":14,"cpuUtil":0,"fmCode":0,"prodCode":0,"fmScriptVersion":1756,"prodScriptVersion":null,"softError":null,"dumpUrl":"https://fmdumps.tools.yodlee.com/dumpdispatcher/dumps?id=14578233.172.17.15.93.2019.07.09.06.26.43.975.html&dbName=sdbcat20&cobrandID=5010018556","refreshDeniedReason":null,"batchDetailsId":50269,"description":"default - Ajax Batch Testing","responseType":"documentDownload","refreshable":true,"baseScriptName":"AgentBase","baseScriptVersion":null,"noOfAccounts":null,"refreshMode":null,"responseXml":null,"dumpServerIp":null,"errorMessage":null,"htmlDumpUrlOrigin":null,"sequential":false}],"glogErrors":[],"batchStatus":null,"batchItemList":[],"batchStatusMap":{"1":"Rejected","2":"Queued","3":"Processing","4":"Failed","5":"Completed","6":"Notified","7":"Partially Completed"},"dataCenter":{"0":"QE","1":"Stage","2":"SC9","3":"India","99":"All Prod","4":"Canada","5":"Australia","6":"Malaysia","7":"UK"},"dataSetInfo":null,"dbs":null,"cirteriaTypes":{"1":"default","2":"error code","3":"latency","4":"soft errors","5":"exception","6":"number of accounts","7":"account types","8":"vip users","9":"segment id"},"errorItems":[],"maxItemsInBatch":0,"batchDetailsId":null,"batchReqDetailsId":null,"valid":false}
+2019-07-09 18:57:14.519  INFO 23140 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### retriveDataFromFiremem #########################################
+2019-07-09 18:57:14.530  INFO 23140 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :15004108|sdbcac03
+2019-07-09 18:57:17.215  INFO 23140 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : JDAP FIRMEM => jDapFirememXML : ient" pageHash="-1109220135">
+<investmentAccount pageHash="-1109220135" pageHashSE="{"accountName":"-1109220135","accountNumber":"-1109220135"}" uniqueId="881840580">
+<accountName>XXXXXXXX</accountName>
+<accountNumber>XXXXXXXXX</accountNumber>
+<documentInfoList pageHash="-1109220135">
+<documentInfo pageHash="-1109220135" pageHashSE="{"documentIdentifier":"-1109220135","extension":"-1109220135","downloadLatencySec":"-1109220135","documentType":"-1109220135","sizeKB":"-1109220135","errorCode":"-1109220135","source":"-1109220135","documentDetails":"-1109220135","reccurringDocument":"-1109220135","name":"-1109220135","documentId":"-1109220135","documentStatus":"-1109220135","exceptionStackTrace":"-1109220135","documentFormat":"-1109220135","uploadLatencySec":"-1109220135"}">
+<source>https://www.advisorclient.com/cgi-bin/apps/u/Statements?pagehandler=PHStatementPDF&amp;docid=1758806764</source>
+<name>XXXXXXXX</name>
+<uploadLatencySec>0.45</uploadLatencySec>
+<reccurringDocument>true</reccurringDocument>
+<documentId>54893fa9e4b07eb0-1704108529</documentId>
+<exceptionStackTrace>CDATA</exceptionStackTrace>
+<sizeKB>108</sizeKB>
+<documentStatus>DOC_DOWNLOADED</documentStatus>
+<documentIdentifier>2019-06-30T00:00:00</documentIdentifier>
+<downloadLatencySec>15.0</downloadLatencySec>
+<documentDetails>{"statementDate":"2019-06-30T00:00:00","duration":"MONTHLY"}</documentDetails>
+<documentType>STMT</documentType>
+<errorCode>0</errorCode>
+<documentFormat>BINARY</documentFormat>
+<extension>pdf</extension>
+<statementDate localFormat="yyyy-MM-dd" pageHash="-1109220135">2019-06-30T00:00:00</statementDate>
+</documentInfo>
+<documentInfo pageHash="-1109220135" pageHashSE="{"documentIdentifier":"-1109220135","extension":"-1109220135","downloadLatencySec":"-1109220135","documentType":"-1109220135","sizeKB":"-1109220135","errorCode":"-1109220135","source":"-1109220135","documentDetails":"-1109220135","reccurringDocument":"-1109220135","name":"-1109220135","documentId":"-1109220135","documentStatus":"-1109220135","exceptionStackTrace":"-1109220135","documentFormat":"-1109220135","uploadLatencySec":"-1109220135"}">
+<source>https://www.advisorclient.com/cgi-bin/apps/u/Statements?pagehandler=PHStatementPDF&amp;docid=1745643611</source>
+<name>XXXXXXXX</name>
+<uploadLatencySec>0.45</uploadLatencySec>
+<reccurringDocument>true</reccurringDocument>
+<documentId>54893fa9e4b07eb0-1888464046</documentId>
+<exceptionStackTrace>CDATA</exceptionStackTrace>
+<sizeKB>104</sizeKB>
+<documentStatus>DOC_DOWNLOADED</documentStatus>
+<documentIdentifier>2019-05-31T00:00:00</documentIdentifier>
+<downloadLatencySec>9.0</downloadLatencySec>
+<documentDetails>{"statementDate":"2019-05-31T00:00:00","duration":"MONTHLY"}</documentDetails>
+<documentType>STMT</documentType>
+<errorCode>0</errorCode>
+<documentFormat>BINARY</documentFormat>
+<extension>pdf</extension>
+<statementDate localFormat="yyyy-MM-dd" pageHash="-1109220135">2019-05-31T00:00:00</statementDate>
+</documentInfo>
+<documentInfo pageHash="-1109220135" pageHashSE="{"documentIdentifier":"-1109220135","extension":"-1109220135","downloadLatencySec":"-1109220135","documentType":"-1109220135","sizeKB":"-1109220135","errorCode":"-1109220135","source":"-1109220135","documentDetails":"-1109220135","reccurringDocument":"-1109220135","name":"-1109220135","documentId":"-1109220135","documentStatus":"-1109220135","exceptionStackTrace":"-1109220135","documentFormat":"-1109220135","uploadLatencySec":"-1109220135"}">
+<source>https://www.advisorclient.com/cgi-bin/apps/u/Statements?pagehandler=PHStatementPDF&amp;docid=1732849333</source>
+<name>XXXXXXXX</name>
+<uploadLatencySec>0.45</uploadLatencySec>
+<reccurringDocument>true</reccurringDocument>
+<documentId>54893fa9e4b07eb01992411240</documentId>
+<exceptionStackTrace>CDATA</exceptionStackTrace>
+<sizeKB>104</sizeKB>
+<documentStatus>DOC_DOWNLOADED</documentStatus>
+<documentIdentifier>2019-04-30T00:00:00</documentIdentifier>
+<downloadLatencySec>12.0</downloadLatencySec>
+<documentDetails>{"statementDate":"2019-04-30T00:00:00","duration":"MONTHLY"}</documentDetails>
+<documentType>STMT</documentType>
+<errorCode>0</errorCode>
+<documentFormat>BINARY</documentFormat>
+<extension>pdf</extension>
+<statementDate localFormat="yyyy-MM-dd" pageHash="-1109220135">2019-04-30T00:00:00</statementDate>
+</documentInfo>
+</documentInfoList>
+<accountStatusList pageHash="-1109220135">
+<accountStatus pageHash="884229567" pageHashSE="{"documentType":"884229567","refreshAction":"-1109220135","errorCode":"-1109220135","exceptionStackTrace":"-1109220135"}">
+<documentType>STMT</documentType>
+<exceptionStackTrace/>
+<refreshAction>DOC_DOWNLOAD_REFRESH</refreshAction>
+<errorCode>0</errorCode>
+</accountStatus>
+<accountStatus pageHash="-1109220135" pageHashSE="{"documentType":"-1109220135","refreshAction":"-1109220135","errorCode":"-1109220135","exceptionStackTrace":"-1109220135"}">
+<documentType>TAX</documentType>
+<exceptionStackTrace>NO_DOCS_AVAILABLE</exceptionStackTrace>
+<refreshAction>DOC_DOWNLOAD_REFRESH</refreshAction>
+<errorCode>570</errorCode>
+</accountStatus>
+</accountStatusList>
+</investmentAccount>
+
+2019-07-09 18:57:17.221  INFO 23140 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : JDAP FIRMEM => jDapAccountSummaryXML : null
+2019-07-09 18:57:17.223  INFO 23140 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :16336124|sdbcat20
+2019-07-09 18:57:19.900  INFO 23140 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : JDAP FIRMEM => jDapFirememXML : ient" pageHash="-995134816">
+<investmentAccount pageHash="-995134816" pageHashSE="{"accountName":"-995134816","accountNumber":"-995134816"}" uniqueId="-948288416">
+<accountName>XXXXXXXX</accountName>
+<accountNumber>XXXXXXXXX</accountNumber>
+<accountStatusList pageHash="-995134816">
+<accountStatus pageHash="-995134816" pageHashSE="{"documentType":"-995134816","refreshAction":"-995134816","errorCode":"-995134816","exceptionStackTrace":"-995134816"}">
+<documentType>TAX</documentType>
+<exceptionStackTrace>NO_DOCS_AVAILABLE</exceptionStackTrace>
+<refreshAction>DOC_DOWNLOAD_REFRESH</refreshAction>
+<errorCode>570</errorCode>
+</accountStatus>
+<accountStatus pageHash="-995134816" pageHashSE="{"documentType":"-995134816","refreshAction":"-995134816","errorCode":"-995134816","exceptionStackTrace":"-995134816"}">
+<documentType>STMT</documentType>
+<exceptionStackTrace>NO_DOCS_AVAILABLE</exceptionStackTrace>
+<refreshAction>DOC_DOWNLOAD_REFRESH</refreshAction>
+<errorCode>570</errorCode>
+</accountStatus>
+</accountStatusList>
+</investmentAccount>
+<investmentAccount pageHash="-995134816" pageHashSE="{"accountName":"-995134816","accountNumber":"-995134816"}" uniqueId="-904892327">
+<accountName>XXXXXXXX</accountName>
+<accountNumber>XXXXXXXXX</accountNumber>
+<documentInfoList pageHash="-995134816">
+<documentInfo pageHash="-995134816" pageHashSE="{"documentIdentifier":"-995134816","extension":"-995134816","downloadLatencySec":"-995134816","documentType":"-995134816","sizeKB":"-995134816","errorCode":"-995134816","source":"-995134816","documentDetails":"-995134816","reccurringDocument":"-995134816","name":"-995134816","documentId":"-995134816","documentStatus":"-995134816","exceptionStackTrace":"-995134816","documentFormat":"-995134816","uploadLatencySec":"-995134816"}">
+<source>https://www.advisorclient.com/cgi-bin/apps/u/Statements?pagehandler=PHStatementPDF&amp;docid=1759730682</source>
+<name>XXXXXXXX</name>
+<uploadLatencySec>0.45</uploadLatencySec>
+<reccurringDocument>true</reccurringDocument>
+<documentId>54893fa9e4b07eb0557329718</documentId>
+<exceptionStackTrace>CDATA</exceptionStackTrace>
+<sizeKB>102</sizeKB>
+<documentStatus>DOC_DOWNLOADED</documentStatus>
+<documentIdentifier>2019-06-30T00:00:00</documentIdentifier>
+<downloadLatencySec>9.0</downloadLatencySec>
+<documentDetails>{"statementDate":"2019-06-30T00:00:00","duration":"MONTHLY"}</documentDetails>
+<documentType>STMT</documentType>
+<errorCode>0</errorCode>
+<documentFormat>BINARY</documentFormat>
+<extension>pdf</extension>
+<statementDate localFormat="yyyy-MM-dd" pageHash="-995134816">2019-06-30T00:00:00</statementDate>
+</documentInfo>
+<documentInfo pageHash="-995134816" pageHashSE="{"documentIdentifier":"-995134816","extension":"-995134816","downloadLatencySec":"-995134816","documentType":"-995134816","sizeKB":"-995134816","errorCode":"-995134816","source":"-995134816","documentDetails":"-995134816","reccurringDocument":"-995134816","name":"-995134816","documentId":"-995134816","documentStatus":"-995134816","exceptionStackTrace":"-995134816","documentFormat":"-995134816","uploadLatencySec":"-995134816"}">
+<source>https://www.advisorclient.com/cgi-bin/apps/u/Statements?pagehandler=PHStatementPDF&amp;docid=1746522423</source>
+<name>XXXXXXXX</name>
+<uploadLatencySec>0.45</uploadLatencySec>
+<reccurringDocument>true</reccurringDocument>
+<documentId>54893fa9e4b07eb01350782853</documentId>
+<exceptionStackTrace>CDATA</exceptionStackTrace>
+<sizeKB>104</sizeKB>
+<documentStatus>DOC_DOWNLOADED</documentStatus>
+<documentIdentifier>2019-05-31T00:00:00</documentIdentifier>
+<downloadLatencySec>8.0</downloadLatencySec>
+<documentDetails>{"statementDate":"2019-05-31T00:00:00","duration":"MONTHLY"}</documentDetails>
+<documentType>STMT</documentType>
+<errorCode>0</errorCode>
+<documentFormat>BINARY</documentFormat>
+<extension>pdf</extension>
+<statementDate localFormat="yyyy-MM-dd" pageHash="-995134816">2019-05-31T00:00:00</statementDate>
+</documentInfo>
+<documentInfo pageHash="-995134816" pageHashSE="{"documentIdentifier":"-995134816","extension":"-995134816","downloadLatencySec":"-995134816","documentType":"-995134816","sizeKB":"-995134816","errorCode":"-995134816","source":"-995134816","documentDetails":"-995134816","reccurringDocument":"-995134816","name":"-995134816","documentId":"-995134816","documentStatus":"-995134816","exceptionStackTrace":"-995134816","documentFormat":"-995134816","uploadLatencySec":"-995134816"}">
+<source>https://www.advisorclient.com/cgi-bin/apps/u/Statements?pagehandler=PHStatementPDF&amp;docid=1732066030</source>
+<name>XXXXXXXX</name>
+<uploadLatencySec>0.45</uploadLatencySec>
+<reccurringDocument>true</reccurringDocument>
+<documentId>54893fa9e4b07eb0-1084620003</documentId>
+<exceptionStackTrace>CDATA</exceptionStackTrace>
+<sizeKB>101</sizeKB>
+<documentStatus>DOC_DOWNLOADED</documentStatus>
+<documentIdentifier>2019-04-30T00:00:00</documentIdentifier>
+<downloadLatencySec>8.0</downloadLatencySec>
+<documentDetails>{"statementDate":"2019-04-30T00:00:00","duration":"MONTHLY"}</documentDetails>
+<documentType>STMT</documentType>
+<errorCode>0</errorCode>
+<documentFormat>BINARY</documentFormat>
+<extension>pdf</extension>
+<statementDate localFormat="yyyy-MM-dd" pageHash="-995134816">2019-04-30T00:00:00</statementDate>
+</documentInfo>
+</documentInfoList>
+<accountStatusList pageHash="-995134816">
+<accountStatus pageHash="-2004576427" pageHashSE="{"documentType":"-2004576427","refreshAction":"-778285175","errorCode":"-778285175","exceptionStackTrace":"-778285175"}">
+<documentType>STMT</documentType>
+<exceptionStackTrace/>
+<refreshAction>DOC_DOWNLOAD_REFRESH</refreshAction>
+<errorCode>0</errorCode>
+</accountStatus>
+<accountStatus pageHash="-995134816" pageHashSE="{"documentType":"-995134816","refreshAction":"-995134816","errorCode":"-995134816","exceptionStackTrace":"-995134816"}">
+<documentType>TAX</documentType>
+<exceptionStackTrace>NO_DOCS_AVAILABLE</exceptionStackTrace>
+<refreshAction>DOC_DOWNLOAD_REFRESH</refreshAction>
+<errorCode>570</errorCode>
+</accountStatus>
+</accountStatusList>
+</investmentAccount>
+<investmentAccount pageHash="-995134816" pageHashSE="{"accountName":"-995134816","accountNumber":"-995134816"}" uniqueId="-928159942">
+<accountName>XXXXXXXX</accountName>
+<accountNumber>XXXXXXXXX</accountNumber>
+<documentInfoList pageHash="-995134816">
+<documentInfo pageHash="-995134816" pageHashSE="{"documentIdentifier":"-995134816","extension":"-995134816","downloadLatencySec":"-995134816","documentType":"-995134816","sizeKB":"-995134816","errorCode":"-995134816","source":"-995134816","documentDetails":"-995134816","reccurringDocument":"-995134816","name":"-995134816","documentId":"-995134816","documentStatus":"-995134816","exceptionStackTrace":"-995134816","documentFormat":"-995134816","uploadLatencySec":"-995134816"}">
+<source>https://www.advisorclient.com/cgi-bin/apps/u/Statements?pagehandler=PHStatementPDF&amp;docid=1759834057</source>
+<name>XXXXXXXX</name>
+<uploadLatencySec>0.45</uploadLatencySec>
+<reccurringDocument>true</reccurringDocument>
+<documentId>54893fa9e4b07eb01979794081</documentId>
+<exceptionStackTrace>CDATA</exceptionStackTrace>
+<sizeKB>100</sizeKB>
+<documentStatus>DOC_DOWNLOADED</documentStatus>
+<documentIdentifier>2019-06-30T00:00:00</documentIdentifier>
+<downloadLatencySec>8.0</downloadLatencySec>
+<documentDetails>{"statementDate":"2019-06-30T00:00:00","duration":"MONTHLY"}</documentDetails>
+<documentType>STMT</documentType>
+<errorCode>0</errorCode>
+<documentFormat>BINARY</documentFormat>
+<extension>pdf</extension>
+<statementDate localFormat="yyyy-MM-dd" pageHash="-995134816">2019-06-30T00:00:00</statementDate>
+</documentInfo>
+<documentInfo pageHash="-995134816" pageHashSE="{"documentIdentifier":"-995134816","extension":"-995134816","downloadLatencySec":"-995134816","documentType":"-995134816","sizeKB":"-995134816","errorCode":"-995134816","source":"-995134816","documentDetails":"-995134816","reccurringDocument":"-995134816","name":"-995134816","documentId":"-995134816","documentStatus":"-995134816","exceptionStackTrace":"-995134816","documentFormat":"-995134816","uploadLatencySec":"-995134816"}">
+<source>https://www.advisorclient.com/cgi-bin/apps/u/Statements?pagehandler=PHStatementPDF&amp;docid=1746501805</source>
+<name>XXXXXXXX</name>
+<uploadLatencySec>0.45</uploadLatencySec>
+<reccurringDocument>true</reccurringDocument>
+<documentId>54893fa9e4b07eb0-1683792211</documentId>
+<exceptionStackTrace>CDATA</exceptionStackTrace>
+<sizeKB>101</sizeKB>
+<documentStatus>DOC_DOWNLOADED</documentStatus>
+<documentIdentifier>2019-05-31T00:00:00</documentIdentifier>
+<downloadLatencySec>8.0</downloadLatencySec>
+<documentDetails>{"statementDate":"2019-05-31T00:00:00","duration":"MONTHLY"}</documentDetails>
+<documentType>STMT</documentType>
+<errorCode>0</errorCode>
+<documentFormat>BINARY</documentFormat>
+<extension>pdf</extension>
+<statementDate localFormat="yyyy-MM-dd" pageHash="-995134816">2019-05-31T00:00:00</statementDate>
+</documentInfo>
+<documentInfo pageHash="-995134816" pageHashSE="{"documentIdentifier":"-995134816","extension":"-995134816","downloadLatencySec":"-995134816","documentType":"-995134816","sizeKB":"-995134816","errorCode":"-995134816","source":"-995134816","documentDetails":"-995134816","reccurringDocument":"-995134816","name":"-995134816","documentId":"-995134816","documentStatus":"-995134816","exceptionStackTrace":"-995134816","documentFormat":"-995134816","uploadLatencySec":"-995134816"}">
+<source>https://www.advisorclient.com/cgi-bin/apps/u/Statements?pagehandler=PHStatementPDF&amp;docid=1733196573</source>
+<name>XXXXXXXX</name>
+<uploadLatencySec>0.45</uploadLatencySec>
+<reccurringDocument>true</reccurringDocument>
+<documentId>54893fa9e4b07eb02108879955</documentId>
+<exceptionStackTrace>CDATA</exceptionStackTrace>
+<sizeKB>98</sizeKB>
+<documentStatus>DOC_DOWNLOADED</documentStatus>
+<documentIdentifier>2019-04-30T00:00:00</documentIdentifier>
+<downloadLatencySec>6.0</downloadLatencySec>
+<documentDetails>{"statementDate":"2019-04-30T00:00:00","duration":"MONTHLY"}</documentDetails>
+<documentType>STMT</documentType>
+<errorCode>0</errorCode>
+<documentFormat>BINARY</documentFormat>
+<extension>pdf</extension>
+<statementDate localFormat="yyyy-MM-dd" pageHash="-995134816">2019-04-30T00:00:00</statementDate>
+</documentInfo>
+</documentInfoList>
+<accountStatusList pageHash="-995134816">
+<accountStatus pageHash="1360856229" pageHashSE="{"documentType":"1360856229","refreshAction":"-995134816","errorCode":"-995134816","exceptionStackTrace":"-995134816"}">
+<documentType>STMT</documentType>
+<exceptionStackTrace/>
+<refreshAction>DOC_DOWNLOAD_REFRESH</refreshAction>
+<errorCode>0</errorCode>
+</accountStatus>
+<accountStatus pageHash="-995134816" pageHashSE="{"documentType":"-995134816","refreshAction":"-995134816","errorCode":"-995134816","exceptionStackTrace":"-995134816"}">
+<documentType>TAX</documentType>
+<exceptionStackTrace>NO_DOCS_AVAILABLE</exceptionStackTrace>
+<refreshAction>DOC_DOWNLOAD_REFRESH</refreshAction>
+<errorCode>570</errorCode>
+</accountStatus>
+</accountStatusList>
+</investmentAccount>
+
+2019-07-09 18:57:19.904  INFO 23140 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : JDAP FIRMEM => jDapAccountSummaryXML : null
+2019-07-09 18:57:19.905  INFO 23140 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :10078532|sdbcba01
+2019-07-09 18:57:22.391  INFO 23140 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : JDAP FIRMEM => jDapFirememXML : ient" pageHash="-599788061">
+<investmentAccount pageHash="-599788061" pageHashSE="{"accountName":"-599788061","accountNumber":"-599788061"}" uniqueId="-1678089679">
+<accountName>XXXXXXXX</accountName>
+<accountNumber>XXXXXXXXX</accountNumber>
+<documentInfoList pageHash="-599788061">
+<documentInfo pageHash="-599788061" pageHashSE="{"documentIdentifier":"-599788061","extension":"-599788061","downloadLatencySec":"-599788061","documentType":"-599788061","sizeKB":"-599788061","errorCode":"-599788061","source":"-599788061","documentDetails":"-599788061","reccurringDocument":"-599788061","name":"-599788061","documentId":"-599788061","documentStatus":"-599788061","exceptionStackTrace":"-599788061","documentFormat":"-599788061","uploadLatencySec":"-599788061"}">
+<source>https://www.advisorclient.com/cgi-bin/apps/u/Statements?pagehandler=PHStatementPDF&amp;docid=1759748613</source>
+<name>XXXXXXXX</name>
+<uploadLatencySec>0.45</uploadLatencySec>
+<reccurringDocument>true</reccurringDocument>
+<documentId>54893fa9e4b07eb0-479347513</documentId>
+<exceptionStackTrace>CDATA</exceptionStackTrace>
+<sizeKB>110</sizeKB>
+<documentStatus>DOC_DOWNLOADED</documentStatus>
+<documentIdentifier>2019-06-30T00:00:00</documentIdentifier>
+<downloadLatencySec>11.0</downloadLatencySec>
+<documentDetails>{"statementDate":"2019-06-30T00:00:00","duration":"MONTHLY"}</documentDetails>
+<documentType>STMT</documentType>
+<errorCode>0</errorCode>
+<documentFormat>BINARY</documentFormat>
+<extension>pdf</extension>
+<statementDate localFormat="yyyy-MM-dd" pageHash="-599788061">2019-06-30T00:00:00</statementDate>
+</documentInfo>
+<documentInfo pageHash="-599788061" pageHashSE="{"documentIdentifier":"-599788061","extension":"-599788061","downloadLatencySec":"-599788061","documentType":"-599788061","sizeKB":"-599788061","errorCode":"-599788061","source":"-599788061","documentDetails":"-599788061","reccurringDocument":"-599788061","name":"-599788061","documentId":"-599788061","documentStatus":"-599788061","exceptionStackTrace":"-599788061","documentFormat":"-599788061","uploadLatencySec":"-599788061"}">
+<source>https://www.advisorclient.com/cgi-bin/apps/u/Statements?pagehandler=PHStatementPDF&amp;docid=1746355133</source>
+<name>XXXXXXXX</name>
+<uploadLatencySec>0.45</uploadLatencySec>
+<reccurringDocument>true</reccurringDocument>
+<documentId>54893fa9e4b07eb0-1351497787</documentId>
+<exceptionStackTrace>CDATA</exceptionStackTrace>
+<sizeKB>112</sizeKB>
+<documentStatus>DOC_DOWNLOADED</documentStatus>
+<documentIdentifier>2019-05-31T00:00:00</documentIdentifier>
+<downloadLatencySec>9.0</downloadLatencySec>
+<documentDetails>{"statementDate":"2019-05-31T00:00:00","duration":"MONTHLY"}</documentDetails>
+<documentType>STMT</documentType>
+<errorCode>0</errorCode>
+<documentFormat>BINARY</documentFormat>
+<extension>pdf</extension>
+<statementDate localFormat="yyyy-MM-dd" pageHash="-599788061">2019-05-31T00:00:00</statementDate>
+</documentInfo>
+<documentInfo pageHash="-599788061" pageHashSE="{"documentIdentifier":"-599788061","extension":"-599788061","downloadLatencySec":"-599788061","documentType":"-599788061","sizeKB":"-599788061","errorCode":"-599788061","source":"-599788061","documentDetails":"-599788061","reccurringDocument":"-599788061","name":"-599788061","documentId":"-599788061","documentStatus":"-599788061","exceptionStackTrace":"-599788061","documentFormat":"-599788061","uploadLatencySec":"-599788061"}">
+<source>https://www.advisorclient.com/cgi-bin/apps/u/Statements?pagehandler=PHStatementPDF&amp;docid=1732420783</source>
+<name>XXXXXXXX</name>
+<uploadLatencySec>0.45</uploadLatencySec>
+<reccurringDocument>true</reccurringDocument>
+<documentId>54893fa9e4b07eb0-959790500</documentId>
+<exceptionStackTrace>CDATA</exceptionStackTrace>
+<sizeKB>107</sizeKB>
+<documentStatus>DOC_DOWNLOADED</documentStatus>
+<documentIdentifier>2019-04-30T00:00:00</documentIdentifier>
+<downloadLatencySec>8.0</downloadLatencySec>
+<documentDetails>{"statementDate":"2019-04-30T00:00:00","duration":"MONTHLY"}</documentDetails>
+<documentType>STMT</documentType>
+<errorCode>0</errorCode>
+<documentFormat>BINARY</documentFormat>
+<extension>pdf</extension>
+<statementDate localFormat="yyyy-MM-dd" pageHash="-599788061">2019-04-30T00:00:00</statementDate>
+</documentInfo>
+</documentInfoList>
+<accountStatusList pageHash="-599788061">
+<accountStatus pageHash="-400598739" pageHashSE="{"documentType":"-400598739","refreshAction":"-1700309516","errorCode":"-1700309516","exceptionStackTrace":"-1700309516"}">
+<documentType>STMT</documentType>
+<exceptionStackTrace/>
+<refreshAction>DOC_DOWNLOAD_REFRESH</refreshAction>
+<errorCode>0</errorCode>
+</accountStatus>
+<accountStatus pageHash="-599788061" pageHashSE="{"documentType":"-599788061","refreshAction":"-599788061","errorCode":"-599788061","exceptionStackTrace":"-599788061"}">
+<documentType>TAX</documentType>
+<exceptionStackTrace>NO_DOCS_AVAILABLE</exceptionStackTrace>
+<refreshAction>DOC_DOWNLOAD_REFRESH</refreshAction>
+<errorCode>570</errorCode>
+</accountStatus>
+</accountStatusList>
+</investmentAccount>
+<investmentAccount pageHash="-599788061" pageHashSE="{"accountName":"-599788061","accountNumber":"-599788061"}" uniqueId="-1678089683">
+<accountName>XXXXXXXX</accountName>
+<accountNumber>XXXXXXXXX</accountNumber>
+<documentInfoList pageHash="-599788061">
+<documentInfo pageHash="-599788061" pageHashSE="{"documentIdentifier":"-599788061","extension":"-599788061","downloadLatencySec":"-599788061","documentType":"-599788061","sizeKB":"-599788061","errorCode":"-599788061","source":"-599788061","documentDetails":"-599788061","reccurringDocument":"-599788061","name":"-599788061","documentId":"-599788061","documentStatus":"-599788061","exceptionStackTrace":"-599788061","documentFormat":"-599788061","uploadLatencySec":"-599788061"}">
+<source>https://www.advisorclient.com/cgi-bin/apps/u/Statements?pagehandler=PHStatementPDF&amp;docid=1759575021</source>
+<name>XXXXXXXX</name>
+<uploadLatencySec>0.45</uploadLatencySec>
+<reccurringDocument>true</reccurringDocument>
+<documentId>54893fa9e4b07eb0-1802581639</documentId>
+<exceptionStackTrace>CDATA</exceptionStackTrace>
+<sizeKB>113</sizeKB>
+<documentStatus>DOC_DOWNLOADED</documentStatus>
+<documentIdentifier>2019-06-30T00:00:00</documentIdentifier>
+<downloadLatencySec>12.0</downloadLatencySec>
+<documentDetails>{"statementDate":"2019-06-30T00:00:00","duration":"MONTHLY"}</documentDetails>
+<documentType>STMT</documentType>
+<errorCode>0</errorCode>
+<documentFormat>BINARY</documentFormat>
+<extension>pdf</extension>
+<statementDate localFormat="yyyy-MM-dd" pageHash="-599788061">2019-06-30T00:00:00</statementDate>
+</documentInfo>
+<documentInfo pageHash="-599788061" pageHashSE="{"documentIdentifier":"-599788061","extension":"-599788061","downloadLatencySec":"-599788061","documentType":"-599788061","sizeKB":"-599788061","errorCode":"-599788061","source":"-599788061","documentDetails":"-599788061","reccurringDocument":"-599788061","name":"-599788061","documentId":"-599788061","documentStatus":"-599788061","exceptionStackTrace":"-599788061","documentFormat":"-599788061","uploadLatencySec":"-599788061"}">
+<source>https://www.advisorclient.com/cgi-bin/apps/u/Statements?pagehandler=PHStatementPDF&amp;docid=1746354751</source>
+<name>XXXXXXXX</name>
+<uploadLatencySec>0.45</uploadLatencySec>
+<reccurringDocument>true</reccurringDocument>
+<documentId>54893fa9e4b07eb0208871908</documentId>
+<exceptionStackTrace>CDATA</exceptionStackTrace>
+<sizeKB>109</sizeKB>
+<documentStatus>DOC_DOWNLOADED</documentStatus>
+<documentIdentifier>2019-05-31T00:00:00</documentIdentifier>
+<downloadLatencySec>8.0</downloadLatencySec>
+<documentDetails>{"statementDate":"2019-05-31T00:00:00","duration":"MONTHLY"}</documentDetails>
+<documentType>STMT</documentType>
+<errorCode>0</errorCode>
+<documentFormat>BINARY</documentFormat>
+<extension>pdf</extension>
+<statementDate localFormat="yyyy-MM-dd" pageHash="-599788061">2019-05-31T00:00:00</statementDate>
+</documentInfo>
+<documentInfo pageHash="-599788061" pageHashSE="{"documentIdentifier":"-599788061","extension":"-599788061","downloadLatencySec":"-599788061","documentType":"-599788061","sizeKB":"-599788061","errorCode":"-599788061","source":"-599788061","documentDetails":"-599788061","reccurringDocument":"-599788061","name":"-599788061","documentId":"-599788061","documentStatus":"-599788061","exceptionStackTrace":"-599788061","documentFormat":"-599788061","uploadLatencySec":"-599788061"}">
+<source>https://www.advisorclient.com/cgi-bin/apps/u/Statements?pagehandler=PHStatementPDF&amp;docid=1732261695</source>
+<name>XXXXXXXX</name>
+<uploadLatencySec>0.45</uploadLatencySec>
+<reccurringDocument>true</reccurringDocument>
+<documentId>54893fa9e4b07eb0-920415941</documentId>
+<exceptionStackTrace>CDATA</exceptionStackTrace>
+<sizeKB>109</sizeKB>
+<documentStatus>DOC_DOWNLOADED</documentStatus>
+<documentIdentifier>2019-04-30T00:00:00</documentIdentifier>
+<downloadLatencySec>9.0</downloadLatencySec>
+<documentDetails>{"statementDate":"2019-04-30T00:00:00","duration":"MONTHLY"}</documentDetails>
+<documentType>STMT</documentType>
+<errorCode>0</errorCode>
+<documentFormat>BINARY</documentFormat>
+<extension>pdf</extension>
+<statementDate localFormat="yyyy-MM-dd" pageHash="-599788061">2019-04-30T00:00:00</statementDate>
+</documentInfo>
+</documentInfoList>
+<accountStatusList pageHash="-599788061">
+<accountStatus pageHash="637914837" pageHashSE="{"documentType":"637914837","refreshAction":"-599788061","errorCode":"-599788061","exceptionStackTrace":"-599788061"}">
+<documentType>STMT</documentType>
+<exceptionStackTrace/>
+<refreshAction>DOC_DOWNLOAD_REFRESH</refreshAction>
+<errorCode>0</errorCode>
+</accountStatus>
+<accountStatus pageHash="-599788061" pageHashSE="{"documentType":"-599788061","refreshAction":"-599788061","errorCode":"-599788061","exceptionStackTrace":"-599788061"}">
+<documentType>TAX</documentType>
+<exceptionStackTrace>NO_DOCS_AVAILABLE</exceptionStackTrace>
+<refreshAction>DOC_DOWNLOAD_REFRESH</refreshAction>
+<errorCode>570</errorCode>
+</accountStatus>
+</accountStatusList>
+</investmentAccount>
+
+2019-07-09 18:57:22.395  INFO 23140 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : JDAP FIRMEM => jDapAccountSummaryXML : null
+2019-07-09 18:57:22.395  INFO 23140 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :10301574|sdbcba01
+2019-07-09 18:57:25.447  INFO 23140 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : JDAP FIRMEM => jDapFirememXML : ient" pageHash="-268690194">
+<investmentAccount pageHash="-268690194" pageHashSE="{"accountName":"-268690194","accountNumber":"-268690194"}" uniqueId="-1779774620">
+<accountName>XXXXXXXX</accountName>
+<accountNumber>XXXXXXXXX</accountNumber>
+<documentInfoList pageHash="-268690194">
+<documentInfo pageHash="-268690194" pageHashSE="{"documentIdentifier":"-268690194","extension":"-268690194","downloadLatencySec":"-268690194","documentType":"-268690194","sizeKB":"-268690194","errorCode":"-268690194","source":"-268690194","documentDetails":"-268690194","reccurringDocument":"-268690194","name":"-268690194","documentId":"-268690194","documentStatus":"-268690194","exceptionStackTrace":"-268690194","documentFormat":"-268690194","uploadLatencySec":"-268690194"}">
+<source>https://www.advisorclient.com/cgi-bin/apps/u/Statements?pagehandler=PHStatementPDF&amp;docid=1758614064</source>
+<name>XXXXXXXX</name>
+<uploadLatencySec>0.45</uploadLatencySec>
+<reccurringDocument>true</reccurringDocument>
+<documentId>54893fa9e4b07eb01759781974</documentId>
+<exceptionStackTrace>CDATA</exceptionStackTrace>
+<sizeKB>2211</sizeKB>
+<documentStatus>DOC_DOWNLOADED</documentStatus>
+<documentIdentifier>2019-06-30T00:00:00</documentIdentifier>
+<downloadLatencySec>11.0</downloadLatencySec>
+<documentDetails>{"statementDate":"2019-06-30T00:00:00","duration":"MONTHLY"}</documentDetails>
+<documentType>STMT</documentType>
+<errorCode>0</errorCode>
+<documentFormat>BINARY</documentFormat>
+<extension>pdf</extension>
+<statementDate localFormat="yyyy-MM-dd" pageHash="-268690194">2019-06-30T00:00:00</statementDate>
+</documentInfo>
+<documentInfo pageHash="-268690194" pageHashSE="{"documentIdentifier":"-268690194","extension":"-268690194","downloadLatencySec":"-268690194","documentType":"-268690194","sizeKB":"-268690194","errorCode":"-268690194","source":"-268690194","documentDetails":"-268690194","reccurringDocument":"-268690194","name":"-268690194","documentId":"-268690194","documentStatus":"-268690194","exceptionStackTrace":"-268690194","documentFormat":"-268690194","uploadLatencySec":"-268690194"}">
+<source>https://www.advisorclient.com/cgi-bin/apps/u/Statements?pagehandler=PHStatementPDF&amp;docid=1745331345</source>
+<name>XXXXXXXX</name>
+<uploadLatencySec>0.45</uploadLatencySec>
+<reccurringDocument>true</reccurringDocument>
+<documentId>54893fa9e4b07eb0-1084214116</documentId>
+<exceptionStackTrace>CDATA</exceptionStackTrace>
+<sizeKB>2197</sizeKB>
+<documentStatus>DOC_DOWNLOADED</documentStatus>
+<documentIdentifier>2019-05-31T00:00:00</documentIdentifier>
+<downloadLatencySec>13.0</downloadLatencySec>
+<documentDetails>{"statementDate":"2019-05-31T00:00:00","duration":"MONTHLY"}</documentDetails>
+<documentType>STMT</documentType>
+<errorCode>0</errorCode>
+<documentFormat>BINARY</documentFormat>
+<extension>pdf</extension>
+<statementDate localFormat="yyyy-MM-dd" pageHash="-268690194">2019-05-31T00:00:00</statementDate>
+</documentInfo>
+<documentInfo pageHash="-268690194" pageHashSE="{"documentIdentifier":"-268690194","extension":"-268690194","downloadLatencySec":"-268690194","documentType":"-268690194","sizeKB":"-268690194","errorCode":"-268690194","source":"-268690194","documentDetails":"-268690194","reccurringDocument":"-268690194","name":"-268690194","documentId":"-268690194","documentStatus":"-268690194","exceptionStackTrace":"-268690194","documentFormat":"-268690194","uploadLatencySec":"-268690194"}">
+<source>https://www.advisorclient.com/cgi-bin/apps/u/Statements?pagehandler=PHStatementPDF&amp;docid=1732770683</source>
+<name>XXXXXXXX</name>
+<uploadLatencySec>0.45</uploadLatencySec>
+<reccurringDocument>true</reccurringDocument>
+<documentId>54893fa9e4b07eb01448015297</documentId>
+<exceptionStackTrace>CDATA</exceptionStackTrace>
+<sizeKB>2165</sizeKB>
+<documentStatus>DOC_DOWNLOADED</documentStatus>
+<documentIdentifier>2019-04-30T00:00:00</documentIdentifier>
+<downloadLatencySec>9.0</downloadLatencySec>
+<documentDetails>{"statementDate":"2019-04-30T00:00:00","duration":"MONTHLY"}</documentDetails>
+<documentType>STMT</documentType>
+<errorCode>0</errorCode>
+<documentFormat>BINARY</documentFormat>
+<extension>pdf</extension>
+<statementDate localFormat="yyyy-MM-dd" pageHash="-268690194">2019-04-30T00:00:00</statementDate>
+</documentInfo>
+</documentInfoList>
+<accountStatusList pageHash="-268690194">
+<accountStatus pageHash="98854785" pageHashSE="{"documentType":"98854785","refreshAction":"-863391511","errorCode":"-863391511","exceptionStackTrace":"-863391511"}">
+<documentType>STMT</documentType>
+<exceptionStackTrace/>
+<refreshAction>DOC_DOWNLOAD_REFRESH</refreshAction>
+<errorCode>0</errorCode>
+</accountStatus>
+<accountStatus pageHash="-268690194" pageHashSE="{"documentType":"-268690194","refreshAction":"-268690194","errorCode":"-268690194","exceptionStackTrace":"-268690194"}">
+<documentType>TAX</documentType>
+<exceptionStackTrace>NO_DOCS_AVAILABLE</exceptionStackTrace>
+<refreshAction>DOC_DOWNLOAD_REFRESH</refreshAction>
+<errorCode>570</errorCode>
+</accountStatus>
+</accountStatusList>
+</investmentAccount>
+<investmentAccount pageHash="-268690194" pageHashSE="{"accountName":"-268690194","accountNumber":"-268690194"}" uniqueId="-1779773943">
+<accountName>XXXXXXXX</accountName>
+<accountNumber>XXXXXXXXX</accountNumber>
+<documentInfoList pageHash="-268690194">
+<documentInfo pageHash="-268690194" pageHashSE="{"documentIdentifier":"-268690194","extension":"-268690194","downloadLatencySec":"-268690194","documentType":"-268690194","sizeKB":"-268690194","errorCode":"-268690194","source":"-268690194","documentDetails":"-268690194","reccurringDocument":"-268690194","name":"-268690194","documentId":"-268690194","documentStatus":"-268690194","exceptionStackTrace":"-268690194","documentFormat":"-268690194","uploadLatencySec":"-268690194"}">
+<source>https://www.advisorclient.com/cgi-bin/apps/u/Statements?pagehandler=PHStatementPDF&amp;docid=1758635052</source>
+<name>XXXXXXXX</name>
+<uploadLatencySec>0.45</uploadLatencySec>
+<reccurringDocument>true</reccurringDocument>
+<documentId>54893fa9e4b07eb0-1622951210</documentId>
+<exceptionStackTrace>CDATA</exceptionStackTrace>
+<sizeKB>2189</sizeKB>
+<documentStatus>DOC_DOWNLOADED</documentStatus>
+<documentIdentifier>2019-06-30T00:00:00</documentIdentifier>
+<downloadLatencySec>12.0</downloadLatencySec>
+<documentDetails>{"statementDate":"2019-06-30T00:00:00","duration":"MONTHLY"}</documentDetails>
+<documentType>STMT</documentType>
+<errorCode>0</errorCode>
+<documentFormat>BINARY</documentFormat>
+<extension>pdf</extension>
+<statementDate localFormat="yyyy-MM-dd" pageHash="-268690194">2019-06-30T00:00:00</statementDate>
+</documentInfo>
+<documentInfo pageHash="-268690194" pageHashSE="{"documentIdentifier":"-268690194","extension":"-268690194","downloadLatencySec":"-268690194","documentType":"-268690194","sizeKB":"-268690194","errorCode":"-268690194","source":"-268690194","documentDetails":"-268690194","reccurringDocument":"-268690194","name":"-268690194","documentId":"-268690194","documentStatus":"-268690194","exceptionStackTrace":"-268690194","documentFormat":"-268690194","uploadLatencySec":"-268690194"}">
+<source>https://www.advisorclient.com/cgi-bin/apps/u/Statements?pagehandler=PHStatementPDF&amp;docid=1745339658</source>
+<name>XXXXXXXX</name>
+<uploadLatencySec>0.45</uploadLatencySec>
+<reccurringDocument>true</reccurringDocument>
+<documentId>54893fa9e4b07eb0-2026817686</documentId>
+<exceptionStackTrace>CDATA</exceptionStackTrace>
+<sizeKB>2159</sizeKB>
+<documentStatus>DOC_DOWNLOADED</documentStatus>
+<documentIdentifier>2019-05-31T00:00:00</documentIdentifier>
+<downloadLatencySec>10.0</downloadLatencySec>
+<documentDetails>{"statementDate":"2019-05-31T00:00:00","duration":"MONTHLY"}</documentDetails>
+<documentType>STMT</documentType>
+<errorCode>0</errorCode>
+<documentFormat>BINARY</documentFormat>
+<extension>pdf</extension>
+<statementDate localFormat="yyyy-MM-dd" pageHash="-268690194">2019-05-31T00:00:00</statementDate>
+</documentInfo>
+</documentInfoList>
+<accountStatusList pageHash="-268690194">
+<accountStatus pageHash="-174691538" pageHashSE="{"documentType":"-174691538","refreshAction":"-1381227054","errorCode":"-1381227054","exceptionStackTrace":"-1381227054"}">
+<documentType>STMT</documentType>
+<exceptionStackTrace/>
+<refreshAction>DOC_DOWNLOAD_REFRESH</refreshAction>
+<errorCode>0</errorCode>
+</accountStatus>
+<accountStatus pageHash="-268690194" pageHashSE="{"documentType":"-268690194","refreshAction":"-268690194","errorCode":"-268690194","exceptionStackTrace":"-268690194"}">
+<documentType>TAX</documentType>
+<exceptionStackTrace>NO_DOCS_AVAILABLE</exceptionStackTrace>
+<refreshAction>DOC_DOWNLOAD_REFRESH</refreshAction>
+<errorCode>570</errorCode>
+</accountStatus>
+</accountStatusList>
+</investmentAccount>
+<investmentAccount pageHash="-268690194" pageHashSE="{"accountName":"-268690194","accountNumber":"-268690194"}" uniqueId="-1784366378">
+<accountName>XXXXXXXX</accountName>
+<accountNumber>XXXXXXXXX</accountNumber>
+<documentInfoList pageHash="-268690194">
+<documentInfo pageHash="-268690194" pageHashSE="{"documentIdentifier":"-268690194","extension":"-268690194","downloadLatencySec":"-268690194","documentType":"-268690194","sizeKB":"-268690194","errorCode":"-268690194","source":"-268690194","documentDetails":"-268690194","reccurringDocument":"-268690194","name":"-268690194","documentId":"-268690194","documentStatus":"-268690194","exceptionStackTrace":"-268690194","documentFormat":"-268690194","uploadLatencySec":"-268690194"}">
+<source>https://www.advisorclient.com/cgi-bin/apps/u/Statements?pagehandler=PHStatementPDF&amp;docid=1758569567</source>
+<name>XXXXXXXX</name>
+<uploadLatencySec>0.45</uploadLatencySec>
+<reccurringDocument>true</reccurringDocument>
+<documentId>54893fa9e4b07eb0513848764</documentId>
+<exceptionStackTrace>CDATA</exceptionStackTrace>
+<sizeKB>2202</sizeKB>
+<documentStatus>DOC_DOWNLOADED</documentStatus>
+<documentIdentifier>2019-06-30T00:00:00</documentIdentifier>
+<downloadLatencySec>11.0</downloadLatencySec>
+<documentDetails>{"statementDate":"2019-06-30T00:00:00","duration":"MONTHLY"}</documentDetails>
+<documentType>STMT</documentType>
+<errorCode>0</errorCode>
+<documentFormat>BINARY</documentFormat>
+<extension>pdf</extension>
+<statementDate localFormat="yyyy-MM-dd" pageHash="-268690194">2019-06-30T00:00:00</statementDate>
+</documentInfo>
+<documentInfo pageHash="-268690194" pageHashSE="{"documentIdentifier":"-268690194","extension":"-268690194","downloadLatencySec":"-268690194","documentType":"-268690194","sizeKB":"-268690194","errorCode":"-268690194","source":"-268690194","documentDetails":"-268690194","reccurringDocument":"-268690194","name":"-268690194","documentId":"-268690194","documentStatus":"-268690194","exceptionStackTrace":"-268690194","documentFormat":"-268690194","uploadLatencySec":"-268690194"}">
+<source>https://www.advisorclient.com/cgi-bin/apps/u/Statements?pagehandler=PHStatementPDF&amp;docid=1745336911</source>
+<name>XXXXXXXX</name>
+<uploadLatencySec>0.45</uploadLatencySec>
+<reccurringDocument>true</reccurringDocument>
+<documentId>54893fa9e4b07eb0-229080124</documentId>
+<exceptionStackTrace>CDATA</exceptionStackTrace>
+<sizeKB>2189</sizeKB>
+<documentStatus>DOC_DOWNLOADED</documentStatus>
+<documentIdentifier>2019-05-31T00:00:00</documentIdentifier>
+<downloadLatencySec>9.0</downloadLatencySec>
+<documentDetails>{"statementDate":"2019-05-31T00:00:00","duration":"MONTHLY"}</documentDetails>
+<documentType>STMT</documentType>
+<errorCode>0</errorCode>
+<documentFormat>BINARY</documentFormat>
+<extension>pdf</extension>
+<statementDate localFormat="yyyy-MM-dd" pageHash="-268690194">2019-05-31T00:00:00</statementDate>
+</documentInfo>
+<documentInfo pageHash="-268690194" pageHashSE="{"documentIdentifier":"-268690194","extension":"-268690194","downloadLatencySec":"-268690194","documentType":"-268690194","sizeKB":"-268690194","errorCode":"-268690194","source":"-268690194","documentDetails":"-268690194","reccurringDocument":"-268690194","name":"-268690194","documentId":"-268690194","documentStatus":"-268690194","exceptionStackTrace":"-268690194","documentFormat":"-268690194","uploadLatencySec":"-268690194"}">
+<source>https://www.advisorclient.com/cgi-bin/apps/u/Statements?pagehandler=PHStatementPDF&amp;docid=1731658558</source>
+<name>XXXXXXXX</name>
+<uploadLatencySec>0.45</uploadLatencySec>
+<reccurringDocument>true</reccurringDocument>
+<documentId>54893fa9e4b07eb0353576409</documentId>
+<exceptionStackTrace>CDATA</exceptionStackTrace>
+<sizeKB>2189</sizeKB>
+<documentStatus>DOC_DOWNLOADED</documentStatus>
+<documentIdentifier>2019-04-30T00:00:00</documentIdentifier>
+<downloadLatencySec>7.0</downloadLatencySec>
+<documentDetails>{"statementDate":"2019-04-30T00:00:00","duration":"MONTHLY"}</documentDetails>
+<documentType>STMT</documentType>
+<errorCode>0</errorCode>
+<documentFormat>BINARY</documentFormat>
+<extension>pdf</extension>
+<statementDate localFormat="yyyy-MM-dd" pageHash="-268690194">2019-04-30T00:00:00</statementDate>
+</documentInfo>
+</documentInfoList>
+<accountStatusList pageHash="-268690194">
+<accountStatus pageHash="-1470829064" pageHashSE="{"documentType":"-1470829064","refreshAction":"-268690194","errorCode":"-268690194","exceptionStackTrace":"-268690194"}">
+<documentType>STMT</documentType>
+<exceptionStackTrace/>
+<refreshAction>DOC_DOWNLOAD_REFRESH</refreshAction>
+<errorCode>0</errorCode>
+</accountStatus>
+<accountStatus pageHash="-268690194" pageHashSE="{"documentType":"-268690194","refreshAction":"-268690194","errorCode":"-268690194","exceptionStackTrace":"-268690194"}">
+<documentType>TAX</documentType>
+<exceptionStackTrace>NO_DOCS_AVAILABLE</exceptionStackTrace>
+<refreshAction>DOC_DOWNLOAD_REFRESH</refreshAction>
+<errorCode>570</errorCode>
+</accountStatus>
+</accountStatusList>
+</investmentAccount>
+
+2019-07-09 18:57:25.452  INFO 23140 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : JDAP FIRMEM => jDapAccountSummaryXML : null

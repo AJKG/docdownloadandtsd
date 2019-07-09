@@ -13,10 +13,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Service
@@ -43,7 +40,7 @@ public class RpaldaRepository {
         Map<String, String> tsdParamValues = new HashMap<>();
 
         try{
-            String sql = "select * from migration_request where REQUEST_DATE > sysdate-15 and data_diff is not null and migrated_by is not null and IS_DOWNLOADED_FROM_BB = 1";
+            String sql = "select mig_id, migrated_by, sum_info_id, data_diff, request_date from migration_request where REQUEST_DATE > sysdate-2 and data_diff is not null and migrated_by is not null";
             List<Map<String, Object>> rows = jdbc.queryForList(sql);
 
             for (Map row : rows) {
@@ -52,6 +49,7 @@ public class RpaldaRepository {
                 diff.setMigratedBy(""+row.get("migrated_by"));
                 diff.setSumInfoId(""+row.get("sum_info_id"));
                 diff.setDataDiff(""+row.get("data_diff"));
+                diff.setRequestedDate(""+row.get("request_date"));
                 dataList.add(diff);
             }
 
@@ -61,15 +59,17 @@ public class RpaldaRepository {
         }
 
         String allSumInfo = "";
+        HashSet<String> hs = new HashSet<>();
 
         for(DataDiffDetailsVO dddvo : dataList) {
-            allSumInfo=allSumInfo+dddvo.getSumInfoId()+",";
+            if(!hs.contains(dddvo.getSumInfoId())) {
+                hs.add(dddvo.getSumInfoId());
+                allSumInfo = allSumInfo + dddvo.getSumInfoId() + ",";
+            }
         }
 
         allSumInfo = allSumInfo.substring(0, allSumInfo.length()-1);
         allSumInfo = allSumInfo.trim();
-
-        System.out.println("allSumInfo : "+allSumInfo);
 
         String sqlSuminfo = "select sum_info_id,sum_info_param_value_id from sum_info_param_value where sum_info_id in ("+allSumInfo+") and sum_info_param_key_id = 34";
         List<Map<String, Object>> rowRepalda = jdbcRepalda.queryForList(sqlSuminfo);
@@ -116,7 +116,6 @@ public class RpaldaRepository {
             }
 
         }
-
 
         System.out.println(tsdList.size());
         System.out.println(docDownloadList.size());

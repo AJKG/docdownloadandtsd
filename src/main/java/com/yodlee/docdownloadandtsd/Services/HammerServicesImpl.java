@@ -18,6 +18,7 @@ import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.yodlee.docdownloadandtsd.DAO.RpaldaRepository;
 import com.yodlee.docdownloadandtsd.VO.FirememExtractedAjaxResponse;
 import com.yodlee.docdownloadandtsd.VO.FirememExtractedResponseForDocumentDownload;
 import com.yodlee.docdownloadandtsd.VO.ItemDetailsVO;
@@ -47,8 +48,10 @@ public class HammerServicesImpl {
 
 
 	@Autowired
-
 	Authorization authorization;
+
+	@Autowired
+	RpaldaRepository rpaldaRepository;
 
 	@Value("${hammer.UserId}")
 	private String hammerUserName;
@@ -81,7 +84,6 @@ public class HammerServicesImpl {
 		HttpHeaders headers = getHeader(null);
 		
 		String password=authorization.decrypt(hammerPassword);
-		System.out.println("pssss"+password);
 
 		HashMap<String, String> hammerRequestBody = new HashMap<String, String>();
 		hammerRequestBody.put("username", hammerUserName);
@@ -110,7 +112,7 @@ public class HammerServicesImpl {
 		return authTokenId;
 	}
 
-	public Integer createBatch(ItemDetailsVO[] yuvaPojo, String accessTokenId, String agentName)
+	public Integer createBatchForDocumentDownload(ItemDetailsVO[] yuvaPojo, String accessTokenId, String agentName, String msaOrCii)
 			throws IOException, JSONException {
 		logger.info("######################################### createBatch #########################################");
 		RestTemplate restTemplate = new RestTemplate();
@@ -129,10 +131,15 @@ public class HammerServicesImpl {
 				break;
 			}
 			HashMap<String, String> itemDetailMap = new HashMap<String, String>();
-			itemDetailMap.put("itemId", yuvaItemDetails.getMemSiteAccId());
+			if(msaOrCii.equalsIgnoreCase("cii")) {
+				itemDetailMap.put("itemId", yuvaItemDetails.getCacheItemId());
+				itemDetailMap.put("itemType", "2");
+			}else {
+				itemDetailMap.put("itemId", yuvaItemDetails.getMemSiteAccId());
+				itemDetailMap.put("itemType", "3");
+			}
 			itemDetailMap.put("dbName", yuvaItemDetails.getDataBase());
 			itemDetailMap.put("description","Ajax Batch Testing");
-			itemDetailMap.put("itemType", "3");
 			itemDetailList.add(itemDetailMap);
 		}
 
@@ -163,7 +170,7 @@ public class HammerServicesImpl {
 		return batchDetailsId;
 	}
 
-	public Integer triggerBatch(Integer batchDetailsId,String accessTokenId, String customrefreshRoute, String customRoute)
+	public Integer triggerBatchForDocumentDownload(Integer batchDetailsId,String accessTokenId, String customrefreshRoute, String customRoute)
 			throws JSONException,IOException {
 		logger.info("######################################### triggerBatch #########################################");
 		RestTemplate restTemplate = new RestTemplate();
@@ -506,12 +513,11 @@ public class HammerServicesImpl {
 			String jDapAccountSummaryXML=getAccountSummaryXML(jDapFirememResponse);
 			logger.info("JDAP FIRMEM => jDapAccountSummaryXML : "+jDapAccountSummaryXML);
 
-
 			FirememExtractedResponseForDocumentDownload docResponse = new FirememExtractedResponseForDocumentDownload();
 			docResponse.setJdapXMLResponse(jDapFirememXML);
 			docResponse.setErrorCode(jDapFmCode);
 			docResponse.setJdapDumpUrl(jDApDumpUrlToSend);
-			if(jDapFirememXML.contains("DOC_DOWNLOADED") && jDapFirememXML.contains("<documentId>")) {
+			if(!rpaldaRepository.isNullValue(jDapFirememXML) && jDapFirememXML.contains("DOC_DOWNLOADED") && jDapFirememXML.contains("<documentId>")) {
 				docResponse.setDocPresent(true);
 			}else{
 				docResponse.setDocPresent(false);

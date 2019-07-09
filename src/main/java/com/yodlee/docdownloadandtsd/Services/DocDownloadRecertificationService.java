@@ -35,11 +35,9 @@ public class DocDownloadRecertificationService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public String docDownloadEnabled(DocDownloadVO ddvo) throws Exception{
+    public HashMap<HashMap<String, Object>, HashMap<String, String>> docDownloadEnabled(DocDownloadVO ddvo, String msaOrCii) throws Exception{
 
-        System.out.println("here===");
-
-        String sumInfoId = "663";
+        String sumInfoId = "11729";
         String agentName = splunkService.getAgentName(sumInfoId);
 
         ItemDetailsVO[] yuvaPojo = null;
@@ -77,11 +75,13 @@ public class DocDownloadRecertificationService {
         HashMap<String, HashMap<String, Object>> jDapItemListFromBatch = new HashMap<String, HashMap<String, Object>>();
         ArrayList<String> ignoreItemList = new ArrayList<String>();
 
-        Integer batchDetailsId = hammerServices.createBatch(yuvaPojo, accessTokenId, agentBaseName);
-        Integer batchReqDetailsId = hammerServices.triggerBatch(batchDetailsId, accessTokenId, "DL", "");
+        Integer batchDetailsId = hammerServices.createBatchForDocumentDownload(yuvaPojo, accessTokenId, agentBaseName, msaOrCii);
+        Integer batchReqDetailsId = hammerServices.triggerBatchForDocumentDownload(batchDetailsId, accessTokenId, "DL", "");
         JSONObject batchResultList = hammerServices.pollingTriggerBatch(batchReqDetailsId, accessTokenId);
 
         JSONArray jDapBatchResultArray = batchResultList.getJSONArray("batchResultList");
+
+        System.out.println(jDapBatchResultArray);
 
         for (int i = 0; i < jDapBatchResultArray.length(); i++) {
             JSONObject itemObj = jDapBatchResultArray.getJSONObject(i);
@@ -108,31 +108,52 @@ public class DocDownloadRecertificationService {
 
         System.out.println(""+allFirememDataMap);
 
+        HashMap<String, String> dataValues = new HashMap<>();
+        HashMap<HashMap<String, Object>, HashMap<String, String>> finalMap = new HashMap<>();
+
+        int countPresent = 0;
+        int countAbsent = 0;
+        String message = null;
+
         for(Map.Entry<String, Object> fmData : allFirememDataMap.entrySet()) {
 
             Object ob = fmData.getValue();
 
             if(ob instanceof FirememExtractedResponseForDocumentDownload) {
 
-                System.out.println(""+((FirememExtractedResponseForDocumentDownload) ob).isDocPresent());
-
                 if (((FirememExtractedResponseForDocumentDownload) ob).isDocPresent()) {
-                    return "Yes";
+                    message = "Yes";
+                    countPresent++;
+                    break;
                 }else if(((FirememExtractedResponseForDocumentDownload) ob).getErrorCode().equals("518")) {
-                    return "Unable to verify for MFA users";
+                    message = "Unable to verify MFA users..";
+                    countAbsent++;
+                }else if(!((FirememExtractedResponseForDocumentDownload) ob).getErrorCode().equals("0")){
+                    message = "Users are failing with site variation...Unable to verify";
+                    countAbsent++;
+                }
+                else{
+                    countAbsent++;
                 }
 
             }
 
         }
 
-        return "No";
+        if(message==null) {
+            message = "No";
+        }
+
+        String countPercent = Integer.toString((countPresent/(countAbsent+countPresent))*100);
+        countPercent = countPercent+"%";
+
+        dataValues.put("isDocPresent", message);
+        dataValues.put("docPercentage", countPercent);
+
+        finalMap.put(allFirememDataMap, dataValues);
+
+        return finalMap;
 
     }
-
-    public void docDownloadDisabled(DocDownloadVO ddvo) throws Exception {
-
-    }
-
 
 }

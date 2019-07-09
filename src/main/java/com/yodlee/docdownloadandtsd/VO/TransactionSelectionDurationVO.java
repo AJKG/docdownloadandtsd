@@ -56,4 +56,16 @@ public class TransactionSelectionDurationVO {
     public void setRequestedDate(String requestedDate) {
         this.requestedDate = requestedDate;
     }
+
+    @Override
+    public String toString() {
+        return "TransactionSelectionDurationVO{" +
+                "migId='" + migId + '\'' +
+                ", migratedBy='" + migratedBy + '\'' +
+                ", transactionDurationSeed='" + transactionDurationSeed + '\'' +
+                ", transactionDurationProd='" + transactionDurationProd + '\'' +
+                ", requestedDate='" + requestedDate + '\'' +
+                ", sumInfoId='" + sumInfoId + '\'' +
+                '}';
+    }
 }

@@ -56,4 +56,16 @@ public class CacheRunVO {
     public void setRequestedDate(String requestedDate) {
         this.requestedDate = requestedDate;
     }
+
+    @Override
+    public String toString() {
+        return "CacheRunVO{" +
+                "migId='" + migId + '\'' +
+                ", migratedBy='" + migratedBy + '\'' +
+                ", cacheRunSeed='" + cacheRunSeed + '\'' +
+                ", cacheRunProd='" + cacheRunProd + '\'' +
+                ", requestedDate='" + requestedDate + '\'' +
+                ", sumInfoId='" + sumInfoId + '\'' +
+                '}';
+    }
 }

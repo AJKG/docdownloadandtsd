@@ -47,4 +47,15 @@ public class DataDiffDetailsVO {
     public void setMigId(String migId) {
         this.migId = migId;
     }
+
+    @Override
+    public String toString() {
+        return "DataDiffDetailsVO{" +
+                "sumInfoId='" + sumInfoId + '\'' +
+                ", dataDiff='" + dataDiff + '\'' +
+                ", migratedBy='" + migratedBy + '\'' +
+                ", requestedDate='" + requestedDate + '\'' +
+                ", migId='" + migId + '\'' +
+                '}';
+    }
 }

@@ -56,4 +56,16 @@ public class DocDownloadVO {
     public void setRequestedDate(String requestedDate) {
         this.requestedDate = requestedDate;
     }
+
+    @Override
+    public String toString() {
+        return "DocDownloadVO{" +
+                "migId='" + migId + '\'' +
+                ", migratedBy='" + migratedBy + '\'' +
+                ", docDownloadSeed='" + docDownloadSeed + '\'' +
+                ", docDownloadProd='" + docDownloadProd + '\'' +
+                ", requestedDate='" + requestedDate + '\'' +
+                ", sumInfoId='" + sumInfoId + '\'' +
+                '}';
+    }
 }

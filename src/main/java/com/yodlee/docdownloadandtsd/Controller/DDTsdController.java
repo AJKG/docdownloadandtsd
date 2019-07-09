@@ -24,28 +24,43 @@ public class DDTsdController {
 
     @RequestMapping(value="/TestClob",method={RequestMethod.GET})
     @ResponseBody
-    public List<Object> getDBPushDifference() throws Exception{
+    public HashMap<Object, HashMap<String, String>> getDBPushDifference() throws Exception{
         System.out.println("Controller");
         List<Object> resultList = rpaldaService.getDiff();
         Map<Object, String> mp = new HashMap<>();
+        HashMap<Object, HashMap<String, String>> fin = new HashMap<>();
 
 
-        /*for(Object res : resultList) {
+        for(Object res : resultList) {
             if(res instanceof DocDownloadVO) {
+
                 if(((DocDownloadVO) res).getDocDownloadSeed().equals("1")) {
-                    String reslt = docDownloadRecService.docDownloadEnabled((DocDownloadVO)res);
-                    System.out.println(reslt+""+res);
-                    if(reslt.equalsIgnoreCase("yes")) {
-                        mp.put(res, reslt);
+                    HashMap<HashMap<String, Object>, HashMap<String,String>> obj = docDownloadRecService.docDownloadEnabled((DocDownloadVO)res, "cii");
+                    for (Map.Entry<HashMap<String, Object>, HashMap<String, String>> hmap : obj.entrySet()) {
+                        HashMap<String, String> hV = hmap.getValue();
+                        if(hV.get("isDocPresent").equalsIgnoreCase("no")) {
+                            //do YCC changes
+                        }
+                        fin.put(res, hV);
                     }
+
+
                 }else if(((DocDownloadVO) res).getDocDownloadSeed().equals("0")) {
-                    docDownloadRecService.docDownloadDisabled((DocDownloadVO)res);
-                    mp.put(res, "No");
+                    HashMap<HashMap<String, Object>, HashMap<String,String>> obj = docDownloadRecService.docDownloadEnabled((DocDownloadVO)res, "msa");
+                    for (Map.Entry<HashMap<String, Object>, HashMap<String, String>> hmap : obj.entrySet()) {
+                        HashMap<String, String> hV = hmap.getValue();
+                        if(hV.get("isDocPresent").equalsIgnoreCase("yes")) {
+                            //do YCC changes
+                        }
+                        fin.put(res, hV);
+                    }
                 }
             }
-        }*/
+        }
 
-        return resultList;
+
+
+        return fin;
 
     }
 
