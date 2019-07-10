@@ -27,7 +27,6 @@ public class DDTsdController {
     public HashMap<Object, HashMap<String, String>> getDBPushDifference() throws Exception{
         System.out.println("Controller");
         List<Object> resultList = rpaldaService.getDiff();
-        Map<Object, String> mp = new HashMap<>();
         HashMap<Object, HashMap<String, String>> fin = new HashMap<>();
 
 
@@ -56,6 +55,9 @@ public class DDTsdController {
                     }
                 }
             }
+
+
+
         }
 
 
