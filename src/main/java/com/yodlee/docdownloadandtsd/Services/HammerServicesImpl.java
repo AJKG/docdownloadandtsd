@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yodlee.docdownloadandtsd.DAO.RpaldaRepository;
 import com.yodlee.docdownloadandtsd.VO.FirememExtractedAjaxResponse;
 import com.yodlee.docdownloadandtsd.VO.FirememExtractedResponseForDocumentDownload;
+import com.yodlee.docdownloadandtsd.VO.FirememExtractedResponseForTSD;
 import com.yodlee.docdownloadandtsd.VO.ItemDetailsVO;
 import com.yodlee.docdownloadandtsd.authenticator.Authorization;
 import com.yodlee.docdownloadandtsd.exceptionhandling.GeneralErrorHandler;
@@ -41,6 +42,8 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -113,6 +116,64 @@ public class HammerServicesImpl {
 	}
 
 	public Integer createBatchForDocumentDownload(ItemDetailsVO[] yuvaPojo, String accessTokenId, String agentName, String msaOrCii)
+			throws IOException, JSONException {
+		logger.info("######################################### createBatch #########################################");
+		RestTemplate restTemplate = new RestTemplate();
+
+		//JSONObject batchResponse = new JSONObject();
+
+		/*Creating the request body for creation the batch*/
+
+		HashMap<String, Object> batchCreationRequestBody = new HashMap<String, Object>();
+		HashMap<String, Object> batchCreationItemMap = new HashMap<String, Object>();
+		ArrayList<HashMap<String, String>> itemDetailList= new ArrayList<HashMap<String, String>>();
+
+		int count =0;
+		for( ItemDetailsVO yuvaItemDetails: yuvaPojo) {
+			if(++count>itemCount) {
+				break;
+			}
+			HashMap<String, String> itemDetailMap = new HashMap<String, String>();
+			if(msaOrCii.equalsIgnoreCase("cii")) {
+				itemDetailMap.put("itemId", yuvaItemDetails.getCacheItemId());
+				itemDetailMap.put("itemType", "2");
+			}else {
+				itemDetailMap.put("itemId", yuvaItemDetails.getMemSiteAccId());
+				itemDetailMap.put("itemType", "3");
+			}
+			itemDetailMap.put("dbName", yuvaItemDetails.getDataBase());
+			itemDetailMap.put("description","Ajax Batch Testing");
+			itemDetailList.add(itemDetailMap);
+		}
+
+		batchCreationItemMap.put("Add", itemDetailList);
+		batchCreationRequestBody.put("items", batchCreationItemMap);
+		batchCreationRequestBody.put("agentName",agentName);
+		batchCreationRequestBody.put("description",(agentName.length()>19) ? agentName.substring(0, 19): agentName);
+		batchCreationRequestBody.put("nickName",(agentName.length()>19) ? agentName.substring(0, 19): agentName);
+
+		logger.info("Request body of batch Creation : "+batchCreationRequestBody.toString());
+
+		HttpHeaders headers= getHeader(accessTokenId);
+
+		HttpEntity<Map<String, Object>> requestEntityForBatchCreation = new HttpEntity<Map<String, Object>>(batchCreationRequestBody,headers);
+
+		String batchCreationResponse = restTemplate.postForObject(BATCH_CREATION_URL, requestEntityForBatchCreation, String.class);
+		logger.info("Batch Creation Response :"+batchCreationResponse);
+
+		JSONObject batchCreatonResponseObject = new JSONObject(batchCreationResponse);
+
+		Integer batchDetailsId = batchCreatonResponseObject.optInt("batchDetailsId");
+
+		if(batchDetailsId == 0) {
+			logger.info("Create Batch error :"+batchCreatonResponseObject.optString("statusMsg"));
+			throw new GeneralErrorHandler("Create Batch error :"+batchCreatonResponseObject.optString("statusMsg"));
+		}
+		logger.info("Create Batch => batchDetailsId:"+batchDetailsId);
+		return batchDetailsId;
+	}
+
+	public Integer createBatchForTSD(ItemDetailsVO[] yuvaPojo, String accessTokenId, String agentName, String msaOrCii)
 			throws IOException, JSONException {
 		logger.info("######################################### createBatch #########################################");
 		RestTemplate restTemplate = new RestTemplate();
@@ -259,6 +320,109 @@ public class HammerServicesImpl {
 
 		return batchReqDetailsId;
 	}
+
+	public Integer triggerBatchForTSD(Integer batchDetailsId,String accessTokenId, String customrefreshRoute, String customRoute, String tsd)
+			throws JSONException,IOException {
+		logger.info("######################################### triggerBatch #########################################");
+		RestTemplate restTemplate = new RestTemplate();
+
+		/*Request Body to trigger the batch*/
+		HashMap<String, Object> batchTriggerRequestBody = new HashMap<String, Object>();
+		HashMap<String, Object> batchTriggerRequestParams = new HashMap<String, Object>();
+
+		batchTriggerRequestParams.put("serverType", "SR");
+		batchTriggerRequestParams.put("requestTypes", new ArrayList<>());
+		batchTriggerRequestParams.put("prodCertified", true);
+		batchTriggerRequestParams.put("agentFileType", "JAVA");
+		batchTriggerRequestParams.put("customrefreshRoute", customrefreshRoute);
+
+		HashMap<String, Object> iavRequestMap = new HashMap<String, Object>();
+		iavRequestMap.put("accountNumberMatchPrefix","");
+		iavRequestMap.put("accountNumberMatchSuffix","");
+		iavRequestMap.put("paramKeyValues",new HashMap<>());
+
+		HashMap<String, Object> iavPlusRequestMap = new HashMap<String, Object>();
+		iavPlusRequestMap.put("iavPlus",false);
+		iavPlusRequestMap.put("paramKeyValues",new HashMap<>());
+
+		iavRequestMap.put("iavPlusRequest",iavPlusRequestMap);
+		batchTriggerRequestParams.put("iavRequest",iavRequestMap);
+
+		HashMap<String, Object> docDownloadRequestMap = new HashMap<String, Object>();
+		docDownloadRequestMap.put("pfm", false);
+		docDownloadRequestMap.put("latest", false);
+		docDownloadRequestMap.put("allAccounts", true);
+		docDownloadRequestMap.put("docDownloadRequest", false);
+		docDownloadRequestMap.put("durationType", "");
+		docDownloadRequestMap.put("taxDurationType", "");
+
+		HashMap<String, Object> statementRequest = new HashMap<String, Object>();
+
+		statementRequest.put("stmtDurationType", "");
+		statementRequest.put("taxDurationType", "");
+
+		docDownloadRequestMap.put("statementRequest", statementRequest);
+		batchTriggerRequestParams.put("docDownloadRequest",docDownloadRequestMap);
+
+		HashMap<String, Object> basicAggregationData = new HashMap<String, Object>();
+		HashMap<String, Object> prRequest = new HashMap<>();
+
+		prRequest.put("prRequest", false);
+
+		basicAggregationData.put("prRequest", prRequest);
+
+		HashMap<String, Object> dataSetsMap = new HashMap<String, Object>();
+		dataSetsMap.put("BASIC_AGG_DATA.BASIC_ACCOUNT_INFO", true);
+		dataSetsMap.put("BASIC_AGG_DATA.ACCOUNT_DETAILS", true);
+		dataSetsMap.put("BASIC_AGG_DATA.TRANSACTIONS", true);
+		dataSetsMap.put("BASIC_AGG_DATA.TRANSACTIONS.maxTxnSelectionDuration", tsd);
+
+		basicAggregationData.put("basicAggregationData",dataSetsMap);
+		batchTriggerRequestParams.put("dataSetRequest",basicAggregationData);
+
+
+		if(customRoute.equals("D")) {
+			batchTriggerRequestParams.put("refreshRoute",customRoute);
+		}else {
+			batchTriggerRequestParams.put("customRoute",customRoute);
+		}
+
+
+		batchTriggerRequestBody.put("batchRefreshParams", batchTriggerRequestParams);
+		batchTriggerRequestBody.put("batchDetailsId", batchDetailsId);
+		batchTriggerRequestBody.put("userName", hammerUserName);
+
+		logger.info("Batch Trigger Request Body :"+batchTriggerRequestBody);
+		HttpHeaders headers = getHeader(accessTokenId);
+
+		HttpEntity<Map<String, Object>> batchTriggerRequestEntity = new HttpEntity<Map<String, Object>>(batchTriggerRequestBody, headers);
+
+		String batchTriggerResponse = restTemplate.postForObject(BATCH_TRIGGER_URL, batchTriggerRequestEntity, String.class);
+
+		System.out.println("batchResp : " +batchTriggerResponse);
+
+		JSONObject triggerBatchResponse = new JSONObject(batchTriggerResponse);
+
+		String appRequestId =triggerBatchResponse.optString("appRequestId");
+
+		if(appRequestId.equals("REJECTED")) {
+			String statusMsg= triggerBatchResponse.getString("statusMsg");
+			logger.info("Batch Trigger response : "+triggerBatchResponse.toString());
+			throw new GeneralErrorHandler("Batch Trigger Status : "+appRequestId +" | Status Msg : "+statusMsg);
+		}
+
+		JSONArray batchReqDetailList=triggerBatchResponse.getJSONArray("batchReqDetailList");
+
+		/*Integer batchStatusId= batchReqDetailList.getJSONObject(0).getInt("batchStatusId");
+		if(batchStatusId==4) {
+
+		}*/
+		Integer batchReqDetailsId= triggerBatchResponse.optInt("batchReqDetailsId");
+		logger.info("Batch Trigger => batchReqDetailsId:"+batchReqDetailsId);
+
+		return batchReqDetailsId;
+	}
+
 
 	private SimpleClientHttpRequestFactory getClientHttpRequestFactory()
 	{
@@ -528,6 +692,143 @@ public class HammerServicesImpl {
 		return docDownloadResponseMap;
 	}
 
+	public HashMap<String,Object> retriveDataFromFirememForTSD(HashMap<String, HashMap<String,Object>> jDapItemListFromBatch, String tsd)
+			throws JSONException, IOException, ParseException {
+		logger.info("######################################### retriveDataFromFiremem #########################################");
+		ClientHttpRequestFactory requestFactory = getClientHttpRequestFactory();
+		RestTemplate restTemplate = new RestTemplate(requestFactory);
+
+		HashMap<String,Object> docDownloadResponseMap= new HashMap<String,Object>();
+
+		for(String jDapItemId: jDapItemListFromBatch.keySet()) {
+			long lastDiffDays = 0;
+			String oldestTxnDate = null, lastOldestTxnDate=null;
+			logger.info("Item ID :"+jDapItemId);
+			HashMap<String, Object> jDapItemDetailsMap = jDapItemListFromBatch.get(jDapItemId);
+			Object jDapDumpUrlObj=jDapItemDetailsMap.get("dumpUrl");
+			String jDApDumpUrl="";
+			if(jDapDumpUrlObj==null) {
+				jDApDumpUrl="";
+			}else {
+				jDApDumpUrl= (String)jDapDumpUrlObj;
+			}
+			String jDApDumpUrlToSend=jDApDumpUrl;
+			if(jDApDumpUrl!=null)
+				jDApDumpUrl =modifiedFirememDumpLink(jDApDumpUrl);
+
+			Object jDApFmLatencyObj=jDapItemDetailsMap.get("fmLatency");
+			String jDapFmLatency="";
+
+			if(jDApFmLatencyObj != null) {
+				jDapFmLatency= Integer.toString((Integer)jDApFmLatencyObj);
+			}
+
+			Object jDapFmCodeObj=jDapItemDetailsMap.get("fmCode");
+			String jDapFmCode="";
+
+			if(jDapFmCodeObj != null) {
+				jDapFmCode= Integer.toString((Integer)jDapFmCodeObj);
+			}
+
+			// JDAP Firemem Access and retrive
+			String jDapFirememResponse= restTemplate.getForObject(jDApDumpUrl, String.class);
+
+			String jDapFirememXML = fetchFinalSiteXML(jDapFirememResponse);
+			String jDapAccountSummaryXML=getAccountSummaryXML(jDapFirememResponse);
+
+			FirememExtractedResponseForTSD docResponse = new FirememExtractedResponseForTSD();
+			docResponse.setJdapXMLResponse(jDapFirememXML);
+			docResponse.setErrorCode(jDapFmCode);
+			docResponse.setJdapDumpUrl(jDApDumpUrlToSend);
+			if(!rpaldaRepository.isNullValue(jDapFirememXML)) {
+				String finalXml=jDapFirememXML;
+				int count = 0;
+				if(count == 0 && finalXml.contains("<oldestTxnDate") && finalXml.contains("</oldestTxnDate>")) {
+					count = countOccurences(finalXml, "<oldestTxnDate");
+				}
+				if(count == 0 && finalXml.contains("<postDate") && finalXml.contains("</postDate>")) {
+					count = countOccurences(finalXml, "<postDate");
+				}
+				if(count == 0 && finalXml.contains("<date") && finalXml.contains("</date>")) {
+					count = countOccurences(finalXml, "<date");
+				}
+
+
+				for(int i=0;i <count ;i++) {
+
+					if(finalXml.contains("<oldestTxnDate") && finalXml.contains("</oldestTxnDate>")) {
+
+						int ind = ordinalIndexOf(finalXml, "<oldestTxnDate", i);
+						oldestTxnDate=finalXml.substring(finalXml.indexOf("<oldestTxnDate",ind),finalXml.indexOf("</oldestTxnDate>",ind));
+						if(oldestTxnDate.contains(">")) {
+							oldestTxnDate=oldestTxnDate.substring(oldestTxnDate.indexOf(">")+">".length());
+						}
+						if(oldestTxnDate.length()>10) {
+							oldestTxnDate=oldestTxnDate.substring(0,10);
+						}
+
+					}else if(finalXml.contains("<postDate") && finalXml.contains("</postDate>")) {
+
+						int ind = ordinalIndexOf(finalXml, "<postDate", i);
+
+						oldestTxnDate=finalXml.substring(finalXml.indexOf("<postDate",ind),finalXml.indexOf("</postDate>",ind));
+						if(oldestTxnDate.contains(">")) {
+							oldestTxnDate=oldestTxnDate.substring(oldestTxnDate.indexOf(">")+">".length());
+						}
+						if(oldestTxnDate.length()>10) {
+							oldestTxnDate=oldestTxnDate.substring(0,10);
+						}
+
+					} else if(finalXml.contains("<date") && finalXml.contains("</date>")) {
+
+						int ind = ordinalIndexOf(finalXml, "<date", i);
+
+						oldestTxnDate=finalXml.substring(finalXml.indexOf("<date",ind),finalXml.indexOf("</date>",ind));
+						if(oldestTxnDate.contains(">")) {
+							oldestTxnDate=oldestTxnDate.substring(oldestTxnDate.indexOf(">")+">".length());
+						}
+						if(oldestTxnDate.length()>10) {
+							oldestTxnDate=oldestTxnDate.substring(0,10);
+						}
+
+					}
+
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+					Date oldestTxn = sdf.parse(oldestTxnDate);
+					Date eDate = new Date();
+
+					long diffOfDays=Math.abs(eDate.getTime()/(1000*24*60*60)-oldestTxn.getTime()/(1000*24*60*60));
+
+					if(lastDiffDays < diffOfDays) {
+						lastDiffDays = diffOfDays;
+						lastOldestTxnDate = oldestTxnDate;
+					}
+
+				}
+
+				if(lastOldestTxnDate != null) {
+
+					if(lastDiffDays > (Integer.parseInt(tsd) - 40)) {
+						docResponse.setTsdGenuine(true);
+						docResponse.setIsTSDPresent(Long.toString(lastDiffDays));
+					}else {
+						docResponse.setTsdGenuine(false);
+						docResponse.setIsTSDPresent(Long.toString(lastDiffDays));
+					}
+
+				}else {
+					docResponse.setTsdGenuine(false);
+					docResponse.setIsTSDPresent("Need to verify...!! New variation...!");
+				}
+
+			}
+
+			docDownloadResponseMap.put(jDapItemId,docResponse);
+		}
+		return docDownloadResponseMap;
+	}
+
+
 	public String getAllDataFromFiremem(String firememResponse) {
 		// TODO Auto-generated method stub
 		// Retrive the site XMl and format
@@ -694,5 +995,31 @@ public class HammerServicesImpl {
 		}
 		return dumpLink;
 	}
+
+	public static int countOccurences(String str, String word)
+	{
+		// split the string by spaces in a
+		String a[] = str.split("\\r?\\n");
+
+		// search for pattern in a
+		int count = 0;
+		for (int i = 0; i < a.length; i++)
+		{
+			// if match found increase count
+			if (a[i].contains(word))
+				count++;
+		}
+
+		return count;
+	}
+
+	public static int ordinalIndexOf(String str, String substr, int n) {
+		int pos = -1;
+		do {
+			pos = str.indexOf(substr, pos + 1);
+		} while (n-- > 0 && pos != -1);
+		return pos;
+	}
+
 }
 

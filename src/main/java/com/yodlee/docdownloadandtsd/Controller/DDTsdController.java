@@ -1,7 +1,9 @@
 package com.yodlee.docdownloadandtsd.Controller;
 
+import com.yodlee.docdownloadandtsd.DAO.RpaldaRepository;
 import com.yodlee.docdownloadandtsd.Services.DocDownloadRecertificationService;
 import com.yodlee.docdownloadandtsd.Services.RpaldaService;
+import com.yodlee.docdownloadandtsd.Services.TSDRecertificationService;
 import com.yodlee.docdownloadandtsd.VO.CacheRunVO;
 import com.yodlee.docdownloadandtsd.VO.DocDownloadVO;
 import com.yodlee.docdownloadandtsd.VO.TransactionSelectionDurationVO;
@@ -20,7 +22,13 @@ public class DDTsdController {
     RpaldaService rpaldaService;
 
     @Autowired
+    RpaldaRepository rpaldaRepository;
+
+    @Autowired
     DocDownloadRecertificationService docDownloadRecService;
+
+    @Autowired
+    TSDRecertificationService tsdRecertificationService;
 
     @RequestMapping(value="/TestClob",method={RequestMethod.GET})
     @ResponseBody
@@ -32,9 +40,10 @@ public class DDTsdController {
 
         for(Object res : resultList) {
             if(res instanceof DocDownloadVO) {
+                String sumInfoId = ((DocDownloadVO) res).getSumInfoId();
 
                 if(((DocDownloadVO) res).getDocDownloadSeed().equals("1")) {
-                    HashMap<HashMap<String, Object>, HashMap<String,String>> obj = docDownloadRecService.docDownloadEnabled((DocDownloadVO)res, "cii");
+                    HashMap<HashMap<String, Object>, HashMap<String,String>> obj = docDownloadRecService.docDownloadEnabled(sumInfoId, "cii");
                     for (Map.Entry<HashMap<String, Object>, HashMap<String, String>> hmap : obj.entrySet()) {
                         HashMap<String, String> hV = hmap.getValue();
                         if(hV.get("isDocPresent").equalsIgnoreCase("no")) {
@@ -45,7 +54,7 @@ public class DDTsdController {
 
 
                 }else if(((DocDownloadVO) res).getDocDownloadSeed().equals("0")) {
-                    HashMap<HashMap<String, Object>, HashMap<String,String>> obj = docDownloadRecService.docDownloadEnabled((DocDownloadVO)res, "msa");
+                    HashMap<HashMap<String, Object>, HashMap<String,String>> obj = docDownloadRecService.docDownloadEnabled(sumInfoId, "msa");
                     for (Map.Entry<HashMap<String, Object>, HashMap<String, String>> hmap : obj.entrySet()) {
                         HashMap<String, String> hV = hmap.getValue();
                         if(hV.get("isDocPresent").equalsIgnoreCase("yes")) {
@@ -56,11 +65,38 @@ public class DDTsdController {
                 }
             }
 
+            if(res instanceof TransactionSelectionDurationVO) {
 
+                String tsdProd = ""+((TransactionSelectionDurationVO) res).getTransactionDurationProd();
+                String tsdSeed = ""+((TransactionSelectionDurationVO) res).getTransactionDurationSeed();
+                String sumInfoId = ((TransactionSelectionDurationVO) res).getSumInfoId();
+                if(rpaldaRepository.isNullValue(tsdProd)) {
+                    tsdProd = "90";
+                }
+
+                if(Integer.parseInt(tsdProd) > Integer.parseInt(tsdSeed)) {
+                    HashMap<HashMap<String, Object>, HashMap<String,String>> obj = tsdRecertificationService.transactionDurationdEnabled(sumInfoId, tsdProd);
+                    for (Map.Entry<HashMap<String, Object>, HashMap<String, String>> hmap : obj.entrySet()) {
+                        HashMap<String, String> hV = hmap.getValue();
+                        if(hV.get("isTSDPresent").equalsIgnoreCase("yes")) {
+                            //do YCC changes
+                        }
+                        fin.put(res, hV);
+                    }
+                }else{
+                    HashMap<HashMap<String, Object>, HashMap<String,String>> obj = tsdRecertificationService.transactionDurationdEnabled(sumInfoId, tsdSeed);
+                    for (Map.Entry<HashMap<String, Object>, HashMap<String, String>> hmap : obj.entrySet()) {
+                        HashMap<String, String> hV = hmap.getValue();
+                        if(hV.get("isTSDPresent").equalsIgnoreCase("no")) {
+                            //do YCC changes
+                        }
+                        fin.put(res, hV);
+                    }
+                }
+
+            }
 
         }
-
-
 
         return fin;
 

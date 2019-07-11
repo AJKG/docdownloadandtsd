@@ -1,8 +1,10 @@
 package com.yodlee.docdownloadandtsd.Services;
 
 
+import com.yodlee.docdownloadandtsd.DAO.RpaldaRepository;
 import com.yodlee.docdownloadandtsd.DAO.SplunkRepository;
 import com.yodlee.docdownloadandtsd.VO.DocDownloadVO;
+import com.yodlee.docdownloadandtsd.VO.FirememExtractedResponseForTSD;
 import com.yodlee.docdownloadandtsd.VO.ItemDetailsVO;
 import com.yodlee.docdownloadandtsd.VO.TransactionSelectionDurationVO;
 import com.yodlee.docdownloadandtsd.exceptionhandling.LoginExceptionHandler;
@@ -32,12 +34,14 @@ public class TSDRecertificationService {
     @Autowired
     HammerServicesImpl hammerServices;
 
+    @Autowired
+    RpaldaRepository rpaldaRepository;
+
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public void transactionDurationdEnabled(TransactionSelectionDurationVO ddvo) throws Exception{
+    public HashMap<HashMap<String, Object>, HashMap<String, String>> transactionDurationdEnabled(String sumInfoId, String tsd) throws Exception{
 
-        String sumInfoId = ddvo.getSumInfoId();
         String agentName = splunkService.getAgentName(sumInfoId);
 
         ItemDetailsVO[] yuvaPojo = null;
@@ -75,11 +79,13 @@ public class TSDRecertificationService {
         HashMap<String, HashMap<String, Object>> jDapItemListFromBatch = new HashMap<String, HashMap<String, Object>>();
         ArrayList<String> ignoreItemList = new ArrayList<String>();
 
-        Integer batchDetailsId = hammerServices.createBatch(yuvaPojo, accessTokenId, agentBaseName);
-        Integer batchReqDetailsId = hammerServices.triggerBatch(batchDetailsId, accessTokenId, "DL", "");
+        Integer batchDetailsId = hammerServices.createBatchForTSD(yuvaPojo, accessTokenId, agentBaseName, "msa");
+        Integer batchReqDetailsId = hammerServices.triggerBatchForTSD(batchDetailsId, accessTokenId, "DL", "", tsd);
         JSONObject batchResultList = hammerServices.pollingTriggerBatch(batchReqDetailsId, accessTokenId);
 
         JSONArray jDapBatchResultArray = batchResultList.getJSONArray("batchResultList");
+
+        System.out.println(jDapBatchResultArray);
 
         for (int i = 0; i < jDapBatchResultArray.length(); i++) {
             JSONObject itemObj = jDapBatchResultArray.getJSONObject(i);
@@ -88,11 +94,21 @@ public class TSDRecertificationService {
             Integer fmLatency = itemObj.optInt("fmLatency");
             Integer fmCode = itemObj.optInt("fmCode");
             String dbName = itemObj.optString("dbName");
+            String respType = itemObj.optString("responseType");
+            String sumInfoIds = itemObj.optString("sumInfoId");
 
             if (dumpUrl == null || "".equals(dumpUrl)) {
                 ignoreItemList.add(itemId + "|" + dbName);
                 continue;
             }
+
+            if(!rpaldaRepository.isNullValue(respType) && !respType.equalsIgnoreCase("containerresponse")
+            && !rpaldaRepository.isNullValue(sumInfoIds)&& !sumInfoId.trim().equalsIgnoreCase(sumInfoIds)) {
+                ignoreItemList.add(itemId + "|" + dbName);
+                continue;
+            }
+
+
 
             HashMap<String, Object> dataMap = new HashMap<String, Object>();
             dataMap.put("dumpUrl", dumpUrl);
@@ -102,18 +118,89 @@ public class TSDRecertificationService {
             jDapItemListFromBatch.put(itemId + "|" + dbName, dataMap);
         }
 
-        HashMap<String, Object> allFirememDataMap = hammerServices.retriveDataFromFirememForDocDownload(jDapItemListFromBatch);
+        HashMap<String, Object> allFirememDataMap = hammerServices.retriveDataFromFirememForTSD(jDapItemListFromBatch, tsd);
 
-        System.out.println(allFirememDataMap);
+        HashMap<String, String> dataValues = new HashMap<>();
+        HashMap<HashMap<String, Object>, HashMap<String, String>> finalMap = new HashMap<>();
 
-        // JSONArray jObject= new JSONArray(yuvaString);
-        Map<String, Object> responseMap = new HashMap<String, Object>();
+        int countPresent = 0;
+        int countAbsent = 0;
+        String messageFound = null;
+        String messageNotFound = null;
+        String message = null;
+        int max_value = -1;
+
+        for(Map.Entry<String, Object> fmData : allFirememDataMap.entrySet()) {
+
+            Object ob = fmData.getValue();
+
+            if(ob instanceof FirememExtractedResponseForTSD) {
+
+                if(rpaldaRepository.isNullValue(((FirememExtractedResponseForTSD) ob).getJdapXMLResponse())){
+                        continue;
+                }
+
+                if (((FirememExtractedResponseForTSD) ob).isTsdGenuine()) {
+                    System.out.println("here111");
+                    if(messageFound == null) {
+                        messageFound = "Yes";
+                    }
+                    countPresent=countPresent+1;
+                }
+                else{
+                    System.out.println("here222");
+                    if(messageNotFound == null) {
+                        messageNotFound = "No";
+                    }
+                    countAbsent=countAbsent+1;
+                }
+
+                String max_date = ((FirememExtractedResponseForTSD) ob).getIsTSDPresent();
+                    if(max_date.matches("[0-9]+")) {
+                        int valMaxDate = Integer.parseInt(max_date);
+                        if(max_value < valMaxDate) {
+                            max_value = valMaxDate;
+                        }
+                    }
+            }
+
+        }
+
+        if(messageFound==null && messageNotFound==null) {
+            message = "No user is successful need to verify the variation";
+        }else if(messageFound != null){
+            message = messageFound;
+        }else{
+            message = messageNotFound;
+        }
+
+        System.out.println("count Present : "+countPresent);
+        System.out.println("count Absent : "+countAbsent);
+
+        String countPercent = null;
+        if(countPresent==0 && countAbsent==0) {
+            countPercent = "0%";
+        }else {
+            countPercent = Integer.toString((countPresent / (countAbsent + countPresent)) * 100);
+            countPercent = countPercent + "%";
+        }
+
+        String maxTSDFM = null;
+
+        if(max_value==-1) {
+            maxTSDFM = "Variation..need to verify the TSD...";
+        }else{
+            maxTSDFM = Integer.toString(max_value);
+        }
+
+        dataValues.put("isTSDPresent", message);
+        dataValues.put("tsdPercentage", countPercent);
+        dataValues.put("maxTSD", maxTSDFM);
+
+        finalMap.put(allFirememDataMap, dataValues);
+
+        return finalMap;
 
     }
-
-    public void transactionDurationdDisabled(TransactionSelectionDurationVO ddvo) throws Exception {
-
-    }
-
 
 }

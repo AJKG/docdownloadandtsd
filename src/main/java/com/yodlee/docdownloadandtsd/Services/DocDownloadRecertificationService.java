@@ -35,9 +35,8 @@ public class DocDownloadRecertificationService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public HashMap<HashMap<String, Object>, HashMap<String, String>> docDownloadEnabled(DocDownloadVO ddvo, String msaOrCii) throws Exception{
+    public HashMap<HashMap<String, Object>, HashMap<String, String>> docDownloadEnabled(String sumInfoId, String msaOrCii) throws Exception{
 
-        String sumInfoId = "11729";
         String agentName = splunkService.getAgentName(sumInfoId);
 
         ItemDetailsVO[] yuvaPojo = null;
