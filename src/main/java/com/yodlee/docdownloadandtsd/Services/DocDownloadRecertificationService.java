@@ -2,7 +2,6 @@ package com.yodlee.docdownloadandtsd.Services;
 
 
 import com.yodlee.docdownloadandtsd.DAO.SplunkRepository;
-import com.yodlee.docdownloadandtsd.VO.DocDownloadVO;
 import com.yodlee.docdownloadandtsd.VO.FirememExtractedResponseForDocumentDownload;
 import com.yodlee.docdownloadandtsd.VO.ItemDetailsVO;
 import com.yodlee.docdownloadandtsd.exceptionhandling.LoginExceptionHandler;
@@ -104,8 +103,6 @@ public class DocDownloadRecertificationService {
         }
 
         HashMap<String, Object> allFirememDataMap = hammerServices.retriveDataFromFirememForDocDownload(jDapItemListFromBatch);
-
-        System.out.println(""+allFirememDataMap);
 
         HashMap<String, String> dataValues = new HashMap<>();
         HashMap<HashMap<String, Object>, HashMap<String, String>> finalMap = new HashMap<>();
