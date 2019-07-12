@@ -18,13 +18,12 @@ import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.JsonArray;
 import com.yodlee.docdownloadandtsd.DAO.RpaldaRepository;
-import com.yodlee.docdownloadandtsd.VO.FirememExtractedAjaxResponse;
-import com.yodlee.docdownloadandtsd.VO.FirememExtractedResponseForDocumentDownload;
-import com.yodlee.docdownloadandtsd.VO.FirememExtractedResponseForTSD;
-import com.yodlee.docdownloadandtsd.VO.ItemDetailsVO;
+import com.yodlee.docdownloadandtsd.VO.*;
 import com.yodlee.docdownloadandtsd.authenticator.Authorization;
 import com.yodlee.docdownloadandtsd.exceptionhandling.GeneralErrorHandler;
+import com.yodlee.docdownloadandtsd.exceptionhandling.ToolsResponseHandler;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -114,6 +113,67 @@ public class HammerServicesImpl {
 		logger.error("Token ID is "+authTokenId);
 		return authTokenId;
 	}
+
+	public String triggerFiremem(String cacheItem,String dbName, String tsd, String token) throws Exception{
+		//dbName=getCorrectDBName(dbName);
+		//HammerService hammerService = new HammerService();
+		//token = hammerService.generateToken(hammerUserName,hammerPassword,hammerLoginUrl);
+		System.out.println("token rcvd : "+token);
+		HttpHeaders header=getHeader(token);
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.setErrorHandler(new ToolsResponseHandler());
+
+		HammerRequestFirememVO action = new HammerRequestFirememVO();
+		action.setServerType("I");
+		action.setItemType("2");
+		List<String> requestType= new ArrayList<String>();
+		requestType.add("4");
+		action.setRequestTypes(requestType);
+		action.setMfaPreference(0);
+		action.setDbName(dbName);
+		action.setItemId(cacheItem);
+		action.setRefreshRoute("D");
+		action.setCustomrefreshRoute("C");
+		action.setCustomRoute("");
+		action.setProdCertified(true);
+		action.setAgentFileType("JAVA");
+		action.setModifiedtxnDuration(true);
+
+		Map<String, Object> map = new HashMap<>();
+		map.put("open", "true");
+		map.put("firstTimeTxnDays", "");
+		map.put("inactiveUsersTxnDays", "");
+		map.put("maxTxnDays", "");
+
+		Map<String, String> map1 = new HashMap<>();
+		map1.put("com.yodlee.contentservice.transactions.max_txn_available_duration", tsd);
+
+		Map<String, String> map2 = new HashMap<>();
+		map2.put("Unbilled Transaction Selection Period", tsd);
+
+		map.put("txnKeyValue", map1);
+		map.put("otherKeyValue", map2);
+		action.setTransactionSelectionDuration(map);
+
+		ObjectMapper mapper = new ObjectMapper();
+
+		String request = mapper.writeValueAsString(action);
+		System.out.println(request);
+
+		HttpEntity<String> requestEntity = new HttpEntity<String>(request,header);
+		String response = restTemplate.postForObject("https://firemem.tools.yodlee.com/hammer/R/F/IR", requestEntity, String.class);
+		System.out.println("response here "+response);
+
+		JSONObject fmResponse=new JSONObject(response);
+
+		if(!fmResponse.has("appRequestId")) {
+			return null;
+		}
+
+		System.out.println("Final response "+fmResponse.getString("appRequestId"));
+		return fmResponse.getString("appRequestId");
+	}
+
 
 	public Integer createBatchForDocumentDownload(ItemDetailsVO[] yuvaPojo, String accessTokenId, String agentName, String msaOrCii)
 			throws IOException, JSONException {
@@ -531,6 +591,48 @@ public class HammerServicesImpl {
 			header.set("Authorization",accessTokenId);
 		}
 		return header;
+	}
+
+	public DumpDetailsVO getDumpLink(String reqId,String cacheItem, String sumInfoId, String token) throws Exception{
+
+		System.out.println("Req Ids here--- "+reqId);
+		DumpDetailsVO dumpDetails=new DumpDetailsVO();
+		dumpDetails.setCacheItem(cacheItem);
+
+		for(int wait=0;wait<300;wait+=7){
+
+			String dumpResponse=getDumpUrl(reqId, token);
+			if(!rpaldaRepository.isNullValue(dumpResponse) && dumpResponse.toLowerCase().contains("token expired")) {
+				token = hammerLogin();
+				dumpResponse=getDumpUrl(reqId, token);
+			}
+			JSONObject firememResponse=new JSONObject(dumpResponse);
+			String runningStatus=firememResponse.get("refreshStateDescriptions").toString();
+			System.out.println("Waiting for "+reqId);
+			if(runningStatus.contains("Success")){
+				System.out.println(firememResponse);
+				System.out.println("Yeyy!! Gottt");
+				System.out.println("Dump "+firememResponse.getString("dump")+" Status "+firememResponse.getInt("status"));
+				dumpDetails.setDumpUrl(firememResponse.getString("dump"));
+				dumpDetails.setStatusCode(firememResponse.getInt("status"));
+				return dumpDetails;
+			}
+			Thread.sleep(7000);
+		}
+		return dumpDetails;
+	}
+
+	public String getDumpUrl(String requestId, String token) throws Exception{
+
+		HttpHeaders header=getHeader(token);
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.setErrorHandler(new ToolsResponseHandler());
+		Map<String,String> request=new HashMap<String,String>();
+		request.put("appRequestId", requestId);
+		HttpEntity<Map<String,String>> requestEntity = new HttpEntity<Map<String,String>>(request,header);
+		String response = restTemplate.postForObject("https://firemem.tools.yodlee.com/hammer/R/F/RS", requestEntity, String.class);
+		System.out.println("response here "+response);
+		return response;
 	}
 
 	public HashMap<String,Object> retriveDataFromFiremem(HashMap<String, HashMap<String,Object>> jDapItemListFromBatch, HashMap<String, HashMap<String,Object>> ajaxItemListFromBatch)
