@@ -41,7 +41,7 @@ public class TSDRecertificationService {
 
     public HashMap<HashMap<String, Object>, HashMap<String, String>> transactionDurationdEnabled(String sumInfoId, String tsd) throws Exception{
 
-        sumInfoId = "522";
+        sumInfoId = "3483";
         tsd = "730";
 
         String agentName = splunkService.getAgentName(sumInfoId);
@@ -204,11 +204,15 @@ public class TSDRecertificationService {
         System.out.println("count Absent : "+countAbsent);
 
         String countPercent = null;
-        if(countPresent==0 && countAbsent==0) {
+        if(Integer.toString(countPresent).equals("0") && Integer.toString(countAbsent).equals("0")) {
+            System.out.println("here1111====");
             countPercent = "0%";
         }else {
-            countPercent = Integer.toString((countPresent / (countAbsent + countPresent)) * 100);
-            countPercent = countPercent + "%";
+            int countFinal = countPresent + countAbsent;
+            float countUpdated = (float)countPresent/countFinal;
+            countUpdated = countUpdated * 100;
+            System.out.println(countUpdated);
+            countPercent = countUpdated + "%";
         }
 
         String maxTSDFM = null;

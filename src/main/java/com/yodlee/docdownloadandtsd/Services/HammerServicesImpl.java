@@ -616,6 +616,8 @@ public class HammerServicesImpl {
 				dumpDetails.setDumpUrl(firememResponse.getString("dump"));
 				dumpDetails.setStatusCode(firememResponse.getInt("status"));
 				return dumpDetails;
+			}else if(runningStatus.contains("Failed")) {
+				break;
 			}
 			Thread.sleep(7000);
 		}
@@ -630,7 +632,12 @@ public class HammerServicesImpl {
 		Map<String,String> request=new HashMap<String,String>();
 		request.put("appRequestId", requestId);
 		HttpEntity<Map<String,String>> requestEntity = new HttpEntity<Map<String,String>>(request,header);
-		String response = restTemplate.postForObject("https://firemem.tools.yodlee.com/hammer/R/F/RS", requestEntity, String.class);
+		String response = null;
+		try {
+			response = restTemplate.postForObject("https://firemem.tools.yodlee.com/hammer/R/F/RS", requestEntity, String.class);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 		System.out.println("response here "+response);
 		return response;
 	}
@@ -895,11 +902,15 @@ public class HammerServicesImpl {
 
 					}
 
+					System.out.println("oldest=="+oldestTxnDate);
+
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 					Date oldestTxn = sdf.parse(oldestTxnDate);
 					Date eDate = new Date();
 
 					long diffOfDays=Math.abs(eDate.getTime()/(1000*24*60*60)-oldestTxn.getTime()/(1000*24*60*60));
+
+					System.out.println("==diff=="+diffOfDays);
 
 					if(lastDiffDays < diffOfDays) {
 						lastDiffDays = diffOfDays;

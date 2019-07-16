@@ -30,6 +30,8 @@ public class DDTsdController {
     @Autowired
     TSDRecertificationService tsdRecertificationService;
 
+    public static HashMap<String, Object> docDownloadUsers = new HashMap<>();
+
     @RequestMapping(value="/TestClob",method={RequestMethod.GET})
     @ResponseBody
     public HashMap<Object, HashMap<String, String>> getDBPushDifference() throws Exception{
@@ -39,7 +41,7 @@ public class DDTsdController {
 
 
         for(Object res : resultList) {
-            if(res instanceof DocDownloadVO) {
+            /*if(res instanceof DocDownloadVO) {
                 String sumInfoId = ((DocDownloadVO) res).getSumInfoId();
 
                 if(((DocDownloadVO) res).getDocDownloadSeed().equals("1")) {
@@ -63,7 +65,7 @@ public class DDTsdController {
                         fin.put(res, hV);
                     }
                 }
-            }
+            }*/
 
             if(res instanceof TransactionSelectionDurationVO) {
 
@@ -93,6 +95,8 @@ public class DDTsdController {
                         fin.put(res, hV);
                     }
                 }
+
+                break;
 
             }
 
