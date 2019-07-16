@@ -109,6 +109,8 @@ public class DocDownloadRecertificationService {
 
         int countPresent = 0;
         int countAbsent = 0;
+        String messageFound = null;
+        String messageNotFound = null;
         String message = null;
 
         for(Map.Entry<String, Object> fmData : allFirememDataMap.entrySet()) {
@@ -118,17 +120,15 @@ public class DocDownloadRecertificationService {
             if(ob instanceof FirememExtractedResponseForDocumentDownload) {
 
                 if (((FirememExtractedResponseForDocumentDownload) ob).isDocPresent()) {
-                    message = "Yes";
+                    if(messageFound==null) {
+                        messageFound = "Yes";
+                    }
                     countPresent++;
-                    break;
-                }else if(((FirememExtractedResponseForDocumentDownload) ob).getErrorCode().equals("518")) {
-                    message = "Unable to verify MFA users..";
-                    countAbsent++;
-                }else if(!((FirememExtractedResponseForDocumentDownload) ob).getErrorCode().equals("0")){
-                    message = "Users are failing with site variation...Unable to verify";
-                    countAbsent++;
                 }
                 else{
+                    if(messageNotFound == null) {
+                        messageNotFound = "No";
+                    }
                     countAbsent++;
                 }
 
@@ -136,12 +136,22 @@ public class DocDownloadRecertificationService {
 
         }
 
-        if(message==null) {
-            message = "No";
+        if(messageFound==null && messageNotFound==null) {
+            message = "No user is successful need to verify the variation";
+        }else if(messageFound != null){
+            message = messageFound;
+        }else{
+            message = messageNotFound;
         }
 
-        String countPercent = Integer.toString((countPresent/(countAbsent+countPresent))*100);
-        countPercent = countPercent+"%";
+        String countPercent = null;
+        if(Integer.toString(countPresent).equals("0") && Integer.toString(countAbsent).equals("0")) {
+            System.out.println("here1111====");
+            countPercent = "0%";
+        }else {
+             countPercent = Integer.toString((countPresent / (countAbsent + countPresent)) * 100);
+            countPercent = countPercent + "%";
+        }
 
         dataValues.put("isDocPresent", message);
         dataValues.put("docPercentage", countPercent);

@@ -12,10 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
 
 @Controller
+@RestController
 public class DDTsdController {
 
     @Autowired
@@ -39,14 +41,16 @@ public class DDTsdController {
         List<Object> resultList = rpaldaService.getDiff();
         HashMap<Object, HashMap<String, String>> fin = new HashMap<>();
 
+        //Testing for single sum_info_id
         int countDoc = 0;
         int countTSD = 0;
 
         for(Object res : resultList) {
 
-            if(res instanceof DocDownloadVO && countDoc < 3) {
+            if(res instanceof DocDownloadVO && countDoc < 1) {
                 countDoc++;
-                String sumInfoId = ((DocDownloadVO) res).getSumInfoId();
+                String sumInfoId = "3157";
+                        //((DocDownloadVO) res).getSumInfoId();
 
                 if(((DocDownloadVO) res).getDocDownloadSeed().equals("1")) {
                     HashMap<HashMap<String, Object>, HashMap<String,String>> obj = docDownloadRecService.docDownloadEnabled(sumInfoId, "cii");
@@ -71,12 +75,15 @@ public class DDTsdController {
                 }
             }
 
-            if(res instanceof TransactionSelectionDurationVO && countTSD < 3) {
+            if(res instanceof TransactionSelectionDurationVO && countTSD < 1) {
                 countTSD++;
 
-                String tsdProd = ""+((TransactionSelectionDurationVO) res).getTransactionDurationProd();
-                String tsdSeed = ""+((TransactionSelectionDurationVO) res).getTransactionDurationSeed();
-                String sumInfoId = ((TransactionSelectionDurationVO) res).getSumInfoId();
+                String tsdProd = "90";
+                        //""+((TransactionSelectionDurationVO) res).getTransactionDurationProd();
+                String tsdSeed = "0";
+                        //""+((TransactionSelectionDurationVO) res).getTransactionDurationSeed();
+                String sumInfoId = "29243";
+                       // ((TransactionSelectionDurationVO) res).getSumInfoId();
                 if(rpaldaRepository.isNullValue(tsdProd)) {
                     tsdProd = "90";
                 }

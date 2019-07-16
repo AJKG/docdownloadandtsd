@@ -839,8 +839,13 @@ public class HammerServicesImpl {
 				jDapFmCode= Integer.toString((Integer)jDapFmCodeObj);
 			}
 
-			// JDAP Firemem Access and retrive
-			String jDapFirememResponse= restTemplate.getForObject(jDApDumpUrl, String.class);
+			String jDapFirememResponse = null;
+			try {
+				// JDAP Firemem Access and retrive
+				jDapFirememResponse = restTemplate.getForObject(jDApDumpUrl, String.class);
+			}catch (Exception e){
+				System.out.println("Unable to retrieve firemem for this user"+e);
+			}
 
 			String jDapFirememXML = fetchFinalSiteXML(jDapFirememResponse);
 			String jDapAccountSummaryXML=getAccountSummaryXML(jDapFirememResponse);
