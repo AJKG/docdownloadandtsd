@@ -39,9 +39,13 @@ public class DDTsdController {
         List<Object> resultList = rpaldaService.getDiff();
         HashMap<Object, HashMap<String, String>> fin = new HashMap<>();
 
+        int countDoc = 0;
+        int countTSD = 0;
 
         for(Object res : resultList) {
-            /*if(res instanceof DocDownloadVO) {
+
+            if(res instanceof DocDownloadVO && countDoc < 3) {
+                countDoc++;
                 String sumInfoId = ((DocDownloadVO) res).getSumInfoId();
 
                 if(((DocDownloadVO) res).getDocDownloadSeed().equals("1")) {
@@ -65,9 +69,10 @@ public class DDTsdController {
                         fin.put(res, hV);
                     }
                 }
-            }*/
+            }
 
-            if(res instanceof TransactionSelectionDurationVO) {
+            if(res instanceof TransactionSelectionDurationVO && countTSD < 3) {
+                countTSD++;
 
                 String tsdProd = ""+((TransactionSelectionDurationVO) res).getTransactionDurationProd();
                 String tsdSeed = ""+((TransactionSelectionDurationVO) res).getTransactionDurationSeed();
@@ -95,8 +100,6 @@ public class DDTsdController {
                         fin.put(res, hV);
                     }
                 }
-
-                break;
 
             }
 

@@ -41,9 +41,6 @@ public class TSDRecertificationService {
 
     public HashMap<HashMap<String, Object>, HashMap<String, String>> transactionDurationdEnabled(String sumInfoId, String tsd) throws Exception{
 
-        sumInfoId = "3483";
-        tsd = "730";
-
         String agentName = splunkService.getAgentName(sumInfoId);
 
         ItemDetailsVO[] yuvaPojo = null;
