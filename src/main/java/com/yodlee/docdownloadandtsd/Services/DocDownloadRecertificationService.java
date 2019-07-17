@@ -149,8 +149,11 @@ public class DocDownloadRecertificationService {
             System.out.println("here1111====");
             countPercent = "0%";
         }else {
-             countPercent = Integer.toString((countPresent / (countAbsent + countPresent)) * 100);
-            countPercent = countPercent + "%";
+            int countFinal = countPresent + countAbsent;
+            float countUpdated = (float)countPresent/countFinal;
+            countUpdated = countUpdated * 100;
+            System.out.println(countUpdated);
+            countPercent = countUpdated + "%";
         }
 
         dataValues.put("isDocPresent", message);

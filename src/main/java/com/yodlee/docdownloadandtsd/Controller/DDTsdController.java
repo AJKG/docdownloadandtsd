@@ -49,7 +49,7 @@ public class DDTsdController {
 
             if(res instanceof DocDownloadVO && countDoc < 1) {
                 countDoc++;
-                String sumInfoId = "3157";
+                String sumInfoId = "25627";
                         //((DocDownloadVO) res).getSumInfoId();
 
                 if(((DocDownloadVO) res).getDocDownloadSeed().equals("1")) {
