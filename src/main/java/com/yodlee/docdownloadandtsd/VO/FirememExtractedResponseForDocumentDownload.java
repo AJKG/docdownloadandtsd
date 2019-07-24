@@ -1,14 +1,27 @@
 package com.yodlee.docdownloadandtsd.VO;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class FirememExtractedResponseForDocumentDownload {
 
     private String itemId;
+
+    private String jdapXMLResponse;
 
     private String errorCode;
 
     private String jdapDumpUrl;
 
     private boolean docPresent;
+
+    @JsonIgnore
+    public String getJdapXMLResponse() {
+        return jdapXMLResponse;
+    }
+
+    public void setJdapXMLResponse(String jdapXMLResponse) {
+        this.jdapXMLResponse = jdapXMLResponse;
+    }
 
     public String getErrorCode() {
         return errorCode;
@@ -46,6 +59,7 @@ public class FirememExtractedResponseForDocumentDownload {
     public String toString() {
         return "FirememExtractedResponseForDocumentDownload{" +
                 "itemId='" + itemId + '\'' +
+                ", jdapXMLResponse='" + jdapXMLResponse + '\'' +
                 ", errorCode='" + errorCode + '\'' +
                 ", jdapDumpUrl='" + jdapDumpUrl + '\'' +
                 ", docPresent=" + docPresent +
