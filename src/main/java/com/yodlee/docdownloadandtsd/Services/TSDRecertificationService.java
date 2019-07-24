@@ -39,7 +39,7 @@ public class TSDRecertificationService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public HashMap<HashMap<String, Object>, HashMap<String, String>> transactionDurationdEnabled(TransactionSelectionDurationVO tsdvo, String sumInfoId, String tsd) throws Exception{
+    public HashMap<HashMap<String, Object>, HashMap<String, Object>> transactionDurationdEnabled(TransactionSelectionDurationVO tsdvo, String sumInfoId, String tsd) throws Exception{
 
         String agentName = splunkService.getAgentName(sumInfoId);
 
@@ -143,8 +143,8 @@ public class TSDRecertificationService {
 */
         HashMap<String, Object> allFirememDataMap = hammerServices.retriveDataFromFirememForTSD(jDapItemListFromBatch, tsd);
 
-        HashMap<String, String> dataValues = new HashMap<>();
-        HashMap<HashMap<String, Object>, HashMap<String, String>> finalMap = new HashMap<>();
+        HashMap<String, Object> dataValues = new HashMap<>();
+        HashMap<HashMap<String, Object>, HashMap<String, Object>> finalMap = new HashMap<>();
 
         int countPresent = 0;
         int countAbsent = 0;

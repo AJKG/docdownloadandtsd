@@ -36,9 +36,9 @@ public class DDTsdController {
 
     @RequestMapping(value="/TestClob",method={RequestMethod.GET})
     @ResponseBody
-    public HashMap<Object, HashMap<String, String>> getDBPushDifference() throws Exception{
+    public HashMap<Object, HashMap<String, Object>> getDBPushDifference() throws Exception{
         List<Object> resultList = rpaldaService.getDiff();
-        HashMap<Object, HashMap<String, String>> fin = new HashMap<>();
+        HashMap<Object, HashMap<String, Object>> fin = new HashMap<>();
 
         //Testing for single sum_info_id
         int countDoc = 0;
@@ -52,21 +52,22 @@ public class DDTsdController {
                         //((DocDownloadVO) res).getSumInfoId();
 
                 if(((DocDownloadVO) res).getDocDownloadSeed().equals("1")) {
-                    HashMap<HashMap<String, Object>, HashMap<String,String>> obj = docDownloadRecService.docDownloadEnabled((DocDownloadVO)res, sumInfoId, "msa");
-                    for (Map.Entry<HashMap<String, Object>, HashMap<String, String>> hmap : obj.entrySet()) {
-                        HashMap<String, String> hV = hmap.getValue();
-                        if(hV.get("isDocPresent").equalsIgnoreCase("no")) {
+                    HashMap<HashMap<String, Object>, HashMap<String,Object>> obj = docDownloadRecService.docDownloadEnabled((DocDownloadVO)res, sumInfoId, "msa");
+                    for (Map.Entry<HashMap<String, Object>, HashMap<String, Object>> hmap : obj.entrySet()) {
+                        HashMap<String, Object> hV = hmap.getValue();
+                        if(hV.get("isDocPresent").toString().equalsIgnoreCase("no")) {
                             //do YCC changes
                         }
                         fin.put(sumInfoId, hV);
+
                     }
 
 
                 }else if(((DocDownloadVO) res).getDocDownloadSeed().equals("0")) {
-                    HashMap<HashMap<String, Object>, HashMap<String,String>> obj = docDownloadRecService.docDownloadEnabled((DocDownloadVO)res,sumInfoId, "msa");
-                    for (Map.Entry<HashMap<String, Object>, HashMap<String, String>> hmap : obj.entrySet()) {
-                        HashMap<String, String> hV = hmap.getValue();
-                        if(hV.get("isDocPresent").equalsIgnoreCase("yes")) {
+                    HashMap<HashMap<String, Object>, HashMap<String,Object>> obj = docDownloadRecService.docDownloadEnabled((DocDownloadVO)res,sumInfoId, "msa");
+                    for (Map.Entry<HashMap<String, Object>, HashMap<String, Object>> hmap : obj.entrySet()) {
+                        HashMap<String, Object> hV = hmap.getValue();
+                        if(hV.get("isDocPresent").toString().equalsIgnoreCase("yes")) {
                             //do YCC changes
                         }
                         fin.put(sumInfoId, hV);
@@ -88,19 +89,19 @@ public class DDTsdController {
                 }
 
                 if(Integer.parseInt(tsdProd) > Integer.parseInt(tsdSeed)) {
-                    HashMap<HashMap<String, Object>, HashMap<String,String>> obj = tsdRecertificationService.transactionDurationdEnabled((TransactionSelectionDurationVO)res,sumInfoId, tsdProd);
-                    for (Map.Entry<HashMap<String, Object>, HashMap<String, String>> hmap : obj.entrySet()) {
-                        HashMap<String, String> hV = hmap.getValue();
-                        if(hV.get("isTSDPresent").equalsIgnoreCase("yes")) {
+                    HashMap<HashMap<String, Object>, HashMap<String,Object>> obj = tsdRecertificationService.transactionDurationdEnabled((TransactionSelectionDurationVO)res,sumInfoId, tsdProd);
+                    for (Map.Entry<HashMap<String, Object>, HashMap<String, Object>> hmap : obj.entrySet()) {
+                        HashMap<String, Object> hV = hmap.getValue();
+                        if(hV.get("isTSDPresent").toString().equalsIgnoreCase("yes")) {
                             //do YCC changes
                         }
                         fin.put(sumInfoId, hV);
                     }
                 }else{
-                    HashMap<HashMap<String, Object>, HashMap<String,String>> obj = tsdRecertificationService.transactionDurationdEnabled((TransactionSelectionDurationVO)res,sumInfoId, tsdSeed);
-                    for (Map.Entry<HashMap<String, Object>, HashMap<String, String>> hmap : obj.entrySet()) {
-                        HashMap<String, String> hV = hmap.getValue();
-                        if(hV.get("isTSDPresent").equalsIgnoreCase("no")) {
+                    HashMap<HashMap<String, Object>, HashMap<String,Object>> obj = tsdRecertificationService.transactionDurationdEnabled((TransactionSelectionDurationVO)res,sumInfoId, tsdSeed);
+                    for (Map.Entry<HashMap<String, Object>, HashMap<String, Object>> hmap : obj.entrySet()) {
+                        HashMap<String, Object> hV = hmap.getValue();
+                        if(hV.get("isTSDPresent").toString().equalsIgnoreCase("no")) {
                             //do YCC changes
                         }
                         fin.put(sumInfoId, hV);
@@ -156,20 +157,20 @@ public class DDTsdController {
 
     @RequestMapping(value="/docDownloadRecertify",method={RequestMethod.GET})
     @ResponseBody
-    public HashMap<Object, HashMap<String, String>> docDownloadRecertification() throws Exception {
+    public HashMap<Object, HashMap<String, Object>> docDownloadRecertification() throws Exception {
 
-        HashMap<Object, HashMap<String, String>> fin = new HashMap<>();
+        HashMap<Object, HashMap<String, Object>> fin = new HashMap<>();
         String[] sumInfo = {"3664", "1984", "12151", "10719", "10659", "12024", "9688", "26079", "25976", "7087"};
 
         for (int i = 0; i < sumInfo.length; i++) {
             Object res = sumInfo[i];
             String sumInfoId = sumInfo[i];
 
-            HashMap<HashMap<String, Object>, HashMap<String, String>> obj = docDownloadRecService.docDownloadEnabled((DocDownloadVO)res, sumInfoId, "msa");
+            HashMap<HashMap<String, Object>, HashMap<String, Object>> obj = docDownloadRecService.docDownloadEnabled((DocDownloadVO)res, sumInfoId, "msa");
             if(obj!=null) {
-                for (Map.Entry<HashMap<String, Object>, HashMap<String, String>> hmap : obj.entrySet()) {
-                    HashMap<String, String> hV = hmap.getValue();
-                    if (hV.get("isDocPresent").equalsIgnoreCase("no")) {
+                for (Map.Entry<HashMap<String, Object>, HashMap<String, Object>> hmap : obj.entrySet()) {
+                    HashMap<String, Object> hV = hmap.getValue();
+                    if (hV.get("isDocPresent").toString().equalsIgnoreCase("no")) {
                         //do YCC changes
                     }
                     fin.put(res, hV);
