@@ -37,7 +37,6 @@ public class DDTsdController {
     @RequestMapping(value="/TestClob",method={RequestMethod.GET})
     @ResponseBody
     public HashMap<Object, HashMap<String, String>> getDBPushDifference() throws Exception{
-        System.out.println("Controller");
         List<Object> resultList = rpaldaService.getDiff();
         HashMap<Object, HashMap<String, String>> fin = new HashMap<>();
 
@@ -49,28 +48,28 @@ public class DDTsdController {
 
             if(res instanceof DocDownloadVO && countDoc < 1) {
                 countDoc++;
-                String sumInfoId = "25627";
+                String sumInfoId = "663";
                         //((DocDownloadVO) res).getSumInfoId();
 
                 if(((DocDownloadVO) res).getDocDownloadSeed().equals("1")) {
-                    HashMap<HashMap<String, Object>, HashMap<String,String>> obj = docDownloadRecService.docDownloadEnabled(sumInfoId, "cii");
+                    HashMap<HashMap<String, Object>, HashMap<String,String>> obj = docDownloadRecService.docDownloadEnabled((DocDownloadVO)res, sumInfoId, "msa");
                     for (Map.Entry<HashMap<String, Object>, HashMap<String, String>> hmap : obj.entrySet()) {
                         HashMap<String, String> hV = hmap.getValue();
                         if(hV.get("isDocPresent").equalsIgnoreCase("no")) {
                             //do YCC changes
                         }
-                        fin.put(res, hV);
+                        fin.put(sumInfoId, hV);
                     }
 
 
                 }else if(((DocDownloadVO) res).getDocDownloadSeed().equals("0")) {
-                    HashMap<HashMap<String, Object>, HashMap<String,String>> obj = docDownloadRecService.docDownloadEnabled(sumInfoId, "msa");
+                    HashMap<HashMap<String, Object>, HashMap<String,String>> obj = docDownloadRecService.docDownloadEnabled((DocDownloadVO)res,sumInfoId, "msa");
                     for (Map.Entry<HashMap<String, Object>, HashMap<String, String>> hmap : obj.entrySet()) {
                         HashMap<String, String> hV = hmap.getValue();
                         if(hV.get("isDocPresent").equalsIgnoreCase("yes")) {
                             //do YCC changes
                         }
-                        fin.put(res, hV);
+                        fin.put(sumInfoId, hV);
                     }
                 }
             }
@@ -82,14 +81,14 @@ public class DDTsdController {
                         //""+((TransactionSelectionDurationVO) res).getTransactionDurationProd();
                 String tsdSeed = "0";
                         //""+((TransactionSelectionDurationVO) res).getTransactionDurationSeed();
-                String sumInfoId = "29243";
+                String sumInfoId = "663";
                        // ((TransactionSelectionDurationVO) res).getSumInfoId();
                 if(rpaldaRepository.isNullValue(tsdProd)) {
                     tsdProd = "90";
                 }
 
                 if(Integer.parseInt(tsdProd) > Integer.parseInt(tsdSeed)) {
-                    HashMap<HashMap<String, Object>, HashMap<String,String>> obj = tsdRecertificationService.transactionDurationdEnabled(sumInfoId, tsdProd);
+                    HashMap<HashMap<String, Object>, HashMap<String,String>> obj = tsdRecertificationService.transactionDurationdEnabled((TransactionSelectionDurationVO)res,sumInfoId, tsdProd);
                     for (Map.Entry<HashMap<String, Object>, HashMap<String, String>> hmap : obj.entrySet()) {
                         HashMap<String, String> hV = hmap.getValue();
                         if(hV.get("isTSDPresent").equalsIgnoreCase("yes")) {
@@ -98,7 +97,7 @@ public class DDTsdController {
                         fin.put(res, hV);
                     }
                 }else{
-                    HashMap<HashMap<String, Object>, HashMap<String,String>> obj = tsdRecertificationService.transactionDurationdEnabled(sumInfoId, tsdSeed);
+                    HashMap<HashMap<String, Object>, HashMap<String,String>> obj = tsdRecertificationService.transactionDurationdEnabled((TransactionSelectionDurationVO)res,sumInfoId, tsdSeed);
                     for (Map.Entry<HashMap<String, Object>, HashMap<String, String>> hmap : obj.entrySet()) {
                         HashMap<String, String> hV = hmap.getValue();
                         if(hV.get("isTSDPresent").equalsIgnoreCase("no")) {
@@ -154,6 +153,34 @@ public class DDTsdController {
         }
         return cacheRunVOList;
     }
+
+    @RequestMapping(value="/docDownloadRecertify",method={RequestMethod.GET})
+    @ResponseBody
+    public HashMap<Object, HashMap<String, String>> docDownloadRecertification() throws Exception {
+
+        HashMap<Object, HashMap<String, String>> fin = new HashMap<>();
+        String[] sumInfo = {"3664", "1984", "12151", "10719", "10659", "12024", "9688", "26079", "25976", "7087"};
+
+        for (int i = 0; i < sumInfo.length; i++) {
+            Object res = sumInfo[i];
+            String sumInfoId = sumInfo[i];
+
+            HashMap<HashMap<String, Object>, HashMap<String, String>> obj = docDownloadRecService.docDownloadEnabled((DocDownloadVO)res, sumInfoId, "msa");
+            if(obj!=null) {
+                for (Map.Entry<HashMap<String, Object>, HashMap<String, String>> hmap : obj.entrySet()) {
+                    HashMap<String, String> hV = hmap.getValue();
+                    if (hV.get("isDocPresent").equalsIgnoreCase("no")) {
+                        //do YCC changes
+                    }
+                    fin.put(res, hV);
+                }
+            }
+        }
+
+        return fin;
+
+    }
+
 
 
 }

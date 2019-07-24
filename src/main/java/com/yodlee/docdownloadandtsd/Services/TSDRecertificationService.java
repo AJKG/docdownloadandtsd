@@ -39,7 +39,7 @@ public class TSDRecertificationService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public HashMap<HashMap<String, Object>, HashMap<String, String>> transactionDurationdEnabled(String sumInfoId, String tsd) throws Exception{
+    public HashMap<HashMap<String, Object>, HashMap<String, String>> transactionDurationdEnabled(TransactionSelectionDurationVO tsdvo, String sumInfoId, String tsd) throws Exception{
 
         String agentName = splunkService.getAgentName(sumInfoId);
 
@@ -223,6 +223,14 @@ public class TSDRecertificationService {
         dataValues.put("isTSDPresent", message);
         dataValues.put("tsdPercentage", countPercent);
         dataValues.put("maxTSD", maxTSDFM);
+
+        dataValues.put("migID", tsdvo.getMigId());
+        dataValues.put("migratedBy", tsdvo.getMigratedBy());
+        dataValues.put("tsdSeed", tsdvo.getTransactionDurationSeed());
+        dataValues.put("tsdProd", tsdvo.getTransactionDurationProd());
+        dataValues.put("requestedDate", tsdvo.getRequestedDate());
+        dataValues.put("type", "TransactionSelectionDurationVO");
+        dataValues.put("sumInfoID", tsdvo.getSumInfoId());
 
         finalMap.put(allFirememDataMap, dataValues);
 

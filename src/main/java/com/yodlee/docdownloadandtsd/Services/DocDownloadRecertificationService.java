@@ -2,6 +2,7 @@ package com.yodlee.docdownloadandtsd.Services;
 
 
 import com.yodlee.docdownloadandtsd.DAO.SplunkRepository;
+import com.yodlee.docdownloadandtsd.VO.DocDownloadVO;
 import com.yodlee.docdownloadandtsd.VO.FirememExtractedResponseForDocumentDownload;
 import com.yodlee.docdownloadandtsd.VO.ItemDetailsVO;
 import com.yodlee.docdownloadandtsd.exceptionhandling.LoginExceptionHandler;
@@ -34,7 +35,7 @@ public class DocDownloadRecertificationService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public HashMap<HashMap<String, Object>, HashMap<String, String>> docDownloadEnabled(String sumInfoId, String msaOrCii) throws Exception{
+    public HashMap<HashMap<String, Object>, HashMap<String, String>> docDownloadEnabled(DocDownloadVO ddvo, String sumInfoId, String msaOrCii) throws Exception{
 
         String agentName = splunkService.getAgentName(sumInfoId);
 
@@ -72,8 +73,14 @@ public class DocDownloadRecertificationService {
         }
         HashMap<String, HashMap<String, Object>> jDapItemListFromBatch = new HashMap<String, HashMap<String, Object>>();
         ArrayList<String> ignoreItemList = new ArrayList<String>();
+        Integer batchDetailsId = null;
 
-        Integer batchDetailsId = hammerServices.createBatchForDocumentDownload(yuvaPojo, accessTokenId, agentBaseName, msaOrCii);
+        try {
+            batchDetailsId  = hammerServices.createBatchForDocumentDownload(yuvaPojo, accessTokenId, agentBaseName, msaOrCii);
+        }catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
         Integer batchReqDetailsId = hammerServices.triggerBatchForDocumentDownload(batchDetailsId, accessTokenId, "DL", "");
         JSONObject batchResultList = hammerServices.pollingTriggerBatch(batchReqDetailsId, accessTokenId);
 
@@ -158,6 +165,13 @@ public class DocDownloadRecertificationService {
 
         dataValues.put("isDocPresent", message);
         dataValues.put("docPercentage", countPercent);
+        dataValues.put("migID", ddvo.getMigId());
+        dataValues.put("migratedBy", ddvo.getMigratedBy());
+        dataValues.put("docDownloadSeed", ddvo.getDocDownloadSeed());
+        dataValues.put("docDownloadProd", ddvo.getDocDownloadProd());
+        dataValues.put("requestedDate", ddvo.getRequestedDate());
+        dataValues.put("type", "DocDownloadVO");
+        dataValues.put("sumInfoID", ddvo.getSumInfoId());
 
         finalMap.put(allFirememDataMap, dataValues);
 
