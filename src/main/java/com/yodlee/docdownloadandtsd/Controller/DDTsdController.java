@@ -94,7 +94,7 @@ public class DDTsdController {
                         if(hV.get("isTSDPresent").equalsIgnoreCase("yes")) {
                             //do YCC changes
                         }
-                        fin.put(res, hV);
+                        fin.put(sumInfoId, hV);
                     }
                 }else{
                     HashMap<HashMap<String, Object>, HashMap<String,String>> obj = tsdRecertificationService.transactionDurationdEnabled((TransactionSelectionDurationVO)res,sumInfoId, tsdSeed);
@@ -103,7 +103,7 @@ public class DDTsdController {
                         if(hV.get("isTSDPresent").equalsIgnoreCase("no")) {
                             //do YCC changes
                         }
-                        fin.put(res, hV);
+                        fin.put(sumInfoId, hV);
                     }
                 }
 
