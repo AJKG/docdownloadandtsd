@@ -2,6 +2,8 @@ package com.yodlee.docdownloadandtsd.VO;
 
 public class FirememExtractedResponseForTSD {
 
+    private String itemId;
+
     private String jdapXMLResponse;
 
     private String errorCode;
@@ -52,10 +54,19 @@ public class FirememExtractedResponseForTSD {
         this.isTSDPresent = isTSDPresent;
     }
 
+    public String getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
+
     @Override
     public String toString() {
         return "FirememExtractedResponseForTSD{" +
-                "jdapXMLResponse='" + jdapXMLResponse + '\'' +
+                "itemId='" + itemId + '\'' +
+                ", jdapXMLResponse='" + jdapXMLResponse + '\'' +
                 ", errorCode='" + errorCode + '\'' +
                 ", jdapDumpUrl='" + jdapDumpUrl + '\'' +
                 ", tsdGenuine=" + tsdGenuine +

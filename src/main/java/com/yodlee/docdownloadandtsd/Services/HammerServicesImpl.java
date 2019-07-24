@@ -790,6 +790,7 @@ public class HammerServicesImpl {
 			docResponse.setJdapXMLResponse(jDapFirememXML);
 			docResponse.setErrorCode(jDapFmCode);
 			docResponse.setJdapDumpUrl(jDApDumpUrlToSend);
+			docResponse.setItemId(jDapItemId);
 			if(!rpaldaRepository.isNullValue(jDapFirememXML) && jDapFirememXML.contains("DOC_DOWNLOADED") && jDapFirememXML.contains("<documentId>")) {
 				docResponse.setDocPresent(true);
 			}else{
@@ -854,6 +855,8 @@ public class HammerServicesImpl {
 			docResponse.setJdapXMLResponse(jDapFirememXML);
 			docResponse.setErrorCode(jDapFmCode);
 			docResponse.setJdapDumpUrl(jDApDumpUrlToSend);
+			docResponse.setItemId(jDapItemId);
+
 			if(!rpaldaRepository.isNullValue(jDapFirememXML)) {
 				String finalXml=jDapFirememXML;
 				int count = 0;

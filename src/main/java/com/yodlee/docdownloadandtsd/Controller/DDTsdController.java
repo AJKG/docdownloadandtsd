@@ -40,11 +40,13 @@ public class DDTsdController {
         List<Object> resultList = rpaldaService.getDiff();
         HashMap<Object, HashMap<String, Object>> fin = new HashMap<>();
 
+
         //Testing for single sum_info_id
         int countDoc = 0;
         int countTSD = 0;
 
         for(Object res : resultList) {
+            List<Object> usersList = new ArrayList<>();
 
             if(res instanceof DocDownloadVO && countDoc < 1) {
                 countDoc++;
@@ -55,21 +57,37 @@ public class DDTsdController {
                     HashMap<HashMap<String, Object>, HashMap<String,Object>> obj = docDownloadRecService.docDownloadEnabled((DocDownloadVO)res, sumInfoId, "msa");
                     for (Map.Entry<HashMap<String, Object>, HashMap<String, Object>> hmap : obj.entrySet()) {
                         HashMap<String, Object> hV = hmap.getValue();
+                        HashMap<String, Object> hK = hmap.getKey();
+
+                        for(String values : hK.keySet()) {
+                            Object data = hK.get(values);
+                            usersList.add(data);
+                        }
+
                         if(hV.get("isDocPresent").toString().equalsIgnoreCase("no")) {
                             //do YCC changes
                         }
+                        hV.put("users", usersList);
                         fin.put(sumInfoId, hV);
-
                     }
+
 
 
                 }else if(((DocDownloadVO) res).getDocDownloadSeed().equals("0")) {
                     HashMap<HashMap<String, Object>, HashMap<String,Object>> obj = docDownloadRecService.docDownloadEnabled((DocDownloadVO)res,sumInfoId, "msa");
                     for (Map.Entry<HashMap<String, Object>, HashMap<String, Object>> hmap : obj.entrySet()) {
                         HashMap<String, Object> hV = hmap.getValue();
+                        HashMap<String, Object> hK = hmap.getKey();
+
+                        for(String values : hK.keySet()) {
+                            Object data = hK.get(values);
+                            usersList.add(data);
+                        }
+
                         if(hV.get("isDocPresent").toString().equalsIgnoreCase("yes")) {
                             //do YCC changes
                         }
+                        hV.put("users", usersList);
                         fin.put(sumInfoId, hV);
                     }
                 }
@@ -92,19 +110,35 @@ public class DDTsdController {
                     HashMap<HashMap<String, Object>, HashMap<String,Object>> obj = tsdRecertificationService.transactionDurationdEnabled((TransactionSelectionDurationVO)res,sumInfoId, tsdProd);
                     for (Map.Entry<HashMap<String, Object>, HashMap<String, Object>> hmap : obj.entrySet()) {
                         HashMap<String, Object> hV = hmap.getValue();
+                        HashMap<String, Object> hK = hmap.getKey();
+
+                        for(String values : hK.keySet()) {
+                            Object data = hK.get(values);
+                            usersList.add(data);
+                        }
+
                         if(hV.get("isTSDPresent").toString().equalsIgnoreCase("yes")) {
                             //do YCC changes
                         }
+                        hV.put("users", usersList);
                         fin.put(sumInfoId, hV);
                     }
                 }else{
                     HashMap<HashMap<String, Object>, HashMap<String,Object>> obj = tsdRecertificationService.transactionDurationdEnabled((TransactionSelectionDurationVO)res,sumInfoId, tsdSeed);
                     for (Map.Entry<HashMap<String, Object>, HashMap<String, Object>> hmap : obj.entrySet()) {
                         HashMap<String, Object> hV = hmap.getValue();
+                        HashMap<String, Object> hK = hmap.getKey();
+
+                        for(String values : hK.keySet()) {
+                            Object data = hK.get(values);
+                            usersList.add(data);
+                        }
                         if(hV.get("isTSDPresent").toString().equalsIgnoreCase("no")) {
                             //do YCC changes
                         }
+                        hV.put("users", usersList);
                         fin.put(sumInfoId, hV);
+
                     }
                 }
 
