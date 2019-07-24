@@ -787,7 +787,6 @@ public class HammerServicesImpl {
 			logger.info("JDAP FIRMEM => jDapAccountSummaryXML : "+jDapAccountSummaryXML);
 
 			FirememExtractedResponseForDocumentDownload docResponse = new FirememExtractedResponseForDocumentDownload();
-			docResponse.setJdapXMLResponse(jDapFirememXML);
 			docResponse.setErrorCode(jDapFmCode);
 			docResponse.setJdapDumpUrl(jDApDumpUrlToSend);
 			docResponse.setItemId(jDapItemId);
@@ -852,7 +851,6 @@ public class HammerServicesImpl {
 			String jDapAccountSummaryXML=getAccountSummaryXML(jDapFirememResponse);
 
 			FirememExtractedResponseForTSD docResponse = new FirememExtractedResponseForTSD();
-			docResponse.setJdapXMLResponse(jDapFirememXML);
 			docResponse.setErrorCode(jDapFmCode);
 			docResponse.setJdapDumpUrl(jDApDumpUrlToSend);
 			docResponse.setItemId(jDapItemId);
