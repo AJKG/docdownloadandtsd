@@ -1,9 +1,14 @@
 package com.yodlee.docdownloadandtsd.VO;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "UserList")
 public class FirememExtractedResponseForTSD {
 
+    @Id
     private String itemId;
 
     private String jdapXMLResponse;
@@ -16,6 +21,8 @@ public class FirememExtractedResponseForTSD {
 
     private String isTSDPresent;
 
+    private String migId;
+
     @JsonIgnore
     public String getJdapXMLResponse() {
         return jdapXMLResponse;
@@ -25,6 +32,7 @@ public class FirememExtractedResponseForTSD {
         this.jdapXMLResponse = jdapXMLResponse;
     }
 
+    @JsonProperty
     public String getErrorCode() {
         return errorCode;
     }
@@ -33,6 +41,7 @@ public class FirememExtractedResponseForTSD {
         this.errorCode = errorCode;
     }
 
+    @JsonProperty
     public String getJdapDumpUrl() {
         return jdapDumpUrl;
     }
@@ -41,6 +50,7 @@ public class FirememExtractedResponseForTSD {
         this.jdapDumpUrl = jdapDumpUrl;
     }
 
+    @JsonProperty
     public boolean isTsdGenuine() {
         return tsdGenuine;
     }
@@ -49,6 +59,7 @@ public class FirememExtractedResponseForTSD {
         this.tsdGenuine = tsdGenuine;
     }
 
+    @JsonProperty
     public String getIsTSDPresent() {
         return isTSDPresent;
     }
@@ -57,12 +68,22 @@ public class FirememExtractedResponseForTSD {
         this.isTSDPresent = isTSDPresent;
     }
 
+    @JsonProperty
     public String getItemId() {
         return itemId;
     }
 
     public void setItemId(String itemId) {
         this.itemId = itemId;
+    }
+
+    @JsonProperty
+    public String getMigId() {
+        return migId;
+    }
+
+    public void setMigId(String migId) {
+        this.migId = migId;
     }
 
     @Override

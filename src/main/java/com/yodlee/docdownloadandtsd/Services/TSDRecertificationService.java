@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.scheduling.Trigger;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -36,115 +37,19 @@ public class TSDRecertificationService {
     @Autowired
     RpaldaRepository rpaldaRepository;
 
+    @Autowired
+    YUVASegmentService yuvaSegmentService;
+
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public HashMap<HashMap<String, Object>, HashMap<String, Object>> transactionDurationdEnabled(TransactionSelectionDurationVO tsdvo, String sumInfoId, String tsd) throws Exception{
+    public HashMap<TSDResponseVO, ArrayList<FirememExtractedResponseForTSD>> transactionDurationdEnabled(TransactionSelectionDurationVO tsdvo, String sumInfoId, String tsd) throws Exception{
 
-        String agentName = splunkService.getAgentName(sumInfoId);
+        HashMap<String, HashMap<String, Object>> jDapItemListFromBatch = TriggerBatchForTSD(sumInfoId, tsd);
 
-        ItemDetailsVO[] yuvaPojo = null;
-        agentName = agentName.trim();
-
-        try {
-            yuvaPojo = splunkService.getyuvasegmentusers(agentName, sumInfoId);
-        } catch (HttpClientErrorException httpClientErrorException) {
-            logger.info("Retrive item from Yuva/splunk error:"
-                    + Arrays.toString(httpClientErrorException.getStackTrace()));
-            throw new LoginExceptionHandler("Splunk Login Failure :" + httpClientErrorException.getMessage());
-        }
-
-        String accessTokenId = hammerServices.hammerLogin();
-
-        // please remove comment
-        ArrayList<String> agentBaseList = new ArrayList<String>();
-        agentBaseList.add(agentName);
-        Map<String, String> baseAgentMap = new HashMap<String, String>();
-        try {
-            baseAgentMap = splunkRepository.getAgentBase(agentBaseList);
-        } catch (Exception exception) {
-            logger.info("Issue with Splunk : " + Arrays.toString(exception.getStackTrace()));
-            throw new NullPointerExceptionHandler("Issue with Splunk :" + exception.getMessage());
-        }
-
-        if (baseAgentMap.isEmpty()) {
-            logger.info("Please provide correct agent name (case-sensetive) : " + agentName);
-            throw new NullPointerExceptionHandler("Please provide correct agent name (case-sensetive)");
-        }
-        String agentBaseName = baseAgentMap.get(agentName);
-        if (agentBaseName.equals("AgentBase") || agentBaseName.equals("Scripts")) {
-            agentBaseName = agentName;
-        }
-        HashMap<String, HashMap<String, Object>> jDapItemListFromBatch = new HashMap<String, HashMap<String, Object>>();
-        ArrayList<String> ignoreItemList = new ArrayList<String>();
-
-        //List<RequestResponseVO> rrvoList = new ArrayList<>();
-        //HashMap<String, Object> allFirememDataMap = new HashMap<>();
-
-        HashMap<String, String> itemReqIDMap1 = getRequestIDs(yuvaPojo, tsd, accessTokenId);
-
-        for(Map.Entry<String, String> itemMap : itemReqIDMap1.entrySet()) {
-            DumpDetailsVO ddvo = hammerServices.getDumpLink(itemMap.getValue(), itemMap.getKey(), sumInfoId, accessTokenId);
-            String dumpUrl = ddvo.getDumpUrl();
-            if(rpaldaRepository.isNullValue(dumpUrl)) {
-                continue;
-            }
-            String dbName = dumpUrl.substring(dumpUrl.indexOf("dbName=")+"dbName=".length(), dumpUrl.indexOf("&cobrandID"));
-            Integer errCode = ddvo.getStatusCode();
-            String itemId = ddvo.getCacheItem();
-            //RequestResponseVO rrvo = firememAjaxService.checkAjax(ddvo.getDumpUrl(), ddvo.getCacheItem(), ddvo.getStatusCode(), sumInfoId,dbName, tsd);
-            //rrvoList.add(rrvo);
-            HashMap<String, Object> dataMap = new HashMap<String, Object>();
-            dataMap.put("dumpUrl", dumpUrl);
-            dataMap.put("fmCode", errCode);
-
-            jDapItemListFromBatch.put(itemId + "|" + dbName, dataMap);
-        }
+        ArrayList<FirememExtractedResponseForTSD> allFirememDataMap = hammerServices.retriveDataFromFirememForTSD(jDapItemListFromBatch, tsd, tsdvo);
 
 
-        /*Integer batchDetailsId = hammerServices.createBatchForTSD(yuvaPojo, accessTokenId, agentBaseName, "msa");
-        Integer batchReqDetailsId = hammerServices.triggerBatchForTSD(batchDetailsId, accessTokenId, "DL", "", tsd);
-        JSONObject batchResultList = hammerServices.pollingTriggerBatch(batchReqDetailsId, accessTokenId);
-
-        JSONArray jDapBatchResultArray = batchResultList.getJSONArray("batchResultList");
-
-        System.out.println(jDapBatchResultArray);
-
-        for (int i = 0; i < jDapBatchResultArray.length(); i++) {
-            JSONObject itemObj = jDapBatchResultArray.getJSONObject(i);
-            String dumpUrl = itemObj.optString("dumpUrl");
-            Integer itemId = itemObj.optInt("itemId");
-            Integer fmLatency = itemObj.optInt("fmLatency");
-            Integer fmCode = itemObj.optInt("fmCode");
-            String dbName = itemObj.optString("dbName");
-            String respType = itemObj.optString("responseType");
-            String sumInfoIds = itemObj.optString("sumInfoId");
-
-            if (dumpUrl == null || "".equals(dumpUrl)) {
-                ignoreItemList.add(itemId + "|" + dbName);
-                continue;
-            }
-
-            if(!rpaldaRepository.isNullValue(respType) && !respType.equalsIgnoreCase("containerresponse")
-            && !rpaldaRepository.isNullValue(sumInfoIds)&& !sumInfoId.trim().equalsIgnoreCase(sumInfoIds)) {
-                ignoreItemList.add(itemId + "|" + dbName);
-                continue;
-            }
-
-
-
-            HashMap<String, Object> dataMap = new HashMap<String, Object>();
-            dataMap.put("dumpUrl", dumpUrl);
-            dataMap.put("fmLatency", fmLatency);
-            dataMap.put("fmCode", fmCode);
-
-            jDapItemListFromBatch.put(itemId + "|" + dbName, dataMap);
-        }
-*/
-        HashMap<String, Object> allFirememDataMap = hammerServices.retriveDataFromFirememForTSD(jDapItemListFromBatch, tsd);
-
-        HashMap<String, Object> dataValues = new HashMap<>();
-        HashMap<HashMap<String, Object>, HashMap<String, Object>> finalMap = new HashMap<>();
 
         int countPresent = 0;
         int countAbsent = 0;
@@ -153,40 +58,35 @@ public class TSDRecertificationService {
         String message = null;
         int max_value = -1;
 
-        for(Map.Entry<String, Object> fmData : allFirememDataMap.entrySet()) {
+        HashMap<TSDResponseVO, ArrayList<FirememExtractedResponseForTSD>> finalMap = new HashMap<>();
 
-            Object ob = fmData.getValue();
+        for(FirememExtractedResponseForTSD fmData : allFirememDataMap) {
 
-            if(ob instanceof FirememExtractedResponseForTSD) {
 
-                if(rpaldaRepository.isNullValue(((FirememExtractedResponseForTSD) ob).getJdapXMLResponse())){
+                if(rpaldaRepository.isNullValue(fmData.getJdapXMLResponse())){
                         continue;
                 }
 
-                if (((FirememExtractedResponseForTSD) ob).isTsdGenuine()) {
-                    System.out.println("here111");
+                if (fmData.isTsdGenuine()) {
                     if(messageFound == null) {
                         messageFound = "Yes";
                     }
                     countPresent=countPresent+1;
                 }
                 else{
-                    System.out.println("here222");
                     if(messageNotFound == null) {
                         messageNotFound = "No";
                     }
                     countAbsent=countAbsent+1;
                 }
 
-                String max_date = ((FirememExtractedResponseForTSD) ob).getIsTSDPresent();
+                String max_date = (fmData).getIsTSDPresent();
                     if(max_date.matches("[0-9]+")) {
                         int valMaxDate = Integer.parseInt(max_date);
                         if(max_value < valMaxDate) {
                             max_value = valMaxDate;
                         }
                     }
-            }
-
         }
 
         if(messageFound==null && messageNotFound==null) {
@@ -202,7 +102,6 @@ public class TSDRecertificationService {
 
         String countPercent = null;
         if(Integer.toString(countPresent).equals("0") && Integer.toString(countAbsent).equals("0")) {
-            System.out.println("here1111====");
             countPercent = "0%";
         }else {
             int countFinal = countPresent + countAbsent;
@@ -220,19 +119,24 @@ public class TSDRecertificationService {
             maxTSDFM = Integer.toString(max_value);
         }
 
-        dataValues.put("isTSDPresent", message);
-        dataValues.put("tsdPercentage", countPercent);
-        dataValues.put("maxTSD", maxTSDFM);
 
-        dataValues.put("migID", tsdvo.getMigId());
-        dataValues.put("migratedBy", tsdvo.getMigratedBy());
-        dataValues.put("tsdSeed", tsdvo.getTransactionDurationSeed());
-        dataValues.put("tsdProd", tsdvo.getTransactionDurationProd());
-        dataValues.put("requestedDate", tsdvo.getRequestedDate());
-        dataValues.put("type", "TransactionSelectionDurationVO");
-        dataValues.put("sumInfoID", tsdvo.getSumInfoId());
 
-        finalMap.put(allFirememDataMap, dataValues);
+        TSDResponseVO tResponse = new TSDResponseVO();
+        tResponse.setSumInfoId(tsdvo.getSumInfoId());
+        tResponse.setIsTSDPresent(message);
+        tResponse.setTSDPercentage(countPercent);
+        tResponse.setMigId(tsdvo.getMigId());
+        tResponse.setMigratedBy(tsdvo.getMigratedBy());
+        tResponse.setTransactionSelectionDurationSeed(tsdvo.getTransactionDurationSeed());
+        tResponse.setTransactionSelectionDurationProd(tsdvo.getTransactionDurationProd());
+        tResponse.setRequestedDate(tsdvo.getRequestedDate());
+        tResponse.setMetaDataType("TransactionSelectionDuration");
+
+
+
+
+
+        finalMap.put(tResponse, allFirememDataMap);
 
         return finalMap;
 
@@ -261,5 +165,43 @@ public class TSDRecertificationService {
         return dumpLink;
     }
 
+    public HashMap<String, HashMap<String, Object>> TriggerBatchForTSD(String sumInfoId, String tsd) throws Exception{
+
+        String agentName = splunkService.getAgentName(sumInfoId);
+        agentName = agentName.trim();
+
+
+        ItemDetailsVO[] yuvaUsers = yuvaSegmentService.getYUVASegments(agentName, sumInfoId);
+
+
+        String accessTokenId = hammerServices.hammerLogin();
+
+
+
+        HashMap<String, HashMap<String, Object>> jDapItemListFromBatch = new HashMap<String, HashMap<String, Object>>();
+        ArrayList<String> ignoreItemList = new ArrayList<String>();
+
+
+        HashMap<String, String> itemReqIDMap1 = getRequestIDs(yuvaUsers, tsd, accessTokenId);
+
+        for(Map.Entry<String, String> itemMap : itemReqIDMap1.entrySet()) {
+            DumpDetailsVO ddvo = hammerServices.getDumpLink(itemMap.getValue(), itemMap.getKey(), sumInfoId, accessTokenId);
+            String dumpUrl = ddvo.getDumpUrl();
+            if(rpaldaRepository.isNullValue(dumpUrl)) {
+                continue;
+            }
+            String dbName = dumpUrl.substring(dumpUrl.indexOf("dbName=")+"dbName=".length(), dumpUrl.indexOf("&cobrandID"));
+            Integer errCode = ddvo.getStatusCode();
+            String itemId = ddvo.getCacheItem();
+
+
+            HashMap<String, Object> dataMap = new HashMap<String, Object>();
+            dataMap.put("dumpUrl", dumpUrl);
+            dataMap.put("fmCode", errCode);
+
+            jDapItemListFromBatch.put(itemId + "|" + dbName, dataMap);
+        }
+        return jDapItemListFromBatch;
+    }
 
 }

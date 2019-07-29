@@ -158,7 +158,7 @@ public class HammerServicesImpl {
 		ObjectMapper mapper = new ObjectMapper();
 
 		String request = mapper.writeValueAsString(action);
-		System.out.println(request);
+		System.out.println("Generating Request from Hammer Services"+request);
 
 		HttpEntity<String> requestEntity = new HttpEntity<String>(request,header);
 		String response = restTemplate.postForObject("https://firemem.tools.yodlee.com/hammer/R/F/IR", requestEntity, String.class);
@@ -219,6 +219,7 @@ public class HammerServicesImpl {
 		HttpEntity<Map<String, Object>> requestEntityForBatchCreation = new HttpEntity<Map<String, Object>>(batchCreationRequestBody,headers);
 
 		String batchCreationResponse = restTemplate.postForObject(BATCH_CREATION_URL, requestEntityForBatchCreation, String.class);
+
 		logger.info("Batch Creation Response :"+batchCreationResponse);
 
 		JSONObject batchCreatonResponseObject = new JSONObject(batchCreationResponse);
@@ -366,7 +367,16 @@ public class HammerServicesImpl {
 		if(appRequestId.equals("REJECTED")) {
 			String statusMsg= triggerBatchResponse.getString("statusMsg");
 			logger.info("Batch Trigger response : "+triggerBatchResponse.toString());
-			throw new GeneralErrorHandler("Batch Trigger Status : "+appRequestId +" | Status Msg : "+statusMsg);
+			if (statusMsg.contains("ajaxtool")){
+				String batchid = statusMsg.substring(statusMsg.indexOf("Batch Id")+9);
+				batchid = batchid.substring(0,batchid.indexOf(" "));
+				Integer batchOldReq = Integer.parseInt(batchid);
+				System.out.println("old batch request id: "+batchOldReq);
+				return batchOldReq;
+
+			}else {
+				throw new GeneralErrorHandler("Batch Trigger Status : " + appRequestId + " | Status Msg : " + statusMsg);
+			}
 		}
 
 		JSONArray batchReqDetailList=triggerBatchResponse.getJSONArray("batchReqDetailList");
@@ -468,7 +478,16 @@ public class HammerServicesImpl {
 		if(appRequestId.equals("REJECTED")) {
 			String statusMsg= triggerBatchResponse.getString("statusMsg");
 			logger.info("Batch Trigger response : "+triggerBatchResponse.toString());
-			throw new GeneralErrorHandler("Batch Trigger Status : "+appRequestId +" | Status Msg : "+statusMsg);
+			if (statusMsg.contains("ajaxtool")){
+						String batchid = statusMsg.substring(statusMsg.indexOf("Batch Id")+9);
+						batchid = batchid.substring(0,batchid.indexOf(" "));
+						Integer batchOldReq = Integer.parseInt(batchid);
+						System.out.println("old batch request id: "+batchOldReq);
+						return batchOldReq;
+
+			}else {
+				throw new GeneralErrorHandler("Batch Trigger Status : " + appRequestId + " | Status Msg : " + statusMsg);
+			}
 		}
 
 		JSONArray batchReqDetailList=triggerBatchResponse.getJSONArray("batchReqDetailList");
@@ -549,7 +568,7 @@ public class HammerServicesImpl {
 					//String itemId = itemJson.optInt("itemId");
 					//logger.info("refreshable"+refreshable);
 					if(dumpUrl == null && refreshable) {
-						//System.out.println("isBatchRefreshComplete is "+isBatchRefreshComplete);
+						System.out.println("isBatchRefreshComplete is "+isBatchRefreshComplete);
 						isBatchRefreshComplete=false;
 						//itemListmap.put(itemId, true);
 					}
@@ -559,8 +578,7 @@ public class HammerServicesImpl {
 			}
 
 			poolingCount++;
-			System.out.println("poolingCount "+poolingCount);
-			poolingCount++;
+			System.out.println("poolingCount "+poolingCount+"| Batch Status ID: "+batchStatusId);
 
 		} while (! (batchStatusId.equals(5) ||  batchStatusId.equals(4) ||  batchStatusId.equals(7)) || ! isBatchRefreshComplete);
 //logger.info("batchStatusId outside "+batchStatusId+ " isBatchRefreshzComplete :"+isBatchRefreshComplete);
@@ -598,6 +616,8 @@ public class HammerServicesImpl {
 		System.out.println("Req Ids here--- "+reqId);
 		DumpDetailsVO dumpDetails=new DumpDetailsVO();
 		dumpDetails.setCacheItem(cacheItem);
+
+
 
 		for(int wait=0;wait<300;wait+=7){
 
@@ -712,9 +732,9 @@ public class HammerServicesImpl {
 			// JDAP Firemem Access and retrive
 			String jDapFirememResponse= restTemplate.getForObject(jDApDumpUrl, String.class);
 			String jDapFirememXML = fetchFinalSiteXML(jDapFirememResponse);
-			logger.info("JDAP FIRMEM => jDapFirememXML : "+jDapFirememXML);
+			//logger.info("JDAP FIRMEM => jDapFirememXML : "+jDapFirememXML);
 			String jDapAccountSummaryXML=getAccountSummaryXML(jDapFirememResponse);
-			logger.info("JDAP FIRMEM => jDapAccountSummaryXML : "+jDapAccountSummaryXML);
+			//logger.info("JDAP FIRMEM => jDapAccountSummaryXML : "+jDapAccountSummaryXML);
 
 			//AJAX Firemem Access and retrive
 			String ajaxFirememResponse= restTemplate.getForObject(ajaxDumpUrl, String.class);
@@ -742,13 +762,13 @@ public class HammerServicesImpl {
 		return firememExtractedAjaxResponseListMap;
 	}
 
-	public HashMap<String,Object> retriveDataFromFirememForDocDownload(HashMap<String, HashMap<String,Object>> jDapItemListFromBatch)
+	public ArrayList<FirememExtractedResponseForDocumentDownload> retriveDataFromFirememForDocDownload(HashMap<String, HashMap<String,Object>> jDapItemListFromBatch, DocDownloadVO ddvo)
 			throws JSONException, IOException {
 		logger.info("######################################### retriveDataFromFiremem #########################################");
 		ClientHttpRequestFactory requestFactory = getClientHttpRequestFactory();
 		RestTemplate restTemplate = new RestTemplate(requestFactory);
 
-		HashMap<String,Object> docDownloadResponseMap= new HashMap<String,Object>();
+		ArrayList<FirememExtractedResponseForDocumentDownload> docDownloadResponseMap= new ArrayList<>();
 
 		for(String jDapItemId: jDapItemListFromBatch.keySet()) {
 			logger.info("Item ID :"+jDapItemId);
@@ -791,24 +811,25 @@ public class HammerServicesImpl {
 			docResponse.setErrorCode(jDapFmCode);
 			docResponse.setJdapDumpUrl(jDApDumpUrlToSend);
 			docResponse.setItemId(jDapItemId);
+			docResponse.setMigId(ddvo.getMigId());
 			if(!rpaldaRepository.isNullValue(jDapFirememXML) && jDapFirememXML.contains("DOC_DOWNLOADED") && jDapFirememXML.contains("<documentId>")) {
 				docResponse.setDocPresent(true);
 			}else{
 				docResponse.setDocPresent(false);
 			}
 
-			docDownloadResponseMap.put(jDapItemId,docResponse);
+			docDownloadResponseMap.add(docResponse);
 		}
 		return docDownloadResponseMap;
 	}
 
-	public HashMap<String,Object> retriveDataFromFirememForTSD(HashMap<String, HashMap<String,Object>> jDapItemListFromBatch, String tsd)
+	public ArrayList<FirememExtractedResponseForTSD> retriveDataFromFirememForTSD(HashMap<String, HashMap<String,Object>> jDapItemListFromBatch, String tsd, TransactionSelectionDurationVO tsdvo)
 			throws JSONException, IOException, ParseException {
 		logger.info("######################################### retriveDataFromFiremem #########################################");
 		ClientHttpRequestFactory requestFactory = getClientHttpRequestFactory();
 		RestTemplate restTemplate = new RestTemplate(requestFactory);
 
-		HashMap<String,Object> docDownloadResponseMap= new HashMap<String,Object>();
+		ArrayList<FirememExtractedResponseForTSD> docDownloadResponseMap= new ArrayList<>();
 
 		for(String jDapItemId: jDapItemListFromBatch.keySet()) {
 			long lastDiffDays = 0;
@@ -846,6 +867,7 @@ public class HammerServicesImpl {
 				jDapFirememResponse = restTemplate.getForObject(jDApDumpUrl, String.class);
 			}catch (Exception e){
 				System.out.println("Unable to retrieve firemem for this user"+e);
+				continue;
 			}
 
 			String jDapFirememXML = fetchFinalSiteXML(jDapFirememResponse);
@@ -856,6 +878,7 @@ public class HammerServicesImpl {
 			docResponse.setErrorCode(jDapFmCode);
 			docResponse.setJdapDumpUrl(jDApDumpUrlToSend);
 			docResponse.setItemId(jDapItemId);
+			docResponse.setMigId(tsdvo.getMigId());
 
 			if(!rpaldaRepository.isNullValue(jDapFirememXML)) {
 				String finalXml=jDapFirememXML;
@@ -944,7 +967,7 @@ public class HammerServicesImpl {
 
 			}
 
-			docDownloadResponseMap.put(jDapItemId,docResponse);
+			docDownloadResponseMap.add(docResponse);
 		}
 		return docDownloadResponseMap;
 	}

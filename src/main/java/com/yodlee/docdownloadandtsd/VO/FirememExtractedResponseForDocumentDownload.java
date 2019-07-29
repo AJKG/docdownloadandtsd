@@ -1,9 +1,14 @@
 package com.yodlee.docdownloadandtsd.VO;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "UserList")
 public class FirememExtractedResponseForDocumentDownload {
 
+    @Id
     private String itemId;
 
     private String jdapXMLResponse;
@@ -14,6 +19,8 @@ public class FirememExtractedResponseForDocumentDownload {
 
     private boolean docPresent;
 
+    private String migId;
+
     @JsonIgnore
     public String getJdapXMLResponse() {
         return jdapXMLResponse;
@@ -23,6 +30,7 @@ public class FirememExtractedResponseForDocumentDownload {
         this.jdapXMLResponse = jdapXMLResponse;
     }
 
+    @JsonProperty
     public String getErrorCode() {
         return errorCode;
     }
@@ -31,6 +39,7 @@ public class FirememExtractedResponseForDocumentDownload {
         this.errorCode = errorCode;
     }
 
+    @JsonProperty
     public String getJdapDumpUrl() {
         return jdapDumpUrl;
     }
@@ -39,6 +48,7 @@ public class FirememExtractedResponseForDocumentDownload {
         this.jdapDumpUrl = jdapDumpUrl;
     }
 
+    @JsonProperty
     public boolean isDocPresent() {
         return docPresent;
     }
@@ -47,12 +57,22 @@ public class FirememExtractedResponseForDocumentDownload {
         this.docPresent = docPresent;
     }
 
+    @JsonProperty
     public String getItemId() {
         return itemId;
     }
 
     public void setItemId(String itemId) {
         this.itemId = itemId;
+    }
+
+    @JsonProperty
+    public String getMigId() {
+        return migId;
+    }
+
+    public void setMigId(String migId) {
+        this.migId = migId;
     }
 
     @Override

@@ -25,15 +25,6 @@
             <scope>test</scope>
         </dependency>
 
-       <!-- <dependency>
-            <groupId>com.yodlee.Application</groupId>
-            <artifactId>AjaxAgentTool </artifactId>
-            <version>1-SNAPSHOT</version>
-            <scope>system</scope>
-            <systemPath>
-                C:/Users/cbatra/Perforce/cbatra_IN-L1499_4593/razor/iaetools/ajaxservices/target/AjaxAgentTool-1-SNAPSHOT.jar
-            </systemPath>
-        </dependency>-->
 
         <!-- https://mvnrepository.com/artifact/com.oracle.jdbc/ojdbc8 -->
        <dependency>
@@ -99,11 +90,6 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
@@ -131,6 +117,10 @@
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>
             <version>3.3.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
         <dependency>
             <groupId>org.webjars</groupId>

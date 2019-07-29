@@ -27,60 +27,38 @@ public class RpaldaRepository {
     @Qualifier("repaldaJdbcTemplate")
     JdbcTemplate jdbcRepalda;
 
-    //Testing from Chetan's Account
+
     public List<Object> getDiff() throws Exception {
 
-        List<DataDiffDetailsVO> dataList = new ArrayList<>();
+        List<Object> list = new ArrayList<>();
+
+
+        List<DataDiffDetailsVO> dataDiffList = executeRpaldaQuery();
+
+        Map<String, String> tsdParamValues = executeRepaldaTSDQuery(dataDiffList);
+
+
+
         List<TransactionSelectionDurationVO> tsdList = new ArrayList<>();
         List<CacheRunVO> cacheRunList = new ArrayList<>();
         List<DocDownloadVO> docDownloadList = new ArrayList<>();
 
-        List<Object> list = new ArrayList<>();
-
-        Map<String, String> tsdParamValues = new HashMap<>();
-
-        try{
-            String sql = "select mig_id, migrated_by, sum_info_id, data_diff, request_date from migration_request where REQUEST_DATE > sysdate-5 and data_diff is not null and migrated_by is not null";
-            List<Map<String, Object>> rows = jdbc.queryForList(sql);
-
-            for (Map row : rows) {
-                DataDiffDetailsVO diff = new DataDiffDetailsVO();
-                diff.setMigId(""+row.get("mig_id"));
-                diff.setMigratedBy(""+row.get("migrated_by"));
-                diff.setSumInfoId(""+row.get("sum_info_id"));
-                diff.setDataDiff(""+row.get("data_diff"));
-                diff.setRequestedDate(""+row.get("request_date"));
-                dataList.add(diff);
-            }
-
-        }catch (EmptyResultDataAccessException e) {
-            System.out.println(e);
-            return null;
-        }
-
-        String allSumInfo = "";
-        HashSet<String> hs = new HashSet<>();
-
-        for(DataDiffDetailsVO dddvo : dataList) {
-            if(!hs.contains(dddvo.getSumInfoId())) {
-                hs.add(dddvo.getSumInfoId());
-                allSumInfo = allSumInfo + dddvo.getSumInfoId() + ",";
-            }
-        }
-
-        allSumInfo = allSumInfo.substring(0, allSumInfo.length()-1);
-        allSumInfo = allSumInfo.trim();
-
-        String sqlSuminfo = "select sum_info_id,sum_info_param_value_id from sum_info_param_value where sum_info_id in ("+allSumInfo+") and sum_info_param_key_id = 34";
-        List<Map<String, Object>> rowRepalda = jdbcRepalda.queryForList(sqlSuminfo);
-
-        for (Map row : rowRepalda) {
-            tsdParamValues.put(row.get("sum_info_id").toString(), row.get("sum_info_param_value_id").toString());
-        }
-
-        for(DataDiffDetailsVO diff : dataList) {
+        for(DataDiffDetailsVO diff : dataDiffList) {
 
             String dataDiff = diff.getDataDiff();
+
+            if(dataDiff.contains("DOC_TYPE_SUMINFO_CONFIG")) {
+                DocDownloadVO docDownload = new DocDownloadVO();
+                docDownload.setSumInfoId(diff.getSumInfoId());
+                docDownload.setMigId(diff.getMigId());
+                docDownload.setMigratedBy(diff.getMigratedBy());
+                docDownload.setRequestedDate(diff.getRequestedDate());
+                setSeedAndProdDocDownload(docDownload, dataDiff);
+                if(!isNullValue(docDownload.getDocDownloadSeed()) || !isNullValue(docDownload.getDocDownloadProd())) {
+                    docDownloadList.add(docDownload);
+                }
+            }
+
             if(dataDiff.contains("SUM_INFO_PARAM_VALUE_ID") && !isNullValue(tsdParamValues.get(diff.getSumInfoId())) && dataDiff.contains(tsdParamValues.get(diff.getSumInfoId()))) {
                 TransactionSelectionDurationVO tsd = new TransactionSelectionDurationVO();
                 tsd.setMigId(diff.getMigId());
@@ -92,17 +70,7 @@ public class RpaldaRepository {
                     tsdList.add(tsd);
                 }
             }
-            if(dataDiff.contains("DOC_TYPE_SUMINFO_CONFIG")) {
-                DocDownloadVO docDownload = new DocDownloadVO();
-                docDownload.setMigId(diff.getMigId());
-                docDownload.setMigratedBy(diff.getMigratedBy());
-                docDownload.setRequestedDate(diff.getRequestedDate());
-                docDownload.setSumInfoId(diff.getSumInfoId());
-                setSeedAndProdDocDownload(docDownload, dataDiff);
-                if(!isNullValue(docDownload.getDocDownloadSeed()) || !isNullValue(docDownload.getDocDownloadProd())) {
-                    docDownloadList.add(docDownload);
-                }
-            }
+
             if(dataDiff.contains("IS_CACHERUN_DISABLED")) {
                 CacheRunVO cacheRun = new CacheRunVO();
                 cacheRun.setMigId(diff.getMigId());
@@ -117,9 +85,7 @@ public class RpaldaRepository {
 
         }
 
-        System.out.println(tsdList.size());
-        System.out.println(docDownloadList.size());
-        System.out.println(cacheRunList.size());
+
 
         list.addAll(tsdList);
         list.addAll(docDownloadList);
@@ -228,4 +194,51 @@ public class RpaldaRepository {
         return (value == null || value.trim().length() == 0 || value.trim().equalsIgnoreCase("null")) ? true:false;
     }
 
+    private List<DataDiffDetailsVO> executeRpaldaQuery(){
+
+        List<DataDiffDetailsVO> dataDiffQueryOutput = new ArrayList<>();
+
+        try{
+            String sql = "select mig_id, migrated_by, sum_info_id, data_diff, request_date from migration_request where REQUEST_DATE > sysdate-5 and data_diff is not null and migrated_by is not null";
+            List<Map<String, Object>> rows = jdbc.queryForList(sql);
+
+            for (Map row : rows) {
+                DataDiffDetailsVO diff = new DataDiffDetailsVO();
+                diff.setMigId(""+row.get("mig_id"));
+                diff.setMigratedBy(""+row.get("migrated_by"));
+                diff.setSumInfoId(""+row.get("sum_info_id"));
+                diff.setDataDiff(""+row.get("data_diff"));
+                diff.setRequestedDate(""+row.get("request_date"));
+                dataDiffQueryOutput.add(diff);
+            }
+
+        }catch (EmptyResultDataAccessException e) {
+            System.out.println(e);
+            return null;
+        }
+        return dataDiffQueryOutput;
+    }
+
+    private Map<String, String> executeRepaldaTSDQuery(List<DataDiffDetailsVO> dataDiffList){
+
+        String allSumInfo = "";
+        Map<String, String> tsdParamValues = new HashMap<>();
+
+        for(DataDiffDetailsVO dddvo : dataDiffList) {
+            allSumInfo = allSumInfo + dddvo.getSumInfoId() + ",";
+
+        }
+
+        allSumInfo = allSumInfo.substring(0, allSumInfo.length()-1);
+        allSumInfo = allSumInfo.trim();
+
+        String sqlSuminfo = "select sum_info_id,sum_info_param_value_id from sum_info_param_value where sum_info_id in ("+allSumInfo+") and sum_info_param_key_id = 34";
+        List<Map<String, Object>> rowRepalda = jdbcRepalda.queryForList(sqlSuminfo);
+
+        for (Map row : rowRepalda) {
+            tsdParamValues.put(row.get("sum_info_id").toString(), row.get("sum_info_param_value_id").toString());
+        }
+
+        return tsdParamValues;
+    }
 }

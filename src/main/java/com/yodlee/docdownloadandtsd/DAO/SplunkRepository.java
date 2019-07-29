@@ -103,6 +103,7 @@ public class SplunkRepository {
 
 		String splunkPasswordTemp=authorization.decrypt(splunkPassword);
 
+		System.out.println("Password for Splunk: "+splunkPasswordTemp);
 		params.add("username", splunkUserId);
 		params.add("password", splunkPasswordTemp);
 
@@ -268,7 +269,7 @@ public class SplunkRepository {
 		params.put("Authorization", "Splunk " + splunkSession);
 
 		String response = get(url, params);
-		System.out.println(response);
+		System.out.println("Providing Response from Splunk Repository"+response);
 		response = response.substring(response.indexOf("results") + "results".length() + 2);
 
 		ItemDetailsVO[] itemDetails = new ObjectMapper().readValue(response, ItemDetailsVO[].class);
@@ -677,7 +678,14 @@ public class SplunkRepository {
 
 		JSONArray splunk_return_Array = new JSONArray();
 
-		for(int i=0;i<resultArray.length();i++) {
+		int resultArraylength;
+		if(resultArray.length()>5){
+			resultArraylength = 5;
+		}else{
+			resultArraylength = resultArray.length();
+		}
+
+		for(int i=0;i<resultArraylength;i++) {
 
 			JSONObject agentObject = (JSONObject) resultArray.get(i);
 

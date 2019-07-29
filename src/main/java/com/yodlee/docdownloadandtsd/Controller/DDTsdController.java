@@ -1,12 +1,13 @@
 package com.yodlee.docdownloadandtsd.Controller;
 
+
+import com.yodlee.docdownloadandtsd.DAO.DBAccessRepositoryImpl;
 import com.yodlee.docdownloadandtsd.DAO.RpaldaRepository;
 import com.yodlee.docdownloadandtsd.Services.DocDownloadRecertificationService;
+import com.yodlee.docdownloadandtsd.Services.ObjectResponseToJSON;
 import com.yodlee.docdownloadandtsd.Services.RpaldaService;
 import com.yodlee.docdownloadandtsd.Services.TSDRecertificationService;
-import com.yodlee.docdownloadandtsd.VO.CacheRunVO;
-import com.yodlee.docdownloadandtsd.VO.DocDownloadVO;
-import com.yodlee.docdownloadandtsd.VO.TransactionSelectionDurationVO;
+import com.yodlee.docdownloadandtsd.VO.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,190 +33,94 @@ public class DDTsdController {
     @Autowired
     TSDRecertificationService tsdRecertificationService;
 
-    public static HashMap<String, Object> docDownloadUsers = new HashMap<>();
+    @Autowired
+    DBAccessRepositoryImpl dbAccessRepository;
 
-    @RequestMapping(value="/TestClob",method={RequestMethod.GET})
+    @Autowired
+    ObjectResponseToJSON objectResponseToJSON;
+    
+
+    @RequestMapping(value="/MetaDataMonitoring",method={RequestMethod.GET})
     @ResponseBody
     public HashMap<Object, HashMap<String, Object>> getDBPushDifference() throws Exception{
+
         List<Object> resultList = rpaldaService.getDiff();
-        HashMap<Object, HashMap<String, Object>> fin = new HashMap<>();
 
+        HashMap<Object, HashMap<String, Object>> finalResponse = new HashMap<>();
 
-        //Testing for single sum_info_id
-        int countDoc = 0;
-        int countTSD = 0;
-
+        HashMap<DocResponseVO, ArrayList<FirememExtractedResponseForDocumentDownload>> obj = null;
+        HashMap<TSDResponseVO, ArrayList<FirememExtractedResponseForTSD>> objT = null;
+        int count = 0;
         for(Object res : resultList) {
+            System.out.println("Looping for CSID");
+
             List<Object> usersList = new ArrayList<>();
 
-            if(res instanceof DocDownloadVO && countDoc < 1) {
-                countDoc++;
-                String sumInfoId = "25627";
-                        //((DocDownloadVO) res).getSumInfoId();
+            String sumInfoId = "";
 
-                if(((DocDownloadVO) res).getDocDownloadSeed().equals("1")) {
-                    HashMap<HashMap<String, Object>, HashMap<String,Object>> obj = docDownloadRecService.docDownloadEnabled((DocDownloadVO)res, sumInfoId, "msa");
-                    for (Map.Entry<HashMap<String, Object>, HashMap<String, Object>> hmap : obj.entrySet()) {
-                        HashMap<String, Object> hV = hmap.getValue();
-                        HashMap<String, Object> hK = hmap.getKey();
-
-                        for(String values : hK.keySet()) {
-                            Object data = hK.get(values);
-                            usersList.add(data);
-                        }
-
-                        if(hV.get("isDocPresent").toString().equalsIgnoreCase("no")) {
-                            //do YCC changes
-                        }
-                        hV.put("users", usersList);
-                        fin.put(sumInfoId, hV);
-                    }
-
-
-
-                }else if(((DocDownloadVO) res).getDocDownloadSeed().equals("0")) {
-                    HashMap<HashMap<String, Object>, HashMap<String,Object>> obj = docDownloadRecService.docDownloadEnabled((DocDownloadVO)res,sumInfoId, "msa");
-                    for (Map.Entry<HashMap<String, Object>, HashMap<String, Object>> hmap : obj.entrySet()) {
-                        HashMap<String, Object> hV = hmap.getValue();
-                        HashMap<String, Object> hK = hmap.getKey();
-
-                        for(String values : hK.keySet()) {
-                            Object data = hK.get(values);
-                            usersList.add(data);
-                        }
-
-                        if(hV.get("isDocPresent").toString().equalsIgnoreCase("yes")) {
-                            //do YCC changes
-                        }
-                        hV.put("users", usersList);
-                        fin.put(sumInfoId, hV);
-                    }
+            if(res instanceof DocDownloadVO) {
+                count++;
+                if(count>1){
+                    System.out.println("Exiting after one istance of DOC");
+                    break;
                 }
+
+                System.out.println("Getting in to loop for DOC Download");
+                sumInfoId = ((DocDownloadVO) res).getSumInfoId();
+                if(((DocDownloadVO) res).getDocDownloadSeed().equals("1")) {
+                        obj = docDownloadRecService.docDownloadEnabled((DocDownloadVO) res, sumInfoId, "cii");
+                }else if(((DocDownloadVO) res).getDocDownloadSeed().equals("0")) {
+                        obj = docDownloadRecService.docDownloadEnabled((DocDownloadVO) res, sumInfoId, "msa");
+                }
+                
             }
 
-            if(res instanceof TransactionSelectionDurationVO && countTSD < 1) {
-                countTSD++;
+            else if(res instanceof TransactionSelectionDurationVO) {
 
-                String tsdProd = "90";
-                        //""+((TransactionSelectionDurationVO) res).getTransactionDurationProd();
-                String tsdSeed = "0";
-                        //""+((TransactionSelectionDurationVO) res).getTransactionDurationSeed();
-                String sumInfoId = "663";
-                       // ((TransactionSelectionDurationVO) res).getSumInfoId();
+                String tsdProd = ""+((TransactionSelectionDurationVO) res).getTransactionDurationProd();
+                String tsdSeed = ""+((TransactionSelectionDurationVO) res).getTransactionDurationSeed();
+                sumInfoId = ((TransactionSelectionDurationVO) res).getSumInfoId();
+
                 if(rpaldaRepository.isNullValue(tsdProd)) {
                     tsdProd = "90";
                 }
 
                 if(Integer.parseInt(tsdProd) > Integer.parseInt(tsdSeed)) {
-                    HashMap<HashMap<String, Object>, HashMap<String,Object>> obj = tsdRecertificationService.transactionDurationdEnabled((TransactionSelectionDurationVO)res,sumInfoId, tsdProd);
-                    for (Map.Entry<HashMap<String, Object>, HashMap<String, Object>> hmap : obj.entrySet()) {
-                        HashMap<String, Object> hV = hmap.getValue();
-                        HashMap<String, Object> hK = hmap.getKey();
-
-                        for(String values : hK.keySet()) {
-                            Object data = hK.get(values);
-                            usersList.add(data);
-                        }
-
-                        if(hV.get("isTSDPresent").toString().equalsIgnoreCase("yes")) {
-                            //do YCC changes
-                        }
-                        hV.put("users", usersList);
-                        fin.put(sumInfoId, hV);
-                    }
+                     objT = tsdRecertificationService.transactionDurationdEnabled((TransactionSelectionDurationVO)res,sumInfoId, tsdProd);
                 }else{
-                    HashMap<HashMap<String, Object>, HashMap<String,Object>> obj = tsdRecertificationService.transactionDurationdEnabled((TransactionSelectionDurationVO)res,sumInfoId, tsdSeed);
-                    for (Map.Entry<HashMap<String, Object>, HashMap<String, Object>> hmap : obj.entrySet()) {
-                        HashMap<String, Object> hV = hmap.getValue();
-                        HashMap<String, Object> hK = hmap.getKey();
-
-                        for(String values : hK.keySet()) {
-                            Object data = hK.get(values);
-                            usersList.add(data);
-                        }
-                        if(hV.get("isTSDPresent").toString().equalsIgnoreCase("no")) {
-                            //do YCC changes
-                        }
-                        hV.put("users", usersList);
-                        fin.put(sumInfoId, hV);
-
-                    }
-                }
-
-            }
-
-        }
-
-        return fin;
-
-    }
-
-    @RequestMapping(value="/DocDownloadData",method={RequestMethod.GET})
-    @ResponseBody
-    public List<DocDownloadVO> docDownloadFunc() throws Exception {
-        List<Object> allList = rpaldaService.getDiff();
-        List<DocDownloadVO> ddvo = new ArrayList<>();
-        for(Object dList : allList) {
-            if(dList instanceof DocDownloadVO){
-                ddvo.add((DocDownloadVO)dList);
-            }
-        }
-        return ddvo;
-    }
-
-    @RequestMapping(value="/TSDData",method={RequestMethod.GET})
-    @ResponseBody
-    public List<TransactionSelectionDurationVO> transactionSelectionDurationFunc() throws Exception {
-        List<Object> allList = rpaldaService.getDiff();
-        List<TransactionSelectionDurationVO> tsdVoList = new ArrayList<>();
-        for(Object dList : allList) {
-            if(dList instanceof TransactionSelectionDurationVO){
-                tsdVoList.add((TransactionSelectionDurationVO)dList);
-            }
-        }
-        return tsdVoList;
-    }
-
-    @RequestMapping(value="/CacheRunData",method={RequestMethod.GET})
-    @ResponseBody
-    public List<CacheRunVO> cacheRunFunc() throws Exception {
-        List<Object> allList = rpaldaService.getDiff();
-        List<CacheRunVO> cacheRunVOList = new ArrayList<>();
-        for(Object dList : allList) {
-            if(dList instanceof CacheRunVO){
-                cacheRunVOList.add((CacheRunVO)dList);
-            }
-        }
-        return cacheRunVOList;
-    }
-
-    @RequestMapping(value="/docDownloadRecertify",method={RequestMethod.GET})
-    @ResponseBody
-    public HashMap<Object, HashMap<String, Object>> docDownloadRecertification() throws Exception {
-
-        HashMap<Object, HashMap<String, Object>> fin = new HashMap<>();
-        String[] sumInfo = {"3664", "1984", "12151", "10719", "10659", "12024", "9688", "26079", "25976", "7087"};
-
-        for (int i = 0; i < sumInfo.length; i++) {
-            Object res = sumInfo[i];
-            String sumInfoId = sumInfo[i];
-
-            HashMap<HashMap<String, Object>, HashMap<String, Object>> obj = docDownloadRecService.docDownloadEnabled((DocDownloadVO)res, sumInfoId, "msa");
-            if(obj!=null) {
-                for (Map.Entry<HashMap<String, Object>, HashMap<String, Object>> hmap : obj.entrySet()) {
-                    HashMap<String, Object> hV = hmap.getValue();
-                    if (hV.get("isDocPresent").toString().equalsIgnoreCase("no")) {
-                        //do YCC changes
-                    }
-                    fin.put(res, hV);
+                     objT = tsdRecertificationService.transactionDurationdEnabled((TransactionSelectionDurationVO)res,sumInfoId, tsdSeed);
                 }
             }
         }
 
-        return fin;
+        for (Map.Entry<DocResponseVO, ArrayList<FirememExtractedResponseForDocumentDownload>> hmap : obj.entrySet()) {
+            DocResponseVO ddr  = hmap.getKey();
+            ArrayList<FirememExtractedResponseForDocumentDownload> ddrU = hmap.getValue();
 
+            System.out.println("Inserting for Doc in to DB");
+            dbAccessRepository.AddDocResponseToDB(ddr);
+
+            for(FirememExtractedResponseForDocumentDownload ItemList : ddrU){
+                dbAccessRepository.AddUserResponse(ItemList);
+            }
+
+
+        }
+
+        for (Map.Entry<TSDResponseVO, ArrayList<FirememExtractedResponseForTSD>> hmapT : objT.entrySet()) {
+            TSDResponseVO ddT  = hmapT.getKey();
+            ArrayList<FirememExtractedResponseForTSD> ddrTU = hmapT.getValue();
+
+            System.out.println("Inserting for TSD in to DB");
+            dbAccessRepository.AddTSDResponseToDB(ddT);
+
+            for(FirememExtractedResponseForTSD ItemList : ddrTU){
+                dbAccessRepository.AddUserResponse(ItemList);
+            }
+
+        }
+
+        System.out.println("Execution Finished");
+        return finalResponse;
     }
-
-
-
 }
