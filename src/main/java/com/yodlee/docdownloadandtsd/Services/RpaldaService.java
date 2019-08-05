@@ -20,4 +20,9 @@ public class RpaldaService {
         return rpaldaRepository.getDiff();
     }
 
+    @Cacheable
+    public List<Object> getInput() throws Exception {
+        return rpaldaRepository.getInput();
+    }
+
 }

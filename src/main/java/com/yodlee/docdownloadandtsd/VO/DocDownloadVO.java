@@ -8,6 +8,7 @@ public class DocDownloadVO {
     private String docDownloadProd;
     private String requestedDate;
     private String sumInfoId;
+    private String agentName;
 
     public String getSumInfoId() {
         return sumInfoId;
@@ -57,11 +58,22 @@ public class DocDownloadVO {
         this.requestedDate = requestedDate;
     }
 
+    public String getAgentName() {
+        return agentName;
+    }
+
+    public void setAgentName(String agentName) {
+        this.agentName = agentName;
+    }
+
+
+
     @Override
     public String toString() {
         return "DocDownloadVO{" +
                 "migId='" + migId + '\'' +
                 ", migratedBy='" + migratedBy + '\'' +
+                ", agentName='" + agentName + '\'' +
                 ", docDownloadSeed='" + docDownloadSeed + '\'' +
                 ", docDownloadProd='" + docDownloadProd + '\'' +
                 ", requestedDate='" + requestedDate + '\'' +

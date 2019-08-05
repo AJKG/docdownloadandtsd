@@ -44,26 +44,23 @@ public class DDTsdController {
     @ResponseBody
     public HashMap<Object, HashMap<String, Object>> getDBPushDifference() throws Exception{
 
-        List<Object> resultList = rpaldaService.getDiff();
+       // List<Object> resultList = rpaldaService.getDiff();
+
+        List<Object> resultList = rpaldaService.getInput();
 
         HashMap<Object, HashMap<String, Object>> finalResponse = new HashMap<>();
 
         HashMap<DocResponseVO, ArrayList<FirememExtractedResponseForDocumentDownload>> obj = null;
         HashMap<TSDResponseVO, ArrayList<FirememExtractedResponseForTSD>> objT = null;
-        int count = 0;
+
         for(Object res : resultList) {
             System.out.println("Looping for CSID");
 
             List<Object> usersList = new ArrayList<>();
 
-            String sumInfoId = "";
+            String sumInfoId = "" ;
 
             if(res instanceof DocDownloadVO) {
-                count++;
-                if(count>1){
-                    System.out.println("Exiting after one istance of DOC");
-                    break;
-                }
 
                 System.out.println("Getting in to loop for DOC Download");
                 sumInfoId = ((DocDownloadVO) res).getSumInfoId();
@@ -72,7 +69,22 @@ public class DDTsdController {
                 }else if(((DocDownloadVO) res).getDocDownloadSeed().equals("0")) {
                         obj = docDownloadRecService.docDownloadEnabled((DocDownloadVO) res, sumInfoId, "msa");
                 }
-                
+
+                for (Map.Entry<DocResponseVO, ArrayList<FirememExtractedResponseForDocumentDownload>> hmap : obj.entrySet()) {
+                    DocResponseVO ddr  = hmap.getKey();
+                    ArrayList<FirememExtractedResponseForDocumentDownload> ddrU = hmap.getValue();
+
+                    System.out.println("Inserting for Doc in to DB: "+sumInfoId);
+                    dbAccessRepository.AddDocResponseToDB(ddr);
+
+                    if(ddrU!=null) {
+                        for (FirememExtractedResponseForDocumentDownload ItemList : ddrU) {
+                            dbAccessRepository.AddUserResponse(ItemList);
+                        }
+                    }
+
+
+                }
             }
 
             else if(res instanceof TransactionSelectionDurationVO) {
@@ -84,38 +96,27 @@ public class DDTsdController {
                 if(rpaldaRepository.isNullValue(tsdProd)) {
                     tsdProd = "90";
                 }
-
+                System.out.println("Getting in to loop for TSD");
                 if(Integer.parseInt(tsdProd) > Integer.parseInt(tsdSeed)) {
                      objT = tsdRecertificationService.transactionDurationdEnabled((TransactionSelectionDurationVO)res,sumInfoId, tsdProd);
                 }else{
                      objT = tsdRecertificationService.transactionDurationdEnabled((TransactionSelectionDurationVO)res,sumInfoId, tsdSeed);
                 }
-            }
-        }
 
-        for (Map.Entry<DocResponseVO, ArrayList<FirememExtractedResponseForDocumentDownload>> hmap : obj.entrySet()) {
-            DocResponseVO ddr  = hmap.getKey();
-            ArrayList<FirememExtractedResponseForDocumentDownload> ddrU = hmap.getValue();
+                for (Map.Entry<TSDResponseVO, ArrayList<FirememExtractedResponseForTSD>> hmapT : objT.entrySet()) {
+                    TSDResponseVO ddT  = hmapT.getKey();
+                    ArrayList<FirememExtractedResponseForTSD> ddrTU = hmapT.getValue();
 
-            System.out.println("Inserting for Doc in to DB");
-            dbAccessRepository.AddDocResponseToDB(ddr);
+                    System.out.println("Inserting for TSD in to DB: "+sumInfoId);
+                    dbAccessRepository.AddTSDResponseToDB(ddT);
 
-            for(FirememExtractedResponseForDocumentDownload ItemList : ddrU){
-                dbAccessRepository.AddUserResponse(ItemList);
-            }
+                    if(ddrTU!=null) {
+                        for (FirememExtractedResponseForTSD ItemList : ddrTU) {
+                            dbAccessRepository.AddUserResponse(ItemList);
+                        }
+                    }
 
-
-        }
-
-        for (Map.Entry<TSDResponseVO, ArrayList<FirememExtractedResponseForTSD>> hmapT : objT.entrySet()) {
-            TSDResponseVO ddT  = hmapT.getKey();
-            ArrayList<FirememExtractedResponseForTSD> ddrTU = hmapT.getValue();
-
-            System.out.println("Inserting for TSD in to DB");
-            dbAccessRepository.AddTSDResponseToDB(ddT);
-
-            for(FirememExtractedResponseForTSD ItemList : ddrTU){
-                dbAccessRepository.AddUserResponse(ItemList);
+                }
             }
 
         }
@@ -123,4 +124,25 @@ public class DDTsdController {
         System.out.println("Execution Finished");
         return finalResponse;
     }
+
+    @RequestMapping(value="/ViewDoc",method={RequestMethod.GET})
+    @ResponseBody
+    public List<DocResponseVO> getDocResponseFromDB() throws Exception{
+
+        List<DocResponseVO> DocMap = dbAccessRepository.getDocResponseFromDB();
+
+      return DocMap;
+    }
+
+    @RequestMapping(value="/ViewTSD",method={RequestMethod.GET})
+    @ResponseBody
+    public List<TSDResponseVO> getTSDResponseFromDB() throws Exception{
+
+        List<TSDResponseVO> TSDMap = dbAccessRepository.getTSDResponseFromDB();
+
+        return TSDMap;
+    }
+
+
+
 }

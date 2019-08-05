@@ -23,6 +23,8 @@ public class FirememExtractedResponseForTSD {
 
     private String migId;
 
+    private String itemType;
+
     @JsonIgnore
     public String getJdapXMLResponse() {
         return jdapXMLResponse;
@@ -75,6 +77,15 @@ public class FirememExtractedResponseForTSD {
 
     public void setItemId(String itemId) {
         this.itemId = itemId;
+    }
+
+    @JsonProperty
+    public String getItemType() {
+        return itemType;
+    }
+
+    public void setItemType(String itemType) {
+        this.itemType = itemType;
     }
 
     @JsonProperty

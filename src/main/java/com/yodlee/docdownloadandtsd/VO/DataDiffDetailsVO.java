@@ -7,6 +7,7 @@ public class DataDiffDetailsVO {
     private String migratedBy;
     private String requestedDate;
     private String migId;
+    private String agentName;
 
     public String getSumInfoId() {
         return sumInfoId;
@@ -48,11 +49,20 @@ public class DataDiffDetailsVO {
         this.migId = migId;
     }
 
+    public String getAgentName() {
+        return agentName;
+    }
+
+    public void setAgentName(String agentName) {
+        this.agentName = agentName;
+    }
+
     @Override
     public String toString() {
         return "DataDiffDetailsVO{" +
                 "sumInfoId='" + sumInfoId + '\'' +
                 ", dataDiff='" + dataDiff + '\'' +
+                ", agentName='" + agentName + '\'' +
                 ", migratedBy='" + migratedBy + '\'' +
                 ", requestedDate='" + requestedDate + '\'' +
                 ", migId='" + migId + '\'' +

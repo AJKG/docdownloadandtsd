@@ -8,6 +8,7 @@ public class TransactionSelectionDurationVO {
     private String transactionDurationProd;
     private String requestedDate;
     private String sumInfoId;
+    private String agentName;
 
     public String getSumInfoId() {
         return sumInfoId;
@@ -57,11 +58,20 @@ public class TransactionSelectionDurationVO {
         this.requestedDate = requestedDate;
     }
 
+    public String getAgentName() {
+        return agentName;
+    }
+
+    public void setAgentName(String agentName) {
+        this.agentName = agentName;
+    }
+
     @Override
     public String toString() {
         return "TransactionSelectionDurationVO{" +
                 "migId='" + migId + '\'' +
                 ", migratedBy='" + migratedBy + '\'' +
+                ", agentName='" + agentName + '\'' +
                 ", transactionDurationSeed='" + transactionDurationSeed + '\'' +
                 ", transactionDurationProd='" + transactionDurationProd + '\'' +
                 ", requestedDate='" + requestedDate + '\'' +

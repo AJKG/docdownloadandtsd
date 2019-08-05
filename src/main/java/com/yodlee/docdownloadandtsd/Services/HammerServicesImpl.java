@@ -230,7 +230,7 @@ public class HammerServicesImpl {
 			logger.info("Create Batch error :"+batchCreatonResponseObject.optString("statusMsg"));
 			throw new GeneralErrorHandler("Create Batch error :"+batchCreatonResponseObject.optString("statusMsg"));
 		}
-		logger.info("Create Batch => batchDetailsId:"+batchDetailsId);
+		System.out.println("Create Batch => batchDetailsId:"+batchDetailsId);
 		return batchDetailsId;
 	}
 
@@ -391,6 +391,117 @@ public class HammerServicesImpl {
 		return batchReqDetailsId;
 	}
 
+	public Integer triggerBatchForDocumentDownloadThroughSDG(Integer batchDetailsId,String accessTokenId, String customrefreshRoute, String customRoute)
+			throws JSONException,IOException {
+		logger.info("######################################### triggerBatch DOC SDG #########################################");
+		RestTemplate restTemplate = new RestTemplate();
+
+		/*Request Body to trigger the batch*/
+		HashMap<String, Object> batchTriggerRequestBody = new HashMap<String, Object>();
+		HashMap<String, Object> batchTriggerRequestParams = new HashMap<String, Object>();
+
+		ArrayList<String> al = new ArrayList<>();
+
+		batchTriggerRequestParams.put("serverType", "SA");
+		batchTriggerRequestParams.put("requestTypes", al);
+		batchTriggerRequestParams.put("prodCertified", true);
+		batchTriggerRequestParams.put("agentFileType", "JAVA");
+		batchTriggerRequestParams.put("customrefreshRoute", customrefreshRoute);
+
+		HashMap<String, Object> iavRequestMap = new HashMap<String, Object>();
+		iavRequestMap.put("accountNumberMatchPrefix","");
+		iavRequestMap.put("accountNumberMatchSuffix","");
+		iavRequestMap.put("paramKeyValues",new HashMap<>());
+
+		HashMap<String, Object> iavPlusRequestMap = new HashMap<String, Object>();
+		iavPlusRequestMap.put("iavPlus",false);
+		iavPlusRequestMap.put("paramKeyValues",new HashMap<>());
+
+		iavRequestMap.put("iavPlusRequest",iavPlusRequestMap);
+		batchTriggerRequestParams.put("iavRequest",iavRequestMap);
+
+		HashMap<String, Object> docDownloadRequestMap = new HashMap<String, Object>();
+		docDownloadRequestMap.put("pfm", false);
+		docDownloadRequestMap.put("latest", false);
+		docDownloadRequestMap.put("allAccounts", true);
+		docDownloadRequestMap.put("docDownloadRequest", false);
+		docDownloadRequestMap.put("durationType", "");
+		docDownloadRequestMap.put("taxDurationType", "");
+
+		HashMap<String, Object> statementRequest = new HashMap<String, Object>();
+		statementRequest.put("stmtDurationType", "");
+		statementRequest.put("taxDurationType", "");
+
+		docDownloadRequestMap.put("statementRequest", statementRequest);
+		batchTriggerRequestParams.put("docDownloadRequest",docDownloadRequestMap);
+
+
+		HashMap<String, Object> dataSetRequest = new HashMap<String, Object>();
+		HashMap<String, Object> basicAggregationData = new HashMap<String, Object>();
+		HashMap<String, Object> dataSetsMap = new HashMap<String, Object>();
+
+		dataSetsMap.put("BASIC_AGG_DATA.BASIC_ACCOUNT_INFO",true);
+		dataSetsMap.put("BASIC_AGG_DATA.ACCOUNT_DETAILS",true);
+		dataSetsMap.put("BASIC_AGG_DATA.STATEMENTS",true);
+
+		basicAggregationData.put("dataSetsMap", dataSetsMap);
+		dataSetRequest.put("basicAggregationData", basicAggregationData);
+
+
+		HashMap<String, Object> documentEnabled = new HashMap<String, Object>();
+		HashMap<String, Object> dataSetsMapDoc = new HashMap<String, Object>();
+
+		dataSetsMapDoc.put("DOCUMENT.TAX",true);
+		dataSetsMapDoc.put("DOCUMENT.EBILLS",true);
+		dataSetsMapDoc.put("DOCUMENT.STATEMENTS",true);
+
+		documentEnabled.put("dataSetsMap", dataSetsMapDoc);
+		dataSetRequest.put("document", documentEnabled);
+
+		batchTriggerRequestParams.put("dataSetRequest", dataSetRequest);
+
+		if(customRoute.equals("D")) {
+			batchTriggerRequestParams.put("refreshRoute",customRoute);
+		}else {
+			batchTriggerRequestParams.put("customRoute",customRoute);
+		}
+
+		batchTriggerRequestBody.put("batchRefreshParams", batchTriggerRequestParams);
+		batchTriggerRequestBody.put("batchDetailsId", batchDetailsId);
+		batchTriggerRequestBody.put("userName", hammerUserName);
+
+		logger.info("Batch Trigger Request Body :"+batchTriggerRequestBody);
+		HttpHeaders headers = getHeader(accessTokenId);
+
+		HttpEntity<Map<String, Object>> batchTriggerRequestEntity = new HttpEntity<Map<String, Object>>(batchTriggerRequestBody, headers);
+
+		String batchTriggerResponse = restTemplate.postForObject(BATCH_TRIGGER_URL, batchTriggerRequestEntity, String.class);
+
+		System.out.println("batchResp : " +batchTriggerResponse);
+
+		JSONObject triggerBatchResponse = new JSONObject(batchTriggerResponse);
+
+		String appRequestId =triggerBatchResponse.optString("appRequestId");
+
+		if(appRequestId.equals("REJECTED")) {
+			String statusMsg= triggerBatchResponse.getString("statusMsg");
+			logger.info("Batch Trigger response : "+triggerBatchResponse.toString());
+			throw new GeneralErrorHandler("Batch Trigger Status : "+appRequestId +" | Status Msg : "+statusMsg);
+		}
+
+		JSONArray batchReqDetailList=triggerBatchResponse.getJSONArray("batchReqDetailList");
+
+/*Integer batchStatusId= batchReqDetailList.getJSONObject(0).getInt("batchStatusId");
+if(batchStatusId==4) {
+
+}*/
+		Integer batchReqDetailsId= triggerBatchResponse.optInt("batchReqDetailsId");
+		logger.info("Batch Trigger => batchReqDetailsId:"+batchReqDetailsId);
+
+		return batchReqDetailsId;
+	}
+
+
 	public Integer triggerBatchForTSD(Integer batchDetailsId,String accessTokenId, String customrefreshRoute, String customRoute, String tsd)
 			throws JSONException,IOException {
 		logger.info("######################################### triggerBatch #########################################");
@@ -544,7 +655,7 @@ public class HammerServicesImpl {
 			batchPollingResponse = restTemplate.postForObject(BATCH_POLLING_URL, batchPollingRequestBodyEntity, String.class);
 
 			if(poolingCount>0) {
-				Thread.sleep(7000);
+				Thread.sleep(5000);
 			}
 			
 			//logger.info(batchPollingResponse);
@@ -579,6 +690,9 @@ public class HammerServicesImpl {
 
 			poolingCount++;
 			System.out.println("poolingCount "+poolingCount+"| Batch Status ID: "+batchStatusId);
+			if(batchStatusId==7){
+				System.out.println("Batch Partially Completed");
+			}
 
 		} while (! (batchStatusId.equals(5) ||  batchStatusId.equals(4) ||  batchStatusId.equals(7)) || ! isBatchRefreshComplete);
 //logger.info("batchStatusId outside "+batchStatusId+ " isBatchRefreshzComplete :"+isBatchRefreshComplete);
@@ -611,7 +725,7 @@ public class HammerServicesImpl {
 		return header;
 	}
 
-	public DumpDetailsVO getDumpLink(String reqId,String cacheItem, String sumInfoId, String token) throws Exception{
+	public DumpDetailsVO getDumpLink(String reqId,String cacheItem, String sumInfoId, String token, int itemNo) throws Exception{
 
 		System.out.println("Req Ids here--- "+reqId);
 		DumpDetailsVO dumpDetails=new DumpDetailsVO();
@@ -619,16 +733,23 @@ public class HammerServicesImpl {
 
 
 
-		for(int wait=0;wait<300;wait+=7){
+
+		for(int wait=0;wait<10;wait+=1){
 
 			String dumpResponse=getDumpUrl(reqId, token);
 			if(!rpaldaRepository.isNullValue(dumpResponse) && dumpResponse.toLowerCase().contains("token expired")) {
 				token = hammerLogin();
 				dumpResponse=getDumpUrl(reqId, token);
 			}
+			if(dumpResponse==null){
+				System.out.println("DumpResponse is null while Getting Dump link, Hence Retrying");
+				continue;
+			}
 			JSONObject firememResponse=new JSONObject(dumpResponse);
 			String runningStatus=firememResponse.get("refreshStateDescriptions").toString();
-			System.out.println("Waiting for "+reqId);
+			if(itemNo==1){
+				System.out.println("Waiting for: "+(wait*30)+" Seconds"+" | "+reqId);
+			}
 			if(runningStatus.contains("Success")){
 				System.out.println(firememResponse);
 				System.out.println("Yeyy!! Gottt");
@@ -639,7 +760,11 @@ public class HammerServicesImpl {
 			}else if(runningStatus.contains("Failed")) {
 				break;
 			}
-			Thread.sleep(7000);
+			if(itemNo==1) {
+				Thread.sleep(30000);
+			}else{
+				Thread.sleep(1000);
+			}
 		}
 		return dumpDetails;
 	}
@@ -656,9 +781,13 @@ public class HammerServicesImpl {
 		try {
 			response = restTemplate.postForObject("https://firemem.tools.yodlee.com/hammer/R/F/RS", requestEntity, String.class);
 		}catch (Exception e) {
-			e.printStackTrace();
+            try {
+                response = restTemplate.postForObject("https://firemem.tools.yodlee.com/hammer/R/F/RS", requestEntity, String.class);
+            }catch (Exception e1) {
+                e1.printStackTrace();
+            }
 		}
-		System.out.println("response here "+response);
+		//System.out.println("response here "+response);
 		return response;
 	}
 
@@ -764,11 +893,13 @@ public class HammerServicesImpl {
 
 	public ArrayList<FirememExtractedResponseForDocumentDownload> retriveDataFromFirememForDocDownload(HashMap<String, HashMap<String,Object>> jDapItemListFromBatch, DocDownloadVO ddvo)
 			throws JSONException, IOException {
-		logger.info("######################################### retriveDataFromFiremem #########################################");
+		logger.info("######################################### retriveDataFromFirememForDocDownload #####################################");
 		ClientHttpRequestFactory requestFactory = getClientHttpRequestFactory();
 		RestTemplate restTemplate = new RestTemplate(requestFactory);
 
 		ArrayList<FirememExtractedResponseForDocumentDownload> docDownloadResponseMap= new ArrayList<>();
+
+		System.out.println("Length of itemlist for DocDownload: "+jDapItemListFromBatch.size());
 
 		for(String jDapItemId: jDapItemListFromBatch.keySet()) {
 			logger.info("Item ID :"+jDapItemId);
@@ -798,10 +929,15 @@ public class HammerServicesImpl {
 				jDapFmCode= Integer.toString((Integer)jDapFmCodeObj);
 			}
 
+			String itemType = jDapItemDetailsMap.get("itemType").toString();
+
 			// JDAP Firemem Access and retrive
 			String jDapFirememResponse= restTemplate.getForObject(jDApDumpUrl, String.class);
 
 			String jDapFirememXML = fetchFinalSiteXML(jDapFirememResponse);
+			if(jDapFirememXML==null){
+				continue;
+			}
 			logger.info("JDAP FIRMEM => jDapFirememXML : "+jDapFirememXML);
 			String jDapAccountSummaryXML=getAccountSummaryXML(jDapFirememResponse);
 			logger.info("JDAP FIRMEM => jDapAccountSummaryXML : "+jDapAccountSummaryXML);
@@ -809,6 +945,7 @@ public class HammerServicesImpl {
 			FirememExtractedResponseForDocumentDownload docResponse = new FirememExtractedResponseForDocumentDownload();
 			docResponse.setJdapXMLResponse(jDapFirememXML);
 			docResponse.setErrorCode(jDapFmCode);
+			docResponse.setItemType(itemType);
 			docResponse.setJdapDumpUrl(jDApDumpUrlToSend);
 			docResponse.setItemId(jDapItemId);
 			docResponse.setMigId(ddvo.getMigId());
@@ -825,11 +962,11 @@ public class HammerServicesImpl {
 
 	public ArrayList<FirememExtractedResponseForTSD> retriveDataFromFirememForTSD(HashMap<String, HashMap<String,Object>> jDapItemListFromBatch, String tsd, TransactionSelectionDurationVO tsdvo)
 			throws JSONException, IOException, ParseException {
-		logger.info("######################################### retriveDataFromFiremem #########################################");
+		logger.info("######################################### retriveDataFromFiremem#########################################");
 		ClientHttpRequestFactory requestFactory = getClientHttpRequestFactory();
 		RestTemplate restTemplate = new RestTemplate(requestFactory);
 
-		ArrayList<FirememExtractedResponseForTSD> docDownloadResponseMap= new ArrayList<>();
+		ArrayList<FirememExtractedResponseForTSD> TSDResponseMap= new ArrayList<>();
 
 		for(String jDapItemId: jDapItemListFromBatch.keySet()) {
 			long lastDiffDays = 0;
@@ -857,9 +994,13 @@ public class HammerServicesImpl {
 			Object jDapFmCodeObj=jDapItemDetailsMap.get("fmCode");
 			String jDapFmCode="";
 
+
+
 			if(jDapFmCodeObj != null) {
 				jDapFmCode= Integer.toString((Integer)jDapFmCodeObj);
 			}
+
+			String itemType = jDapItemDetailsMap.get("itemType").toString();
 
 			String jDapFirememResponse = null;
 			try {
@@ -873,12 +1014,13 @@ public class HammerServicesImpl {
 			String jDapFirememXML = fetchFinalSiteXML(jDapFirememResponse);
 			String jDapAccountSummaryXML=getAccountSummaryXML(jDapFirememResponse);
 
-			FirememExtractedResponseForTSD docResponse = new FirememExtractedResponseForTSD();
-			docResponse.setJdapXMLResponse(jDapFirememXML);
-			docResponse.setErrorCode(jDapFmCode);
-			docResponse.setJdapDumpUrl(jDApDumpUrlToSend);
-			docResponse.setItemId(jDapItemId);
-			docResponse.setMigId(tsdvo.getMigId());
+			FirememExtractedResponseForTSD TSDResponse = new FirememExtractedResponseForTSD();
+			TSDResponse.setJdapXMLResponse(jDapFirememXML);
+			TSDResponse.setErrorCode(jDapFmCode);
+			TSDResponse.setJdapDumpUrl(jDApDumpUrlToSend);
+			TSDResponse.setItemType(itemType);
+			TSDResponse.setItemId(jDapItemId);
+			TSDResponse.setMigId(tsdvo.getMigId());
 
 			if(!rpaldaRepository.isNullValue(jDapFirememXML)) {
 				String finalXml=jDapFirememXML;
@@ -953,23 +1095,23 @@ public class HammerServicesImpl {
 				if(lastOldestTxnDate != null) {
 
 					if(lastDiffDays > (Integer.parseInt(tsd) - 40)) {
-						docResponse.setTsdGenuine(true);
-						docResponse.setIsTSDPresent(Long.toString(lastDiffDays));
+						TSDResponse.setTsdGenuine(true);
+						TSDResponse.setIsTSDPresent(Long.toString(lastDiffDays));
 					}else {
-						docResponse.setTsdGenuine(false);
-						docResponse.setIsTSDPresent(Long.toString(lastDiffDays));
+						TSDResponse.setTsdGenuine(false);
+						TSDResponse.setIsTSDPresent(Long.toString(lastDiffDays));
 					}
 
 				}else {
-					docResponse.setTsdGenuine(false);
-					docResponse.setIsTSDPresent("Need to verify...!! New variation...!");
+					TSDResponse.setTsdGenuine(false);
+					TSDResponse.setIsTSDPresent("Need to verify...!! New variation...!");
 				}
 
 			}
 
-			docDownloadResponseMap.add(docResponse);
+			TSDResponseMap.add(TSDResponse);
 		}
-		return docDownloadResponseMap;
+		return TSDResponseMap;
 	}
 
 
@@ -1106,25 +1248,31 @@ public class HammerServicesImpl {
 		String firememXML=null;
 		String firstIdentifier="ACCOUNT_SUMMARY_XML::";
 		String secondIdentifier="2^^^^^^^^^^^^^^^^^^^^^^^^^^^^site";
+
+		//System.out.println("Printing the Firemem Response for Testing Purpose: "+firememResponse);
+
 		if(firememResponse.contains("Site XML Validation")) {
 			firememXML = firememResponse.substring(firememResponse.indexOf("Site XML Validation")+"Site XML Validation".length(),firememResponse.lastIndexOf("</PRE>"));
 			firememXML = firememXML.substring(firememXML.indexOf("<PRE>")+ "<PRE>".length());
 			firememXML= firememXML.replaceAll("&lt;","<").replaceAll("&gt;",">").replaceAll("&quot;","\"");
 			// firememXML.replaceAll("&gt;",">");
 			//firememXML.replaceAll("&quot;","\"");
-			firememXML.replaceAll("&#10;"," ");
-
+			//firememXML.replaceAll("&#10;"," ");
 			firememXML= firememXML.replaceAll("&#10;"," ");
 		}else if(firememResponse.contains(secondIdentifier)){
 			firememXML=firememResponse.substring(firememResponse.indexOf(secondIdentifier)+secondIdentifier.length(),firememResponse.lastIndexOf("</PRE>"));
 			firememXML = firememXML.substring(firememXML.indexOf("<PRE>")+ "<PRE>".length());
 			firememXML= firememXML.replaceAll("&lt;","<").replaceAll("&gt;",">").replaceAll("&quot;","\"");
-			firememXML.replaceAll("&#10;"," ");
+			//firememXML.replaceAll("&#10;"," ");
 			firememXML= firememXML.replaceAll("&#10;"," ");
 		}else if(firememResponse.contains("<site name=")){
+			if(!firememResponse.contains("</site>")){
+				System.out.println("Skipping user as firememResponse is empty");
+				return firememXML;
+			}
 			firememXML=firememResponse.substring(firememResponse.indexOf("<site name=")+secondIdentifier.length(),firememResponse.indexOf("</site>"));
 			firememXML= firememXML.replaceAll("&lt;","<").replaceAll("&gt;",">").replaceAll("&quot;","\"");
-			firememXML.replaceAll("&#10;"," ");
+			//firememXML.replaceAll("&#10;"," ");
 			firememXML= firememXML.replaceAll("&#10;"," ");
 		}
 		//System.out.println(firememXML);

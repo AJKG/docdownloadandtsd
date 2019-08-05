@@ -21,6 +21,8 @@ public class FirememExtractedResponseForDocumentDownload {
 
     private String migId;
 
+    private String itemType;
+
     @JsonIgnore
     public String getJdapXMLResponse() {
         return jdapXMLResponse;
@@ -55,6 +57,15 @@ public class FirememExtractedResponseForDocumentDownload {
 
     public void setDocPresent(boolean docPresent) {
         this.docPresent = docPresent;
+    }
+
+    @JsonProperty
+    public String getItemType() {
+        return itemType;
+    }
+
+    public void setItemType(String itemType) {
+        this.itemType = itemType;
     }
 
     @JsonProperty

@@ -8,6 +8,9 @@ import com.yodlee.docdownloadandtsd.VO.TSDResponseVO;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
+import java.util.List;
+
 
 @Repository
 public class DBAccessRepositoryImpl implements MongoAccess {
@@ -55,6 +58,21 @@ public class DBAccessRepositoryImpl implements MongoAccess {
         return firememExtractedResponseForTSD;
     }
 
+    @Override
+    public List<DocResponseVO> getDocResponseFromDB(){
+
+        List<DocResponseVO> docMap = mongoTemplate.findAll(DocResponseVO.class,"DocDownload");
+
+        return docMap;
+    }
+
+    @Override
+    public List<TSDResponseVO> getTSDResponseFromDB(){
+
+        List<TSDResponseVO> TSDMap = mongoTemplate.findAll(TSDResponseVO.class,"TSD");
+
+        return TSDMap;
+    }
 
 
 }

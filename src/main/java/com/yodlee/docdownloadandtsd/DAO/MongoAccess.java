@@ -6,6 +6,9 @@ import com.yodlee.docdownloadandtsd.VO.FirememExtractedResponseForDocumentDownlo
 import com.yodlee.docdownloadandtsd.VO.FirememExtractedResponseForTSD;
 import com.yodlee.docdownloadandtsd.VO.TSDResponseVO;
 
+import java.util.HashMap;
+import java.util.List;
+
 
 public interface MongoAccess {
 
@@ -14,6 +17,8 @@ public interface MongoAccess {
      FirememExtractedResponseForDocumentDownload AddUserResponse(FirememExtractedResponseForDocumentDownload firememExtractedResponseForDocumentDownload);
      TSDResponseVO AddTSDResponseToDB(TSDResponseVO tsdResponseVO);
      FirememExtractedResponseForTSD AddUserResponse(FirememExtractedResponseForTSD firememExtractedResponseForTSD);
+     List<DocResponseVO> getDocResponseFromDB();
+     List<TSDResponseVO> getTSDResponseFromDB();
 
 
 }

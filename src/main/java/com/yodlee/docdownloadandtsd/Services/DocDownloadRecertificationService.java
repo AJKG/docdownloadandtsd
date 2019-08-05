@@ -38,15 +38,26 @@ public class DocDownloadRecertificationService {
     YUVASegmentService yuvaSegmentService;
 
 
+
+
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public HashMap<DocResponseVO, ArrayList<FirememExtractedResponseForDocumentDownload>> docDownloadEnabled(DocDownloadVO ddvo, String sumInfoId, String msaOrCii) throws Exception{
         System.out.println("Getting in to DocDownload Recertification Method");
 
+        int noOfItems = 0;
+
+        HashMap<DocResponseVO, ArrayList<FirememExtractedResponseForDocumentDownload>> finalMap = new HashMap<>();
+
         HashMap<String, HashMap<String, Object>> jDapItemListFromBatch = TriggerBatchforDocDownload(sumInfoId, msaOrCii);
 
-         ArrayList<FirememExtractedResponseForDocumentDownload> allFirememDataMap = hammerServices.retriveDataFromFirememForDocDownload(jDapItemListFromBatch, ddvo);
+        ArrayList<FirememExtractedResponseForDocumentDownload> allFirememDataMap = null;
 
+
+        if(jDapItemListFromBatch!=null) {
+            System.out.println("DDRS jDapItemListFromBatch Size: "+jDapItemListFromBatch.size());
+            allFirememDataMap = hammerServices.retriveDataFromFirememForDocDownload(jDapItemListFromBatch, ddvo);
+        }
 
         int countPresent = 0;
         int countAbsent = 0;
@@ -55,24 +66,27 @@ public class DocDownloadRecertificationService {
         String message = null;
 
 
-        HashMap<DocResponseVO, ArrayList<FirememExtractedResponseForDocumentDownload>> finalMap = new HashMap<>();
 
-        for(FirememExtractedResponseForDocumentDownload fmData : allFirememDataMap) {
+        if(allFirememDataMap!=null) {
+            noOfItems = allFirememDataMap.size();
+
+            for (FirememExtractedResponseForDocumentDownload fmData : allFirememDataMap) {
 
                 if (fmData.isDocPresent()) {
-                    if(messageFound==null) {
+                    if (messageFound == null) {
                         messageFound = "Yes";
                     }
                     countPresent++;
-                }
-                else{
-                    if(messageNotFound == null) {
+                } else {
+                    if (messageNotFound == null) {
                         messageNotFound = "No";
                     }
                     countAbsent++;
                 }
 
+            }
         }
+
 
         if(messageFound==null && messageNotFound==null) {
             message = "No user is successful need to verify the variation";
@@ -100,6 +114,8 @@ public class DocDownloadRecertificationService {
         dResponse.setIsDocPresent(message);
         dResponse.setDocPercentage(countPercent);
         dResponse.setMigId(ddvo.getMigId());
+        dResponse.setNoOfItems(""+noOfItems);
+        dResponse.setAgentName(ddvo.getAgentName());
         dResponse.setMigratedBy(ddvo.getMigratedBy());
         dResponse.setDocDownloadSeed(ddvo.getDocDownloadSeed());
         dResponse.setDocDownloadProd(ddvo.getDocDownloadProd());
@@ -126,11 +142,17 @@ public class DocDownloadRecertificationService {
 
         String agentBaseName = agentBasenameService.getAgentBaseName(agentName);
 
-
+        System.out.println("AgentName: "+agentBaseName);
 
 
         ItemDetailsVO[] yuvaUsers = yuvaSegmentService.getYUVASegments(agentName, sumInfoId);
 
+        System.out.println("Length of users extracted from YUVA for CSID: "+sumInfoId+" | "+agentBaseName+" : is: "+yuvaUsers.length);
+
+        if(yuvaUsers.length==0){
+            System.out.println("No User Found for Sum_info_id: "+sumInfoId+" , Hence Skipping");
+            return jDapItemListFromBatch;
+        }
 
         String accessTokenId = hammerServices.hammerLogin();
         ArrayList<String> ignoreItemList = new ArrayList<String>();
@@ -138,13 +160,32 @@ public class DocDownloadRecertificationService {
 
         try {
             batchDetailsId  = hammerServices.createBatchForDocumentDownload(yuvaUsers, accessTokenId, agentBaseName, msaOrCii);
+            if(batchDetailsId==0){
+                return null;
+            }
         }catch (Exception ex) {
             ex.printStackTrace();
             return null;
         }
 
+
         Integer batchReqDetailsId = hammerServices.triggerBatchForDocumentDownload(batchDetailsId, accessTokenId, "DL", "");
         JSONObject batchResultList = hammerServices.pollingTriggerBatch(batchReqDetailsId, accessTokenId);
+
+
+        if(batchResultList.toString().contains("No container account mapping details found")) {
+            try {
+                batchDetailsId  = hammerServices.createBatchForDocumentDownload(yuvaUsers, accessTokenId, agentBaseName, "msa");
+            }catch (Exception ex) {
+                ex.printStackTrace();
+                return null;
+            }
+            batchReqDetailsId = hammerServices.triggerBatchForDocumentDownloadThroughSDG(batchDetailsId, accessTokenId, "DL", "");
+            batchResultList = hammerServices.pollingTriggerBatch(batchReqDetailsId, accessTokenId);
+        }
+
+
+
 
         JSONArray jDapBatchResultArray = batchResultList.getJSONArray("batchResultList");
 
@@ -167,6 +208,7 @@ public class DocDownloadRecertificationService {
             dataMap.put("dumpUrl", dumpUrl);
             dataMap.put("fmLatency", fmLatency);
             dataMap.put("fmCode", fmCode);
+            dataMap.put("itemType", msaOrCii);
 
             jDapItemListFromBatch.put(itemId + "|" + dbName, dataMap);
         }

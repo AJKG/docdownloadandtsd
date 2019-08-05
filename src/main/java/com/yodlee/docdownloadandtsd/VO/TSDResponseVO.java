@@ -19,6 +19,8 @@ public class TSDResponseVO {
     private String transactionSelectionDurationProd;
     private String requestedDate;
     private String metaDataType;
+    private String agentName;
+    private String noOfItems;
 
     @JsonProperty
     public String getSumInfoId() {
@@ -87,12 +89,29 @@ public class TSDResponseVO {
 
     public void setMetaDataType(String metaDataType){this.metaDataType = metaDataType;}
 
+    public String getAgentName() {
+        return agentName;
+    }
+
+    public void setAgentName(String agentName) {
+        this.agentName = agentName;
+    }
+
+    public String getNoOfItems() {
+        return noOfItems;
+    }
+
+    public void setNoOfItems(String noOfItems) {
+        this.noOfItems = noOfItems;
+    }
+
     @Override
     public String toString() {
         return "TSDResponse [sumInfoId=" + sumInfoId + ","
                 +"isTSDPresent="+isTSDPresent+","
                 +"TSDPercentage="+TSDPercentage+","
                 +"migID="+migId+","
+                +"agentName="+agentName+","
                 +"migratedBy="+migratedBy+","
                 +"transactionSelectionDurationSeed="+transactionSelectionDurationSeed+","
                 +"transactionSelectionDurationProd="+transactionSelectionDurationProd+","

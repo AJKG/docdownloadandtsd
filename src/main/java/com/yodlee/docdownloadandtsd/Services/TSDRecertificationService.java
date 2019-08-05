@@ -44,11 +44,16 @@ public class TSDRecertificationService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public HashMap<TSDResponseVO, ArrayList<FirememExtractedResponseForTSD>> transactionDurationdEnabled(TransactionSelectionDurationVO tsdvo, String sumInfoId, String tsd) throws Exception{
+        System.out.println("Getting in to loop for TSD Duration Enabled");
+
+        int noOfItems = 0;
 
         HashMap<String, HashMap<String, Object>> jDapItemListFromBatch = TriggerBatchForTSD(sumInfoId, tsd);
 
-        ArrayList<FirememExtractedResponseForTSD> allFirememDataMap = hammerServices.retriveDataFromFirememForTSD(jDapItemListFromBatch, tsd, tsdvo);
-
+        ArrayList<FirememExtractedResponseForTSD> allFirememDataMap = null;
+        if(jDapItemListFromBatch!=null) {
+             allFirememDataMap = hammerServices.retriveDataFromFirememForTSD(jDapItemListFromBatch, tsd, tsdvo);
+        }
 
 
         int countPresent = 0;
@@ -60,33 +65,35 @@ public class TSDRecertificationService {
 
         HashMap<TSDResponseVO, ArrayList<FirememExtractedResponseForTSD>> finalMap = new HashMap<>();
 
-        for(FirememExtractedResponseForTSD fmData : allFirememDataMap) {
+        if(allFirememDataMap!=null) {
+            noOfItems = allFirememDataMap.size();
+            for (FirememExtractedResponseForTSD fmData : allFirememDataMap) {
 
 
-                if(rpaldaRepository.isNullValue(fmData.getJdapXMLResponse())){
-                        continue;
+                if (rpaldaRepository.isNullValue(fmData.getJdapXMLResponse())) {
+                    continue;
                 }
 
                 if (fmData.isTsdGenuine()) {
-                    if(messageFound == null) {
+                    if (messageFound == null) {
                         messageFound = "Yes";
                     }
-                    countPresent=countPresent+1;
-                }
-                else{
-                    if(messageNotFound == null) {
+                    countPresent = countPresent + 1;
+                } else {
+                    if (messageNotFound == null) {
                         messageNotFound = "No";
                     }
-                    countAbsent=countAbsent+1;
+                    countAbsent = countAbsent + 1;
                 }
 
                 String max_date = (fmData).getIsTSDPresent();
-                    if(max_date.matches("[0-9]+")) {
-                        int valMaxDate = Integer.parseInt(max_date);
-                        if(max_value < valMaxDate) {
-                            max_value = valMaxDate;
-                        }
+                if (max_date.matches("[0-9]+")) {
+                    int valMaxDate = Integer.parseInt(max_date);
+                    if (max_value < valMaxDate) {
+                        max_value = valMaxDate;
                     }
+                }
+            }
         }
 
         if(messageFound==null && messageNotFound==null) {
@@ -97,8 +104,8 @@ public class TSDRecertificationService {
             message = messageNotFound;
         }
 
-        System.out.println("count Present : "+countPresent);
-        System.out.println("count Absent : "+countAbsent);
+        System.out.println("count Present TSD : "+countPresent);
+        System.out.println("count Absent TSD: "+countAbsent);
 
         String countPercent = null;
         if(Integer.toString(countPresent).equals("0") && Integer.toString(countAbsent).equals("0")) {
@@ -126,6 +133,8 @@ public class TSDRecertificationService {
         tResponse.setIsTSDPresent(message);
         tResponse.setTSDPercentage(countPercent);
         tResponse.setMigId(tsdvo.getMigId());
+        tResponse.setNoOfItems(""+noOfItems);
+        tResponse.setAgentName(tsdvo.getAgentName());
         tResponse.setMigratedBy(tsdvo.getMigratedBy());
         tResponse.setTransactionSelectionDurationSeed(tsdvo.getTransactionDurationSeed());
         tResponse.setTransactionSelectionDurationProd(tsdvo.getTransactionDurationProd());
@@ -166,6 +175,9 @@ public class TSDRecertificationService {
     }
 
     public HashMap<String, HashMap<String, Object>> TriggerBatchForTSD(String sumInfoId, String tsd) throws Exception{
+        System.out.println("Getting in to TriggerBatchForTSD");
+
+        HashMap<String, HashMap<String, Object>> jDapItemListFromBatch = new HashMap<String, HashMap<String, Object>>();
 
         String agentName = splunkService.getAgentName(sumInfoId);
         agentName = agentName.trim();
@@ -173,21 +185,29 @@ public class TSDRecertificationService {
 
         ItemDetailsVO[] yuvaUsers = yuvaSegmentService.getYUVASegments(agentName, sumInfoId);
 
+        if(yuvaUsers.length==0){
+            return jDapItemListFromBatch;
+        }
+
 
         String accessTokenId = hammerServices.hammerLogin();
 
 
 
-        HashMap<String, HashMap<String, Object>> jDapItemListFromBatch = new HashMap<String, HashMap<String, Object>>();
+
         ArrayList<String> ignoreItemList = new ArrayList<String>();
 
 
         HashMap<String, String> itemReqIDMap1 = getRequestIDs(yuvaUsers, tsd, accessTokenId);
 
+        int itemNo = 0;
         for(Map.Entry<String, String> itemMap : itemReqIDMap1.entrySet()) {
-            DumpDetailsVO ddvo = hammerServices.getDumpLink(itemMap.getValue(), itemMap.getKey(), sumInfoId, accessTokenId);
+            itemNo++;
+            DumpDetailsVO ddvo = hammerServices.getDumpLink(itemMap.getValue(), itemMap.getKey(), sumInfoId, accessTokenId, itemNo);
+
             String dumpUrl = ddvo.getDumpUrl();
             if(rpaldaRepository.isNullValue(dumpUrl)) {
+
                 continue;
             }
             String dbName = dumpUrl.substring(dumpUrl.indexOf("dbName=")+"dbName=".length(), dumpUrl.indexOf("&cobrandID"));
@@ -196,6 +216,7 @@ public class TSDRecertificationService {
 
 
             HashMap<String, Object> dataMap = new HashMap<String, Object>();
+            dataMap.put("itemType", "cii");
             dataMap.put("dumpUrl", dumpUrl);
             dataMap.put("fmCode", errCode);
 

@@ -18,6 +18,8 @@ public class DocResponseVO {
     private String docDownloadProd;
     private String requestedDate;
     private String metaDataType;
+    private String agentName;
+    private String noOfItems;
 
     @JsonProperty
     public String getSumInfoId() {
@@ -86,12 +88,29 @@ public class DocResponseVO {
 
     public void setMetaDataType(String metaDataType){this.metaDataType = metaDataType;}
 
+    public String getAgentName() {
+        return agentName;
+    }
+
+    public void setAgentName(String agentName) {
+        this.agentName = agentName;
+    }
+
+    public String getNoOfItems() {
+        return noOfItems;
+    }
+
+    public void setNoOfItems(String noOfItems) {
+        this.noOfItems = noOfItems;
+    }
+
     @Override
     public String toString() {
         return "DocResponse[sumInfoId=" + sumInfoId + ","
                 +"isDocPresent="+isDocPresent+","
                 +"docPercentage="+docPercentage+","
                 +"migID="+migId+","
+                +"agentName="+agentName+","
                 +"migratedBy="+migratedBy+","
                 +"docDownloadSeed="+docDownloadSeed+","
                 +"docDownloadProd="+docDownloadProd+","

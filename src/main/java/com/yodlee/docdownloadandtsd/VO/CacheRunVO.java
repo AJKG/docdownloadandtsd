@@ -8,6 +8,7 @@ public class CacheRunVO {
     private String cacheRunProd;
     private String requestedDate;
     private String sumInfoId;
+    private String agentName;
 
     public String getSumInfoId() {
         return sumInfoId;
@@ -57,11 +58,20 @@ public class CacheRunVO {
         this.requestedDate = requestedDate;
     }
 
+    public String getAgentName() {
+        return agentName;
+    }
+
+    public void setAgentName(String agentName) {
+        this.agentName = agentName;
+    }
+
     @Override
     public String toString() {
         return "CacheRunVO{" +
                 "migId='" + migId + '\'' +
                 ", migratedBy='" + migratedBy + '\'' +
+                ", agentName='" + agentName + '\'' +
                 ", cacheRunSeed='" + cacheRunSeed + '\'' +
                 ", cacheRunProd='" + cacheRunProd + '\'' +
                 ", requestedDate='" + requestedDate + '\'' +
