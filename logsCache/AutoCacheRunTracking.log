@@ -1,0 +1,560 @@
+2019-07-16 11:05:27.613  INFO 8880 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-07-16 11:05:27.637  INFO 8880 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.28
+2019-07-16 11:05:27.646  INFO 8880 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_192\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\oraclexe\app\oracle\product\10.2.0\server\bin;C:\XEClient\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Perforce;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;C:\Softwares\apache-maven-3.6.1\bin;C:\Softwares\node-v10.16.0-win-x64;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Python27;;C:\Users\cbatra\AppData\Local\Programs\Microsoft VS Code\bin;.]
+2019-07-16 11:05:27.975  INFO 8880 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-07-16 11:05:36.781  INFO 8880 --- [http-nio-8091-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-07-16 11:05:37.059  INFO 8880 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-07-16 11:05:41.084  INFO 8880 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-07-16 11:05:55.418  INFO 26128 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-07-16 11:05:55.423  INFO 26128 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.28
+2019-07-16 11:05:55.429  INFO 26128 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_192\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\oraclexe\app\oracle\product\10.2.0\server\bin;C:\XEClient\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Perforce;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;C:\Softwares\apache-maven-3.6.1\bin;C:\Softwares\node-v10.16.0-win-x64;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Python27;;C:\Users\cbatra\AppData\Local\Programs\Microsoft VS Code\bin;.]
+2019-07-16 11:05:55.914  INFO 26128 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-07-16 11:06:03.272  INFO 26128 --- [http-nio-8091-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-07-16 11:06:03.352  INFO 26128 --- [http-nio-8091-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-07-16 11:06:06.694  INFO 26128 --- [http-nio-8091-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-07-16 11:06:19.017  INFO 26128 --- [http-nio-8091-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2019-07-16 11:06:22.041  INFO 26128 --- [http-nio-8091-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2019-07-16 11:06:55.135  INFO 7292 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-07-16 11:06:55.140  INFO 7292 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.28
+2019-07-16 11:06:55.147  INFO 7292 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_192\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\oraclexe\app\oracle\product\10.2.0\server\bin;C:\XEClient\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Perforce;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;C:\Softwares\apache-maven-3.6.1\bin;C:\Softwares\node-v10.16.0-win-x64;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Python27;;C:\Users\cbatra\AppData\Local\Programs\Microsoft VS Code\bin;.]
+2019-07-16 11:06:55.592  INFO 7292 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-07-16 11:10:52.382  INFO 7292 --- [http-nio-8091-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-07-16 11:10:52.479  INFO 7292 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-07-16 11:10:55.974  INFO 7292 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-07-16 11:11:18.867  INFO 7292 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2019-07-16 11:11:21.765  INFO 7292 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2019-07-16 11:11:27.200  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.DAO.SplunkRepository               : ...agentName : FidelityInvestments
+2019-07-16 11:11:47.273 ERROR 7292 --- [http-nio-8091-exec-1] c.y.d.Services.SplunkService             : Error while executing yuva:
+
+org.springframework.web.client.HttpServerErrorException: 500 null
+	at org.springframework.web.client.DefaultResponseErrorHandler.handleError(DefaultResponseErrorHandler.java:97) ~[spring-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.client.DefaultResponseErrorHandler.handleError(DefaultResponseErrorHandler.java:79) ~[spring-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.client.ResponseErrorHandler.handleError(ResponseErrorHandler.java:63) ~[spring-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.client.RestTemplate.handleResponse(RestTemplate.java:777) ~[spring-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:730) ~[spring-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:686) ~[spring-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.client.RestTemplate.postForObject(RestTemplate.java:437) ~[spring-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at com.yodlee.docdownloadandtsd.Services.YuvaGatewayImpl.getYuvaSegmentUsers(YuvaGatewayImpl.java:74) ~[classes/:na]
+	at com.yodlee.docdownloadandtsd.Services.SplunkService.getyuvasegmentusers(SplunkService.java:54) ~[classes/:na]
+	at com.yodlee.docdownloadandtsd.Services.TSDRecertificationService.transactionDurationdEnabled(TSDRecertificationService.java:53) [classes/:na]
+	at com.yodlee.docdownloadandtsd.Controller.DDTsdController.getDBPushDifference(DDTsdController.java:87) [classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_192]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_192]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_192]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_192]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:209) [spring-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:136) [spring-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102) [spring-webmvc-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:870) [spring-webmvc-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:776) [spring-webmvc-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) [spring-webmvc-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:991) [spring-webmvc-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:925) [spring-webmvc-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:978) [spring-webmvc-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:870) [spring-webmvc-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:687) [javax.servlet-api-3.1.0.jar:3.1.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:855) [spring-webmvc-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790) [javax.servlet-api-3.1.0.jar:3.1.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) [tomcat-embed-websocket-8.5.28.jar:8.5.28]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) [spring-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:496) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:803) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:790) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1459) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_192]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_192]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-8.5.28.jar:8.5.28]
+	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_192]
+
+2019-07-16 11:11:47.274  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.DAO.SplunkRepository               : clear the session 
+2019-07-16 11:12:21.989  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.DAO.SplunkRepository               : clear the session 
+2019-07-16 11:12:22.120  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 11:12:24.443 ERROR 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI1NzU0NCwiaXAiOiIxOTIuMTY4LjY4Ljg0In0.d4OdjWpqX4z6jL1MzwDou8TTOMBYv-J4XXcqYzOZGISNezAT8_TzJLg2Cl8wnypHL01RK6CMyQkaAP2wKnbPPQ
+2019-07-16 11:42:29.456  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 11:42:30.399 ERROR 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI1OTM1MCwiaXAiOiIxOTIuMTY4LjY4Ljg0In0.62UNhIfKCPlMz7jQLDJJbLhadiyo2S8awf8tcjq5LjHOnE2fkquL7QPdc1zR4pNG90bjfHzsfct7K4IuqB7q_g
+2019-07-16 11:42:39.085  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 11:42:40.310 ERROR 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI1OTM2MCwiaXAiOiIxOTIuMTY4LjY4Ljg0In0.kmgJyh2cHl7trwaSAkYnSCiSQmJDibyul6cJNRCVKFFJBwIPn-7E3K7KrfSNtHij2RAkdSKSvWez-YCU223lxw
+2019-07-16 11:42:49.116  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 11:42:50.243 ERROR 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI1OTM3MCwiaXAiOiIxOTIuMTY4LjY4Ljg0In0.dzHJomKSITlIkRL1LYQ2rrVxl0cg8F8KLeGxgSoC0u0DwwgBngFFGvmeV1bOeo1wIQ893JEZNBBDPgv-yzlgFw
+2019-07-16 11:42:50.935  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 11:42:52.087 ERROR 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI1OTM3MSwiaXAiOiIxOTIuMTY4LjY4Ljg0In0.TcErS8v5D-vKBeeD-QHwzc_0OkNXcpzArp1o31UmGupFq3bU600TG2et4huaRomY2sX0yLMnULxZuqdi2Qiefg
+2019-07-16 11:42:52.863  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 11:42:53.932 ERROR 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI1OTM3MywiaXAiOiIxOTIuMTY4LjY4Ljg0In0.5-7AQQfS3a-8kkS73qJlY85SyWffZsfXySqNP3O1lrbh8NXt5uHcqVEIDI8QUQm-CiwRgR2hovLZ_PwnJieN0g
+2019-07-16 11:42:54.646  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 11:42:55.859 ERROR 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI1OTM3NSwiaXAiOiIxOTIuMTY4LjY4Ljg0In0.h_CUhSAza3RHsR44-aQgu3o_bcs7AmyUJIzPsTUVHEu-QNAUbJKnP4UWRlCvAC-r4aqauX2aKbpuTaaG8U7pCw
+2019-07-16 11:42:56.592  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 11:42:57.717 ERROR 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI1OTM3NywiaXAiOiIxOTIuMTY4LjY4Ljg0In0.M5NTJQYZNrJCPxtJE7I7gg6vli0WvqmhI3giO9vC2jm95Hhs_5AwBWUazBZtXa-qi4heOAQSljiKj30hRS2spQ
+2019-07-16 11:42:58.389  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 11:42:59.560 ERROR 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI1OTM3OSwiaXAiOiIxOTIuMTY4LjY4Ljg0In0.YSeGgx4brEgIycCHYAC2kS2SrXX19u_paO3mprMtg1y0Sfs41R2lspntNcr4Ivw2XSKr1GC9iPQTToiC-vgZhw
+2019-07-16 11:43:00.380  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 11:43:01.403 ERROR 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI1OTM4MSwiaXAiOiIxOTIuMTY4LjY4Ljg0In0.3CFhvp6AvNW-dTn5b3A1vgDyQcCeyhSCNYzIPDqDiAZNcmU5XO_hzuv3F72QuxAEtQOUBYZvaI5Q5FmaQSZe5w
+2019-07-16 11:43:02.121  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 11:43:03.247 ERROR 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI1OTM4MywiaXAiOiIxOTIuMTY4LjY4Ljg0In0._MQsaDXHvv7n9pZSWNFDDzoEo-YK_T0gNbWP7YKR9nccYbsmuiAGiO-EvAJHgPfIcdm7jWaZXSFZrmKbf8IXwA
+2019-07-16 11:43:03.950  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 11:43:04.945 ERROR 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI1OTM4NCwiaXAiOiIxOTIuMTY4LjY4Ljg0In0.jv07gIm3m5WJhX_E8J-ndx9rQL5roqDTuUdKnkC79gG-15ONn0f494UeiQJYooTbP325UEu_ftRF9BHoVVq0uw
+2019-07-16 11:43:05.704  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 11:43:06.832 ERROR 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI1OTM4NiwiaXAiOiIxOTIuMTY4LjY4Ljg0In0.-QqgB0qJTZalnQ2TUtrR7Ufns2GaBHzK4dEFcHiYcwWPFgaUn4nxKDUz_O3Ehf6yEF_o0-C839w8G10L5S4Btw
+2019-07-16 11:43:07.552  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 11:43:08.673 ERROR 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI1OTM4OCwiaXAiOiIxOTIuMTY4LjY4Ljg0In0.7EqNoPQZGYqcHswrCzXzYI2oUK5fNr3_kjF2H9bHTeO8cqPlGFvhCP4uReYEaXVqXWoJTrJmIqvMNVnQIhQC9g
+2019-07-16 11:43:09.394  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 11:43:10.524 ERROR 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI1OTM5MCwiaXAiOiIxOTIuMTY4LjY4Ljg0In0.aVGH54Z-_5_19nQebtaDUKgWKpSCNhjvXfizObjzIirTaoXIg7rWvFBN3SmKZxEMV6mw9HHeHOx9A3qnKhcTHQ
+2019-07-16 11:43:11.239  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 11:43:12.364 ERROR 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI1OTM5MiwiaXAiOiIxOTIuMTY4LjY4Ljg0In0.FKO3ZQ6HJuR29z75u_T28zQXrxyoMGQJ3OUnut8-wvC8UvOTO_QC3e7lJ8vJD9PDHudRTFI8JKAB_JUnCKNOYg
+2019-07-16 11:43:13.080  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 11:43:14.209 ERROR 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI1OTM5NCwiaXAiOiIxOTIuMTY4LjY4Ljg0In0.25bMoZLlUCWZbpN2Lz96JuIoIOKtgaGAfKUEBtuTjKVKTSthmV0WCI3goxQV4X5mIKfbPFsU24CFiXfi_PxH4w
+2019-07-16 11:43:14.920  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 11:43:16.047 ERROR 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI1OTM5NSwiaXAiOiIxOTIuMTY4LjY4Ljg0In0.sILbDwpPv1g5kIQwngW6KOcgO1xANRANsmAbkc3loll70zTduHzUo7ZTlmRPrgtdIalszxdLp8oJZZpmE3aQqg
+2019-07-16 11:43:16.763  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 11:43:17.842 ERROR 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI1OTM5NywiaXAiOiIxOTIuMTY4LjY4Ljg0In0.zIyJ2ycjNzflv0DJJUgiUDWzjyco-bYiU7EfrmzdAHq4hIzIVyMEzNAiEApUUew6LOuMyWn1S7CLnIIBoK-zvw
+2019-07-16 11:43:18.504  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 11:43:19.531 ERROR 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI1OTM5OSwiaXAiOiIxOTIuMTY4LjY4Ljg0In0.SKTB14liPIgYrRRSxNICEhOnjr__17oC-0wbJL0DHTFFByArHSO9714wfSxotUEVngVGMGJvwolOuMQtuGLeow
+2019-07-16 11:43:20.245  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 11:43:21.372 ERROR 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI1OTQwMSwiaXAiOiIxOTIuMTY4LjY4Ljg0In0.qdqwWewXMZynIIrYt2gMf6YHWY2-4JQSUqYX2e-1ERcrUJJDlQHmdqanxcAE05r6F8Uw1MM2qk4Cii7ssoyTdQ
+2019-07-16 11:43:22.090  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 11:43:22.953 ERROR 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI1OTQwMiwiaXAiOiIxOTIuMTY4LjY4Ljg0In0.CdmVjPAYK4Un5wlrwcC3fUJp_2zz0cO-dYIuNk-9KzgXC1-kJuSl4Y66jGvfeNrI87Rg1z7zAgYGtRIxzS5C6Q
+2019-07-16 11:43:23.830  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 11:43:24.955 ERROR 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI1OTQwNCwiaXAiOiIxOTIuMTY4LjY4Ljg0In0.i3vAmPYdwkcdQt1kxKhqYabU7C9iEnztJloxg98KogKDtpZmyJUV279Yq3zNQ0C_x2ti4dgfzMX9qczdMgeLLw
+2019-07-16 11:43:25.674  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 11:43:26.609 ERROR 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI1OTQwNiwiaXAiOiIxOTIuMTY4LjY4Ljg0In0.8gva-1zitzsC8M0k6-r_uC0036Y3XdvLpIMIdOYLk7pcci2MQd-MO-7wUKwy-oK0eRA7ALIGfPAbE7q3pIeiKA
+2019-07-16 11:43:27.312  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 11:43:28.442 ERROR 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI1OTQwOCwiaXAiOiIxOTIuMTY4LjY4Ljg0In0.OKMDmfH38k-p2pHsHRo1N3eHfFRv_Nj_ClRfDIE-TuwSJZgfcSRgKxq2QRbX6oDl1W7hKR1Ca8qXVDMqVRTsSg
+2019-07-16 11:43:29.154  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 11:43:30.182 ERROR 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI1OTQxMCwiaXAiOiIxOTIuMTY4LjY4Ljg0In0.TyZIkdZrVzqRrWbyQ46C9Y8oJ6CRLhGQlgy1BKab9dcqRXG-gDmrTwwVucoCQj_cvY0-mCotD1aFxsRE2gOfmA
+2019-07-16 11:43:30.894  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 11:43:32.124 ERROR 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI1OTQxMSwiaXAiOiIxOTIuMTY4LjY4Ljg0In0.SCEEkoGGH9svy1M96fuqCl9zz0BBEkZSygSdH6SAhCfmkAESHCmzHv3hKqvZNWb8WcpMvteGdsWzfNSNWDKCQg
+2019-07-16 11:43:32.821  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 11:43:33.968 ERROR 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI1OTQxMywiaXAiOiIxOTIuMTY4LjY4Ljg0In0.Lrh3gYQFPL1SZasj4jmFiRh9prh0mzQ8fnUNJCJpRXHVfUteOE7KuhtY3Va2hAtHhiDv9pj-nxUpwVQI3TQG9Q
+2019-07-16 11:43:34.351  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### retriveDataFromFiremem #########################################
+2019-07-16 11:43:34.354  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23363746|sdbcac03
+2019-07-16 11:43:39.660  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23441470|sdbcac03
+2019-07-16 11:43:44.261  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :10817116|sdbcas19
+2019-07-16 11:43:47.217  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :27057080|sdbcac03
+2019-07-16 11:43:50.145  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :11322781|sdbcaa01
+2019-07-16 11:43:55.804  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :16116189|sdbcac03
+2019-07-16 11:43:59.587  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :31151831|sdbcaj10
+2019-07-16 11:44:02.415  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :22652401|sdbcab02
+2019-07-16 11:44:05.322  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23199799|sdbcac03
+2019-07-16 11:44:08.382  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :25707094|sdbcac03
+2019-07-16 11:44:09.583  INFO 7292 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :18502110|sdbcaj10
+2019-07-16 12:11:21.350  INFO 13932 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-07-16 12:11:21.353  INFO 13932 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.28
+2019-07-16 12:11:21.358  INFO 13932 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_192\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\oraclexe\app\oracle\product\10.2.0\server\bin;C:\XEClient\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Perforce;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;C:\Softwares\apache-maven-3.6.1\bin;C:\Softwares\node-v10.16.0-win-x64;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Python27;;C:\Users\cbatra\AppData\Local\Programs\Microsoft VS Code\bin;.]
+2019-07-16 12:11:21.710  INFO 13932 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-07-16 12:12:09.698  INFO 13932 --- [http-nio-8091-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-07-16 12:12:10.015  INFO 13932 --- [http-nio-8091-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-07-16 12:12:14.102  INFO 13932 --- [http-nio-8091-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-07-16 12:12:37.827  INFO 13932 --- [http-nio-8091-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2019-07-16 12:12:41.126  INFO 13932 --- [http-nio-8091-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2019-07-16 12:12:47.030  INFO 13932 --- [http-nio-8091-exec-2] c.y.d.DAO.SplunkRepository               : ...agentName : ChaseBank
+2019-07-16 12:14:14.234  INFO 13516 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-07-16 12:14:14.237  INFO 13516 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.28
+2019-07-16 12:14:14.241  INFO 13516 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_192\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\oraclexe\app\oracle\product\10.2.0\server\bin;C:\XEClient\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Perforce;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;C:\Softwares\apache-maven-3.6.1\bin;C:\Softwares\node-v10.16.0-win-x64;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Python27;;C:\Users\cbatra\AppData\Local\Programs\Microsoft VS Code\bin;.]
+2019-07-16 12:14:14.550  INFO 13516 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-07-16 12:14:31.421  INFO 13516 --- [http-nio-8091-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-07-16 12:14:31.506  INFO 13516 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-07-16 12:14:35.115  INFO 13516 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-07-16 12:14:59.398  INFO 13516 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2019-07-16 12:15:02.645  INFO 13516 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2019-07-16 12:15:08.379  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.DAO.SplunkRepository               : ...agentName : ChaseBank
+2019-07-16 12:15:08.382  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.DAO.SplunkRepository               : clear the session 
+2019-07-16 12:15:44.977  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.DAO.SplunkRepository               : clear the session 
+2019-07-16 12:15:45.111  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 12:15:47.418 ERROR 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI2MTM0NywiaXAiOiIxOTIuMTY4LjY4Ljg0In0.qukpLxIDlnbGrKiZqx05GL9Cun_mGwTdxT-PmnOz3q5rr8sn73ChQD8F7CF_kXq7M-e5sqST2ec62xVjDtZ1Cw
+2019-07-16 12:17:32.270  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### retriveDataFromFiremem #########################################
+2019-07-16 12:17:32.283  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :21548761|sdbcap16
+2019-07-16 12:17:34.253  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :32752347|sdbcaj10
+2019-07-16 12:17:35.394  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :22660331|sdbitc03
+2019-07-16 12:17:37.398  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :53910360|sdbcab02
+2019-07-16 12:17:40.072  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :69180803|sdbcab02
+2019-07-16 12:17:41.840  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :53909390|sdbcab02
+2019-07-16 12:17:42.694  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :11103082|sdbcat20
+2019-07-16 12:17:46.371  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :15824370|sdbcat20
+2019-07-16 12:17:47.822  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :10245127|sdbcau21
+2019-07-16 12:17:52.747  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23683735|sdbcap16
+2019-07-16 12:17:54.847  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23518258|sdbcap16
+2019-07-16 12:17:58.174  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :13205000|sdbcat20
+2019-07-16 12:18:00.304  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :24093150|sdbcae05
+2019-07-16 12:18:04.242  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :10274428|sdbcas19
+2019-07-16 12:18:06.925  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :10129480|sdbcau21
+2019-07-16 12:18:08.265  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :12644845|sdbcaa01
+2019-07-16 12:18:10.477  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23927551|sdbcap16
+2019-07-16 12:18:14.173  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23259918|sdbcap16
+2019-07-16 12:18:16.242  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :56815330|scexag07s
+2019-07-16 12:18:18.313  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23656131|sdbcap16
+2019-07-16 12:18:19.472  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23275901|sdbcap16
+2019-07-16 12:18:21.743  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :70686622|scexag07s
+2019-07-16 12:18:25.604  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :24890982|sdbcac03
+2019-07-16 12:18:28.591  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :32957017|sdbcaj10
+2019-07-16 12:18:30.874  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :11359005|sdbcaa01
+2019-07-16 12:18:34.379  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :96325966|scexag07s
+2019-07-16 12:18:36.302  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :35003399|sdbcaj10
+2019-07-16 12:18:37.662  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :53910195|sdbcab02
+2019-07-16 12:18:38.760  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :60002817|scexag07s
+2019-07-16 12:18:39.833  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :11139246|sdbcas19
+2019-07-16 12:18:41.444  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :32793875|sdbcaj10
+2019-07-16 12:18:44.204  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23773013|sdbcap16
+2019-07-16 12:18:48.288  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :24506141|sdbcaj10
+2019-07-16 12:18:51.405  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :11023375|sdbcau21
+2019-07-16 12:18:55.234  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :55210795|sdbcab02
+2019-07-16 12:18:56.894  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23527977|sdbcap16
+2019-07-16 12:18:58.789  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :11240909|sdbcaa01
+2019-07-16 12:18:59.903  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :13800925|sdbcaa01
+2019-07-16 12:19:00.945  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :20563261|sdbcab02
+2019-07-16 12:19:02.879  INFO 13516 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :21764185|sdbcap16
+2019-07-16 12:25:04.019  INFO 26796 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-07-16 12:25:04.023  INFO 26796 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.28
+2019-07-16 12:25:04.029  INFO 26796 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_192\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\oraclexe\app\oracle\product\10.2.0\server\bin;C:\XEClient\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Perforce;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;C:\Softwares\apache-maven-3.6.1\bin;C:\Softwares\node-v10.16.0-win-x64;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Python27;;C:\Users\cbatra\AppData\Local\Programs\Microsoft VS Code\bin;.]
+2019-07-16 12:25:04.467  INFO 26796 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-07-16 12:25:07.351  INFO 26796 --- [http-nio-8091-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-07-16 12:25:07.425  INFO 26796 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-07-16 12:25:11.298  INFO 26796 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-07-16 12:25:35.247  INFO 26796 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2019-07-16 12:25:38.144  INFO 26796 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2019-07-16 12:25:44.799  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.DAO.SplunkRepository               : ...agentName : ChaseBank
+2019-07-16 12:25:44.801  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.DAO.SplunkRepository               : clear the session 
+2019-07-16 12:26:23.250  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.DAO.SplunkRepository               : clear the session 
+2019-07-16 12:26:23.352  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 12:26:25.061 ERROR 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI2MTk4NCwiaXAiOiIxOTIuMTY4LjY4Ljg0In0.NVAkheJ3OddS0hhRf1uzftXMexJRojgx9lzqLuE5BUC2IYOIWhuhlz08sXbBrthCr-L5ssPQAxO76J6oms-AWw
+2019-07-16 12:28:34.591  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### retriveDataFromFiremem #########################################
+2019-07-16 12:28:34.603  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :21548761|sdbcap16
+2019-07-16 12:28:36.853  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23704545|sdbcae05
+2019-07-16 12:28:39.541  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :22660331|sdbitc03
+2019-07-16 12:28:40.633  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :26971652|sdbcac03
+2019-07-16 12:28:42.779  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :15032720|sdbcat20
+2019-07-16 12:28:44.012  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :53910360|sdbcab02
+2019-07-16 12:28:45.235  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :69180803|sdbcab02
+2019-07-16 12:28:46.632  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :53909390|sdbcab02
+2019-07-16 12:28:47.210  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :11073261|sdbcau21
+2019-07-16 12:28:49.402  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :11103082|sdbcat20
+2019-07-16 12:28:54.271  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :15824370|sdbcat20
+2019-07-16 12:28:56.020  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :29872740|sdbcaj10
+2019-07-16 12:28:58.015  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23683735|sdbcap16
+2019-07-16 12:29:00.420  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23518258|sdbcap16
+2019-07-16 12:29:02.018  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :24093150|sdbcae05
+2019-07-16 12:29:03.096  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :93009399|scexag07s
+2019-07-16 12:29:04.381  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :12744455|sdbcaa01
+2019-07-16 12:29:06.010  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :10274428|sdbcas19
+2019-07-16 12:29:07.295  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :35127742|sdbcaj10
+2019-07-16 12:29:09.010  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :56815330|scexag07s
+2019-07-16 12:29:11.096  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :86014915|scexag07s
+2019-07-16 12:29:11.708  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23656131|sdbcap16
+2019-07-16 12:29:12.926  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :42834176|scexag07s
+2019-07-16 12:29:14.939  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23275901|sdbcap16
+2019-07-16 12:29:16.241  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :10385771|sdbcba01
+2019-07-16 12:29:17.282  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :24018204|sdbcap16
+2019-07-16 12:29:19.572  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :11608968|sdbcat20
+2019-07-16 12:29:21.428  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :35003399|sdbcaj10
+2019-07-16 12:29:22.661  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :53908590|sdbcab02
+2019-07-16 12:29:23.999  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :53910195|sdbcab02
+2019-07-16 12:29:24.813  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :60002817|scexag07s
+2019-07-16 12:29:25.763  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :11240909|sdbcaa01
+2019-07-16 12:29:26.752  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :61862394|scexag07s
+2019-07-16 12:29:27.438  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :10999164|sdbcas19
+2019-07-16 12:29:29.295  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :68941124|sdbcab02
+2019-07-16 12:29:31.102  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23907941|sdbcap16
+2019-07-16 12:29:32.276  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :24403655|sdbcae05
+2019-07-16 12:29:33.156  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :21764185|sdbcap16
+2019-07-16 12:29:35.239  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23822719|sdbcap16
+2019-07-16 12:29:36.598  INFO 26796 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :67553486|sdbcab02
+2019-07-16 12:33:24.282  INFO 26064 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-07-16 12:33:24.286  INFO 26064 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.28
+2019-07-16 12:33:24.292  INFO 26064 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_192\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\oraclexe\app\oracle\product\10.2.0\server\bin;C:\XEClient\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Perforce;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;C:\Softwares\apache-maven-3.6.1\bin;C:\Softwares\node-v10.16.0-win-x64;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Python27;;C:\Users\cbatra\AppData\Local\Programs\Microsoft VS Code\bin;.]
+2019-07-16 12:33:24.779  INFO 26064 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-07-16 12:33:28.494  INFO 26064 --- [http-nio-8091-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-07-16 12:33:28.611  INFO 26064 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-07-16 12:33:31.975  INFO 26064 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-07-16 12:33:55.670  INFO 26064 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2019-07-16 12:33:58.582  INFO 26064 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2019-07-16 12:34:03.598  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.DAO.SplunkRepository               : ...agentName : ChaseBank
+2019-07-16 12:34:03.600  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.DAO.SplunkRepository               : clear the session 
+2019-07-16 12:34:38.246  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.DAO.SplunkRepository               : clear the session 
+2019-07-16 12:34:38.482  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 12:34:40.178 ERROR 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI2MjQ3OSwiaXAiOiIxOTIuMTY4LjY4Ljg0In0.ZC2KUVLwFExJT-UZqZqV95XU_eeuH1IfrCK8qiBJklGAQV7yZelA_Nm1DNNCiV7JLWYz_7noNwKl0xo9zom7bw
+2019-07-16 12:35:57.577  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### retriveDataFromFiremem #########################################
+2019-07-16 12:35:57.590  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :21548761|sdbcap16
+2019-07-16 12:35:59.435  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23704545|sdbcae05
+2019-07-16 12:36:01.631  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :76789318|scexag07s
+2019-07-16 12:36:02.528  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :22660331|sdbitc03
+2019-07-16 12:36:03.541  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :15032720|sdbcat20
+2019-07-16 12:36:04.561  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :53910360|sdbcab02
+2019-07-16 12:36:06.094  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :53909390|sdbcab02
+2019-07-16 12:36:07.099  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :11073261|sdbcau21
+2019-07-16 12:36:08.155  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :15824370|sdbcat20
+2019-07-16 12:36:09.244  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :29872740|sdbcaj10
+2019-07-16 12:36:11.039  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23683735|sdbcap16
+2019-07-16 12:36:12.191  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :93009399|scexag07s
+2019-07-16 12:36:13.436  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :12744455|sdbcaa01
+2019-07-16 12:36:14.277  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :15788605|sdbcat20
+2019-07-16 12:36:15.441  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :10274428|sdbcas19
+2019-07-16 12:36:16.504  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :35127742|sdbcaj10
+2019-07-16 12:36:17.989  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23927551|sdbcap16
+2019-07-16 12:36:18.935  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :33634510|sdbcaj10
+2019-07-16 12:36:20.251  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :56815330|scexag07s
+2019-07-16 12:36:22.298  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :86014915|scexag07s
+2019-07-16 12:36:22.979  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23656131|sdbcap16
+2019-07-16 12:36:24.078  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :42834176|scexag07s
+2019-07-16 12:36:24.978  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23275901|sdbcap16
+2019-07-16 12:36:26.010  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :24018204|sdbcap16
+2019-07-16 12:36:27.117  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :11608968|sdbcat20
+2019-07-16 12:36:29.271  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23944063|sdbcap16
+2019-07-16 12:36:30.334  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :53908590|sdbcab02
+2019-07-16 12:36:31.032  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :94947428|scexag07s
+2019-07-16 12:36:31.879  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :53910195|sdbcab02
+2019-07-16 12:36:32.887  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :60002817|scexag07s
+2019-07-16 12:36:34.082  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :67151994|sdbcab02
+2019-07-16 12:36:35.081  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :55210795|sdbcab02
+2019-07-16 12:36:36.563  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :11240909|sdbcaa01
+2019-07-16 12:36:39.556  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :61862394|scexag07s
+2019-07-16 12:36:40.265  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :68941124|sdbcab02
+2019-07-16 12:36:41.682  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23907941|sdbcap16
+2019-07-16 12:36:42.952  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :24403655|sdbcae05
+2019-07-16 12:36:43.750  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :11292707|sdbcas19
+2019-07-16 12:36:45.577  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :21764185|sdbcap16
+2019-07-16 12:36:48.247  INFO 26064 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23822719|sdbcap16
+2019-07-16 12:37:34.085  INFO 12628 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-07-16 12:37:34.090  INFO 12628 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.28
+2019-07-16 12:37:34.096  INFO 12628 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_192\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\oraclexe\app\oracle\product\10.2.0\server\bin;C:\XEClient\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Perforce;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;C:\Softwares\apache-maven-3.6.1\bin;C:\Softwares\node-v10.16.0-win-x64;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Python27;;C:\Users\cbatra\AppData\Local\Programs\Microsoft VS Code\bin;.]
+2019-07-16 12:37:34.533  INFO 12628 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-07-16 12:37:40.829  INFO 12628 --- [http-nio-8091-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-07-16 12:37:40.890  INFO 12628 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-07-16 12:37:44.600  INFO 12628 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-07-16 12:38:07.878  INFO 12628 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2019-07-16 12:38:10.998  INFO 12628 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2019-07-16 12:38:16.128  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.DAO.SplunkRepository               : ...agentName : ChaseBank
+2019-07-16 12:38:16.130  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.DAO.SplunkRepository               : clear the session 
+2019-07-16 12:38:56.390  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.DAO.SplunkRepository               : clear the session 
+2019-07-16 12:38:56.491  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 12:38:58.634 ERROR 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI2MjczOCwiaXAiOiIxOTIuMTY4LjY4Ljg0In0.0JW9GJnuXXSy4ivGU6AluaXaOAc_5vfrI10B_Sz2n2U-cxuaNp1UeQRZeZn76n7QCNHTRqkGUfXcCCCoiGbNZg
+2019-07-16 12:40:25.454  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### retriveDataFromFiremem #########################################
+2019-07-16 12:40:25.466  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :14686405|sdbcat20
+2019-07-16 12:40:27.515  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :15846600|sdbcat20
+2019-07-16 12:40:29.354  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :11818404|sdbcat20
+2019-07-16 12:40:33.939  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :22660331|sdbitc03
+2019-07-16 12:40:35.230  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :15032720|sdbcat20
+2019-07-16 12:40:36.216  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :53910360|sdbcab02
+2019-07-16 12:40:37.375  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :15824370|sdbcat20
+2019-07-16 12:40:38.750  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :24035407|sdbcap16
+2019-07-16 12:40:41.079  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :93009399|scexag07s
+2019-07-16 12:40:42.091  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :12744455|sdbcaa01
+2019-07-16 12:40:43.019  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :12682909|sdbcaa01
+2019-07-16 12:40:46.472  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :10274428|sdbcas19
+2019-07-16 12:40:47.853  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :15950580|sdbcat20
+2019-07-16 12:40:48.707  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23927551|sdbcap16
+2019-07-16 12:40:49.618  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :33634510|sdbcaj10
+2019-07-16 12:40:50.520  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :56815330|scexag07s
+2019-07-16 12:40:52.438  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :15879230|sdbcat20
+2019-07-16 12:40:53.220  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :42834176|scexag07s
+2019-07-16 12:40:54.310  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :14308329|sdbcat20
+2019-07-16 12:40:56.531  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :24018204|sdbcap16
+2019-07-16 12:40:58.306  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :11608968|sdbcat20
+2019-07-16 12:41:00.428  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :77304645|scexag07s
+2019-07-16 12:41:02.083  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :10748118|sdbcas19
+2019-07-16 12:41:03.459  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :35003399|sdbcaj10
+2019-07-16 12:41:04.271  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :94947428|scexag07s
+2019-07-16 12:41:05.392  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :14492222|sdbcat20
+2019-07-16 12:41:06.252  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :53910195|sdbcab02
+2019-07-16 12:41:07.100  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :35061753|sdbcaj10
+2019-07-16 12:41:10.244  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23357085|sdbcap16
+2019-07-16 12:41:12.852  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :67151994|sdbcab02
+2019-07-16 12:41:13.891  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :55210795|sdbcab02
+2019-07-16 12:41:15.071  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23306817|sdbcap16
+2019-07-16 12:41:16.905  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :61862394|scexag07s
+2019-07-16 12:41:17.992  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23907941|sdbcap16
+2019-07-16 12:41:20.139  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :70873711|sdbcab02
+2019-07-16 12:41:22.319  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :21764185|sdbcap16
+2019-07-16 12:41:24.397  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :10952223|sdbcas19
+2019-07-16 12:41:26.273  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23822719|sdbcap16
+2019-07-16 12:41:28.305  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :12775888|sdbcaa01
+2019-07-16 12:41:33.377  INFO 12628 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :10595048|sdbcas19
+2019-07-16 12:44:01.149  INFO 26420 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-07-16 12:44:01.154  INFO 26420 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.28
+2019-07-16 12:44:01.164  INFO 26420 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_192\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\oraclexe\app\oracle\product\10.2.0\server\bin;C:\XEClient\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Perforce;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;C:\Softwares\apache-maven-3.6.1\bin;C:\Softwares\node-v10.16.0-win-x64;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Python27;;C:\Users\cbatra\AppData\Local\Programs\Microsoft VS Code\bin;.]
+2019-07-16 12:44:01.654  INFO 26420 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-07-16 12:44:29.241  INFO 26420 --- [http-nio-8091-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-07-16 12:44:29.340  INFO 26420 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-07-16 12:44:34.373  INFO 26420 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-07-16 12:45:01.083  INFO 26420 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2019-07-16 12:45:04.338  INFO 26420 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2019-07-16 12:45:09.916  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.DAO.SplunkRepository               : ...agentName : ChaseBank
+2019-07-16 12:45:09.918  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.DAO.SplunkRepository               : clear the session 
+2019-07-16 12:45:45.065  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.DAO.SplunkRepository               : clear the session 
+2019-07-16 12:45:45.164  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 12:45:47.408 ERROR 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI2MzE0NywiaXAiOiIxOTIuMTY4LjY4Ljg0In0.72qZetlP04O7pPckhtZ3BgoAG7NmYiFlg33Wq2nmlw6ZWXF245Cr7_82oLbV8yooJql5c84VQRMPvARcaVFLCw
+2019-07-16 12:47:27.530  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### retriveDataFromFiremem #########################################
+2019-07-16 12:47:27.539  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :14897863|sdbcat20
+2019-07-16 12:47:31.672  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :15846600|sdbcat20
+2019-07-16 12:47:34.128  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :71798132|sdbcab02
+2019-07-16 12:47:36.085  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23374184|sdbcap16
+2019-07-16 12:47:37.339  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :22660331|sdbitc03
+2019-07-16 12:47:39.141  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :12641883|sdbcaa01
+2019-07-16 12:47:40.978  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :10614954|sdbcas19
+2019-07-16 12:47:44.271  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :11073261|sdbcau21
+2019-07-16 12:47:45.621  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :24035407|sdbcap16
+2019-07-16 12:47:48.429  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :15549112|sdbcat20
+2019-07-16 12:47:53.224  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23946062|sdbcap16
+2019-07-16 12:47:55.168  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :12744455|sdbcaa01
+2019-07-16 12:47:57.398  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :12682909|sdbcaa01
+2019-07-16 12:48:07.520  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :10274428|sdbcas19
+2019-07-16 12:48:09.491  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :35127742|sdbcaj10
+2019-07-16 12:48:11.338  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :15950580|sdbcat20
+2019-07-16 12:48:12.137  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23927551|sdbcap16
+2019-07-16 12:48:14.156  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :33634510|sdbcaj10
+2019-07-16 12:48:17.135  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :19102615|sdbcae05
+2019-07-16 12:48:22.319  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23956613|sdbcap16
+2019-07-16 12:48:25.182  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :86014915|scexag07s
+2019-07-16 12:48:25.945  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :15879230|sdbcat20
+2019-07-16 12:48:26.896  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :14308329|sdbcat20
+2019-07-16 12:48:29.201  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :24018204|sdbcap16
+2019-07-16 12:48:31.569  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :64051309|scexag07s
+2019-07-16 12:48:34.212  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :10748118|sdbcas19
+2019-07-16 12:48:37.074  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :94947428|scexag07s
+2019-07-16 12:48:37.857  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :53910195|sdbcab02
+2019-07-16 12:48:38.816  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23851502|sdbcap16
+2019-07-16 12:48:40.095  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :67151994|sdbcab02
+2019-07-16 12:48:41.112  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :55210795|sdbcab02
+2019-07-16 12:48:42.373  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23306817|sdbcap16
+2019-07-16 12:48:43.356  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :61862394|scexag07s
+2019-07-16 12:48:44.088  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :53908684|sdbcab02
+2019-07-16 12:48:44.980  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :75035567|scexag07s
+2019-07-16 12:48:47.129  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23907941|sdbcap16
+2019-07-16 12:48:48.367  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :29476258|sdbcaj10
+2019-07-16 12:48:51.136  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :21764185|sdbcap16
+2019-07-16 12:48:53.189  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :10952223|sdbcas19
+2019-07-16 12:48:55.162  INFO 26420 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :12775888|sdbcaa01
+2019-07-16 12:53:56.052  INFO 15468 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-07-16 12:53:56.056  INFO 15468 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.28
+2019-07-16 12:53:56.062  INFO 15468 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_192\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\oraclexe\app\oracle\product\10.2.0\server\bin;C:\XEClient\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Perforce;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;C:\Softwares\apache-maven-3.6.1\bin;C:\Softwares\node-v10.16.0-win-x64;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Python27;;C:\Users\cbatra\AppData\Local\Programs\Microsoft VS Code\bin;.]
+2019-07-16 12:53:56.511  INFO 15468 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-07-16 12:54:00.241  INFO 15468 --- [http-nio-8091-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-07-16 12:54:00.308  INFO 15468 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-07-16 12:54:03.737  INFO 15468 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-07-16 12:54:29.418  INFO 15468 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2019-07-16 12:54:33.126  INFO 15468 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2019-07-16 12:54:39.200  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.DAO.SplunkRepository               : ...agentName : ChaseBank
+2019-07-16 12:54:39.202  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.DAO.SplunkRepository               : clear the session 
+2019-07-16 12:55:17.075  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.DAO.SplunkRepository               : clear the session 
+2019-07-16 12:55:17.245  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 12:55:19.319 ERROR 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI2MzcxOSwiaXAiOiIxOTIuMTY4LjY4Ljg0In0.TNPVctY7P6gk5xK86Ke1ne_TADG2gRwrg5LJXbs4pZNt6hLM3d_czPjNyIfceZ-dtMX_i7BHFCEM66MALzlsRw
+2019-07-16 12:57:03.539  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### retriveDataFromFiremem #########################################
+2019-07-16 12:57:03.542  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :15846600|sdbcat20
+2019-07-16 12:57:05.863  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23316613|sdbcap16
+2019-07-16 12:57:07.505  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :71798132|sdbcab02
+2019-07-16 12:57:09.278  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23613761|sdbcap16
+2019-07-16 12:57:10.239  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :63502832|scexag07s
+2019-07-16 12:57:11.128  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :20212866|sdbcae05
+2019-07-16 12:57:13.458  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :11073261|sdbcau21
+2019-07-16 12:57:14.340  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :10376890|sdbcas19
+2019-07-16 12:57:16.162  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23946062|sdbcap16
+2019-07-16 12:57:17.120  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23939488|sdbcap16
+2019-07-16 12:57:18.107  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :10274428|sdbcas19
+2019-07-16 12:57:20.268  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :35127742|sdbcaj10
+2019-07-16 12:57:22.011  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :14883517|sdbcat20
+2019-07-16 12:57:23.240  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :15950580|sdbcat20
+2019-07-16 12:57:23.996  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23927551|sdbcap16
+2019-07-16 12:57:25.069  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :33634510|sdbcaj10
+2019-07-16 12:57:26.128  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :19102615|sdbcae05
+2019-07-16 12:57:27.656  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :86014915|scexag07s
+2019-07-16 12:57:29.853  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :15879230|sdbcat20
+2019-07-16 12:57:31.002  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23153174|sdbcap16
+2019-07-16 12:57:32.099  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :53909241|sdbcab02
+2019-07-16 12:57:32.857  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :14308329|sdbcat20
+2019-07-16 12:57:34.681  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :14893642|sdbcat20
+2019-07-16 12:57:36.589  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :10748118|sdbcas19
+2019-07-16 12:57:38.288  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :53910195|sdbcab02
+2019-07-16 12:57:39.016  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :20667319|sdbcae05
+2019-07-16 12:57:40.104  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :31025048|sdbcaj10
+2019-07-16 12:57:41.197  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :10602062|sdbcaa01
+2019-07-16 12:57:42.933  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :12967575|sdbcaa01
+2019-07-16 12:57:43.899  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23907941|sdbcap16
+2019-07-16 12:57:45.216  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :10376764|sdbcau21
+2019-07-16 12:57:46.218  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :76561976|scexag07s
+2019-07-16 12:57:47.283  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :70979432|sdbcab02
+2019-07-16 12:57:49.293  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :10571280|sdbcau21
+2019-07-16 12:57:52.376  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :11982042|sdbcat20
+2019-07-16 12:57:54.111  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :21764185|sdbcap16
+2019-07-16 12:57:55.165  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :10952223|sdbcas19
+2019-07-16 12:57:56.617  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :14841237|sdbcat20
+2019-07-16 12:57:58.450  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :12775888|sdbcaa01
+2019-07-16 12:58:02.159  INFO 15468 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Item ID :23400240|sdbcap16
+2019-07-16 14:25:42.818  INFO 3212 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-07-16 14:25:42.824  INFO 3212 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.28
+2019-07-16 14:25:42.832  INFO 3212 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_192\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\oraclexe\app\oracle\product\10.2.0\server\bin;C:\XEClient\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Perforce;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;C:\Softwares\apache-maven-3.6.1\bin;C:\Softwares\node-v10.16.0-win-x64;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Python27;;C:\Users\cbatra\AppData\Local\Programs\Microsoft VS Code\bin;.]
+2019-07-16 14:25:43.201  INFO 3212 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-07-16 14:25:52.308  INFO 3212 --- [http-nio-8091-exec-7] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-07-16 14:25:52.376  INFO 3212 --- [http-nio-8091-exec-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-07-16 14:25:55.477  INFO 3212 --- [http-nio-8091-exec-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-07-16 14:26:15.287  INFO 3212 --- [http-nio-8091-exec-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2019-07-16 14:26:18.067  INFO 3212 --- [http-nio-8091-exec-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2019-07-16 14:26:23.074  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.DAO.SplunkRepository               : ...agentName : ChaseBank
+2019-07-16 14:26:23.075  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.DAO.SplunkRepository               : clear the session 
+2019-07-16 14:27:01.206  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.DAO.SplunkRepository               : clear the session 
+2019-07-16 14:27:01.269  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 14:27:03.265 ERROR 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI2OTIyMywiaXAiOiIxOTIuMTY4LjY4Ljg0In0.SfbMsxxG15xBma7z6Y0gMwbHEYQESbHCG4E28H3_MQk6hMzF5rBojGRc0UAI6gUQjR1mwfySkFnK2346nWVy9Q
+2019-07-16 14:28:52.595  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : ######################################### retriveDataFromFiremem #########################################
+2019-07-16 14:28:52.607  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :72981741|sdbcab02
+2019-07-16 14:28:54.010  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :22297741|sdbcae05
+2019-07-16 14:28:54.803  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :71324286|sdbcab02
+2019-07-16 14:28:57.427  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :23732781|sdbcae05
+2019-07-16 14:28:59.171  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :25194409|sdbcae05
+2019-07-16 14:29:00.321  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :14590231|sdbcab02
+2019-07-16 14:29:02.195  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :24393919|sdbcae05
+2019-07-16 14:29:03.148  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :10572139|sdbcas19
+2019-07-16 14:29:04.229  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :93730613|scexag07s
+2019-07-16 14:29:05.015  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :13971534|sdbcaa01
+2019-07-16 14:29:08.573  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :60393535|sdbcab02
+2019-07-16 14:29:15.672  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :24051831|sdbcap16
+2019-07-16 14:29:17.580  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :12835569|sdbcaa01
+2019-07-16 14:29:19.245  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :11236331|sdbcas19
+2019-07-16 14:29:20.283  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :54715053|sdbcab02
+2019-07-16 14:29:24.309  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :23979542|sdbcap16
+2019-07-16 14:29:27.316  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :24535195|sdbcae05
+2019-07-16 14:29:28.276  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :23965947|sdbcap16
+2019-07-16 14:29:30.113  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :23906881|sdbcae05
+2019-07-16 14:29:32.223  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :25247414|sdbcae05
+2019-07-16 14:29:33.144  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :11004145|sdbcau21
+2019-07-16 14:29:34.980  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :64627956|sdbcab02
+2019-07-16 14:29:36.091  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :49445903|sdbcab02
+2019-07-16 14:29:37.076  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :22604777|sdbcae05
+2019-07-16 14:29:40.251  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :66436401|sdbcab02
+2019-07-16 14:29:43.261  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :10628567|sdbcas19
+2019-07-16 14:29:45.206  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :18871847|sdbcae05
+2019-07-16 14:29:47.258  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :10472427|sdbcau21
+2019-07-16 14:29:49.507  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :14802893|sdbcat20
+2019-07-16 14:29:54.404  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :70746789|sdbcab02
+2019-07-16 14:29:56.662  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :17343691|sdbcae05
+2019-07-16 14:29:58.239  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :10763581|sdbcas19
+2019-07-16 14:29:59.986  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :25114280|sdbcae05
+2019-07-16 14:30:02.042  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :14533994|sdbcaa01
+2019-07-16 14:30:03.983  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :22271396|sdbcap16
+2019-07-16 14:30:04.725  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :21409635|sdbcae05
+2019-07-16 14:30:07.089  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :68371675|sdbcab02
+2019-07-16 14:30:10.471  INFO 3212 --- [http-nio-8091-exec-7] c.y.d.Services.HammerServicesImpl        : Item ID :23963341|sdbcap16
+2019-07-16 14:42:01.022  INFO 22252 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-07-16 14:42:01.025  INFO 22252 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.28
+2019-07-16 14:42:01.030  INFO 22252 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_192\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\oraclexe\app\oracle\product\10.2.0\server\bin;C:\XEClient\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Perforce;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;C:\Softwares\apache-maven-3.6.1\bin;C:\Softwares\node-v10.16.0-win-x64;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Python27;;C:\Users\cbatra\AppData\Local\Programs\Microsoft VS Code\bin;.]
+2019-07-16 14:42:01.325  INFO 22252 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-07-16 14:42:33.003  INFO 22252 --- [http-nio-8091-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-07-16 14:42:33.066  INFO 22252 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-07-16 14:42:36.240  INFO 22252 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-07-16 14:42:57.078  INFO 22252 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2019-07-16 14:42:59.759  INFO 22252 --- [http-nio-8091-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2019-07-16 14:43:05.954  INFO 22252 --- [http-nio-8091-exec-1] c.y.d.DAO.SplunkRepository               : ...agentName : ChaseInvestments
+2019-07-16 14:43:05.957  INFO 22252 --- [http-nio-8091-exec-1] c.y.d.DAO.SplunkRepository               : clear the session 
+2019-07-16 14:43:15.809  INFO 22252 --- [http-nio-8091-exec-1] c.y.d.DAO.SplunkRepository               : clear the session 
+2019-07-16 14:43:15.889  INFO 22252 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : ######################################### hammerLogin #########################################
+2019-07-16 14:43:17.810 ERROR 22252 --- [http-nio-8091-exec-1] c.y.d.Services.HammerServicesImpl        : Token ID is Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhamF4dG9vbCIsImV4cCI6MTU2MzI3MDE5NywiaXAiOiIxOTIuMTY4LjY4Ljg0In0.TexDeQKDULciQ11oNI5u-csAkcF1wU8OJ3aczJf0PrCG4Gto0rbNvr6DWnjaKSQmLb86-Hwcej9WAX7ABGJCFQ

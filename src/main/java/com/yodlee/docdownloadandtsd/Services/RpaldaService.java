@@ -1,20 +1,28 @@
 package com.yodlee.docdownloadandtsd.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import com.yodlee.docdownloadandtsd.DAO.RpaldaRepository;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Service
+@CacheConfig(cacheNames={"differences"})
 public class RpaldaService {
-
 
     @Autowired
     RpaldaRepository rpaldaRepository;
 
-    public ArrayList<String> getDiff() throws Exception {
+    @Cacheable
+    public List<Object> getDiff() throws Exception {
         return rpaldaRepository.getDiff();
+    }
+
+    @Cacheable
+    public List<Object> getInput() throws Exception {
+        return rpaldaRepository.getInput();
     }
 
 }
