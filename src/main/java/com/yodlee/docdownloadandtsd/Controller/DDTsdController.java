@@ -1,28 +1,40 @@
 package com.yodlee.docdownloadandtsd.Controller;
 
 
+import com.fasterxml.jackson.core.JsonParseException;
 import com.yodlee.docdownloadandtsd.DAO.DBAccessRepositoryImpl;
 import com.yodlee.docdownloadandtsd.DAO.RpaldaRepository;
-import com.yodlee.docdownloadandtsd.Services.DocDownloadRecertificationService;
-import com.yodlee.docdownloadandtsd.Services.ObjectResponseToJSON;
-import com.yodlee.docdownloadandtsd.Services.RpaldaService;
-import com.yodlee.docdownloadandtsd.Services.TSDRecertificationService;
+import com.yodlee.docdownloadandtsd.DAO.SitepRepository;
+import com.yodlee.docdownloadandtsd.DAO.SplunkRepository;
+import com.yodlee.docdownloadandtsd.Services.*;
 import com.yodlee.docdownloadandtsd.VO.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import com.yodlee.docdownloadandtsd.authenticator.Authorization;
+import sun.misc.Cache;
 
+import java.io.IOException;
 import java.util.*;
 
 @Controller
 @RestController
+@Api(value = "BifrostControllerAPI", produces = MediaType.APPLICATION_JSON_VALUE)
 public class DDTsdController {
 
     @Autowired
     RpaldaService rpaldaService;
+
+    @Autowired
+    CacheRefreshRecertificationService cacheRefreshRecertificationService;
 
     @Autowired
     RpaldaRepository rpaldaRepository;
@@ -38,16 +50,30 @@ public class DDTsdController {
 
     @Autowired
     ObjectResponseToJSON objectResponseToJSON;
+
+    @Autowired
+    SplunkRepository splunkRepository;
+
+    @Autowired
+    SitepRepository sitepRepository;
+
+    @Autowired
+    Authorization authorization;
+
+    @Autowired
+    HammerAuthenticationService hammerAuthenticationService;
+
     
 
     @RequestMapping(value="/MetaDataMonitoring",method={RequestMethod.GET})
     @ResponseBody
-    public HashMap<Object, HashMap<String, Object>> getDBPushDifference() throws Exception{
-
-       // List<Object> resultList = rpaldaService.getDiff();
-
-        List<Object> resultList = rpaldaService.getInput();
-
+    public HashMap<Object, HashMap<String, Object>> getDBPushDifference(String sumInfo, String TSDorDoc) throws Exception{
+        List<Object> resultList = null;
+        if(sumInfo.toLowerCase().equals("all")) {
+            resultList = rpaldaService.getDiff();
+        }else {
+            resultList = rpaldaService.getInput(sumInfo, TSDorDoc);
+        }
         HashMap<Object, HashMap<String, Object>> finalResponse = new HashMap<>();
 
         HashMap<DocResponseVO, ArrayList<FirememExtractedResponseForDocumentDownload>> obj = null;
@@ -125,24 +151,115 @@ public class DDTsdController {
         return finalResponse;
     }
 
-    @RequestMapping(value="/ViewDoc",method={RequestMethod.GET})
+    @RequestMapping(value="/getCache",method={RequestMethod.GET})
+    @ApiOperation("Get the response for Cache")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "OK", response = SumInfoVO.class)})
     @ResponseBody
-    public List<DocResponseVO> getDocResponseFromDB() throws Exception{
+    public List<SumInfoVO> getCacheRunDisabledCSID(String sumInfo) throws Exception{
 
-        List<DocResponseVO> DocMap = dbAccessRepository.getDocResponseFromDB();
+        System.out.println("Printing Sum_Info: "+sumInfo);
+
+        List<SumInfoVO> CacheMap = dbAccessRepository.getCacheResponseFromDB(sumInfo);
+
+        if(CacheMap.size()==0) {
+            SumInfoVO sumInfoVO = new SumInfoVO();
+            sumInfoVO.setSum_info_id(sumInfo);
+            sumInfoVO.setIs_cacherun_disabled("Sum_Info_Id is being processed. Please wait for sometime.");
+            System.out.println("Inserting the Sum_info for Cache Response");
+            dbAccessRepository.AddCacheResponseToDB(sumInfoVO);
+
+            List<SumInfoVO> Sum_info = cacheRefreshRecertificationService.getCSIDForEnablement(sumInfo);
+            CacheMap = dbAccessRepository.getCacheResponseFromDB(sumInfo);
+        }
+
+       return CacheMap;
+    }
+
+    @RequestMapping(value="/getDoc",method={RequestMethod.GET})
+    @ResponseBody
+    public List<DocResponseVO> getDocResponseFromDB(String sumInfo, boolean reCert, boolean getLatest) throws Exception{
+
+        List<DocResponseVO> DocMap = dbAccessRepository.getDocResponseFromDB(sumInfo, reCert);
+
+        if(DocMap.size()==0 || (getLatest && reCert)){
+            DocResponseVO docResponseVO = new DocResponseVO();
+            docResponseVO.setSumInfoId(sumInfo);
+            docResponseVO.setIsDocPresent("Sum_Info_Id is being processed. Please wait for sometime.");
+            System.out.println("Inserting the Sum_info for Doc Response");
+            dbAccessRepository.AddDocResponseToDB(docResponseVO);
+         HashMap<Object, HashMap<String, Object>> finalResponse = getDBPushDifference(sumInfo, "Doc");
+            DocMap = dbAccessRepository.getDocResponseFromDB(sumInfo, reCert);
+        }
 
       return DocMap;
     }
 
-    @RequestMapping(value="/ViewTSD",method={RequestMethod.GET})
+    @RequestMapping(value="/getTSD",method={RequestMethod.GET})
     @ResponseBody
-    public List<TSDResponseVO> getTSDResponseFromDB() throws Exception{
+    public List<TSDResponseVO> getTSDResponseFromDB(String sumInfo) throws Exception{
 
-        List<TSDResponseVO> TSDMap = dbAccessRepository.getTSDResponseFromDB();
+        List<TSDResponseVO> TSDMap = dbAccessRepository.getTSDResponseFromDB(sumInfo);
+
+        if(TSDMap.size()==0){
+
+            TSDResponseVO tsdResponseVO = new TSDResponseVO();
+            tsdResponseVO.setSumInfoId(sumInfo);
+            tsdResponseVO.setIsTSDPresent("Sum_Info_Id is being processed. Please wait for sometime.");
+            System.out.println("Inserting the Sum_info for Doc Response");
+            dbAccessRepository.AddTSDResponseToDB(tsdResponseVO);
+
+            HashMap<Object, HashMap<String, Object>> finalResponse = getDBPushDifference(sumInfo, "TSD");
+            TSDMap = dbAccessRepository.getTSDResponseFromDB(sumInfo);
+        }
 
         return TSDMap;
     }
 
+    @RequestMapping(value="/TestingCSID",method={RequestMethod.GET})
+    @ResponseBody
+    public List<Map<String, Object>> getTTRResponse() throws Exception{
 
+        List<Map<String, Object>> ttr = sitepRepository.getCSID("12443");
+
+        return ttr;
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @RequestMapping(value = "/auth", method = { RequestMethod.POST })
+    @ResponseBody
+    public ResponseEntity<String> authenticate(@RequestHeader(value = "userName") String userName,
+                                               @RequestHeader(value = "password") String password)
+
+    {
+
+        String token = null;
+
+        // Setting Response headers to prevent clickJacking //
+        HttpHeaders responseHeaders = new HttpHeaders();
+
+        responseHeaders.set("X-Frame-Options", "DENY");
+        responseHeaders.set("Content-Security-Policy", "frame-ancestors 'none'");
+        responseHeaders.set("Set-Cookie", "server.session.cookie.secure=" + "true");
+        responseHeaders.set("Set-Cookie", "server.session.cookie.http-only=" + "true");
+        responseHeaders.set("X-XSS-Protection", "1; mode=block");
+        responseHeaders.set("Content-Security-Policy", "default-src 'self' script-src 'self'");
+
+        try {
+
+            password = authorization.encrypt(password);
+
+            token = hammerAuthenticationService.generateToken(userName, password);
+
+        } catch (JsonParseException e) {
+            e.printStackTrace();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
+
+        return new ResponseEntity<String>(token.toString(), responseHeaders, HttpStatus.OK);
+
+    }
 
 }

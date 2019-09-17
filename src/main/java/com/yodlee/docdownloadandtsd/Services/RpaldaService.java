@@ -21,8 +21,8 @@ public class RpaldaService {
     }
 
     @Cacheable
-    public List<Object> getInput() throws Exception {
-        return rpaldaRepository.getInput();
+    public List<Object> getInput(String sumInfo, String TSDorDoc) throws Exception {
+        return rpaldaRepository.getInput(sumInfo, TSDorDoc);
     }
 
 }

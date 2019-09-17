@@ -1,6 +1,7 @@
 package com.yodlee.docdownloadandtsd.DAO;
 
 
+import com.yodlee.docdownloadandtsd.Services.SplunkService;
 import com.yodlee.docdownloadandtsd.VO.CacheRunVO;
 import com.yodlee.docdownloadandtsd.VO.DataDiffDetailsVO;
 import com.yodlee.docdownloadandtsd.VO.DocDownloadVO;
@@ -28,6 +29,9 @@ public class RpaldaRepository {
     @Autowired
     @Qualifier("repaldaJdbcTemplate")
     JdbcTemplate jdbcRepalda;
+
+    @Autowired
+    SplunkService splunkService;
 
 
     public List<Object> getDiff() throws Exception {
@@ -99,32 +103,37 @@ public class RpaldaRepository {
         return list;
     }
 
-    public List<Object> getInput() throws Exception {
+    public List<Object> getInput(String sumInfo, String TSDorDoc) throws Exception {
 
         List<Object> list = new ArrayList<>();
 
         //3664,1984,12151,10719,10659,12024,9688,26079,25976,7087
-        int[] DocCSID = {};
+        ArrayList DocCSID = new ArrayList();
         //5,803,3472,545,2422,1644,5702,11765,662,3247
-        int[] TSDCSID = {};
+        ArrayList TSDCSID = new ArrayList();
 
-        int[] CacheCSID = {};
+        if(TSDorDoc.toLowerCase().equals("doc")) {
+          DocCSID.add(Integer.parseInt(sumInfo));
+        }else if(TSDorDoc.toLowerCase().equals("tsd")){
+            TSDCSID.add(Integer.parseInt(sumInfo));
+        }
+
 
         List<TransactionSelectionDurationVO> tsdList = new ArrayList<>();
-        List<CacheRunVO> cacheRunList = new ArrayList<>();
         List<DocDownloadVO> docDownloadList = new ArrayList<>();
 
-        System.out.println("Length of DocCSID: "+DocCSID.length+" | Length of TSDCSID: "+TSDCSID.length);
+        System.out.println("Length of DocCSID: "+DocCSID.size()+" | Length of TSDCSID: "+TSDCSID.size());
 
-        if (DocCSID.length != 0){
+        if (DocCSID.size() != 0){
             System.out.println("Getting in to Doc Input");
-            for (int i = 0; i < DocCSID.length; i++) {
+            for (Object docCsid : DocCSID) {
                 DocDownloadVO docDownload = new DocDownloadVO();
-                docDownload.setSumInfoId(""+DocCSID[i]);
-                docDownload.setAgentName("AgentName");
-                docDownload.setMigId(""+i+DocCSID[i]);
-                docDownload.setMigratedBy("Test");
-                docDownload.setRequestedDate("2019-07-30 00:00:00.0");
+                docDownload.setSumInfoId(""+docCsid.toString());
+                docDownload.setAgentName(splunkService.getAgentName(""+docCsid.toString()));
+                docDownload.setMigId(""+docCsid.toString());
+                docDownload.setRecertification(true);
+                Date date = new Date();
+                docDownload.setRequestedDate(date.toString());
                 docDownload.setDocDownloadSeed("1");
                 docDownload.setDocDownloadProd("");
                 if(!isNullValue(docDownload.getDocDownloadSeed()) || !isNullValue(docDownload.getDocDownloadProd())) {
@@ -133,16 +142,16 @@ public class RpaldaRepository {
             }
     }
 
-        if (TSDCSID.length != 0){
+        if (TSDCSID.size() != 0){
             System.out.println("Getting into TSD Input");
-            for (int i = 0; i < TSDCSID.length; i++) {
+            for (Object tsdCsid : TSDCSID) {
                 TransactionSelectionDurationVO tsd = new TransactionSelectionDurationVO();
-                tsd.setMigId(""+i+TSDCSID[i]);
-                tsd.setMigratedBy("Test");
-                tsd.setAgentName("AgentName");
-                tsd.setRequestedDate("2019-07-30 00:00:00.0");
-                tsd.setSumInfoId(""+TSDCSID[i]);
-                tsd.setTransactionDurationSeed("365");
+                tsd.setMigId(""+tsdCsid.toString());
+                tsd.setAgentName(splunkService.getAgentName(""+tsdCsid.toString()));
+                Date date = new Date();
+                tsd.setRequestedDate(date.toString());
+                tsd.setSumInfoId(""+tsdCsid.toString());
+                tsd.setTransactionDurationSeed("730");
                 tsd.setTransactionDurationProd("");
                 if(!isNullValue(tsd.getTransactionDurationSeed()) || !isNullValue(tsd.getTransactionDurationProd())) {
                     tsdList.add(tsd);
@@ -150,24 +159,9 @@ public class RpaldaRepository {
             }
         }
 
-        if (CacheCSID.length != 0){
-            for (int i = 0; i < CacheCSID.length; i++) {
-                CacheRunVO cacheRun = new CacheRunVO();
-                cacheRun.setMigId(""+i+CacheCSID[i]);
-                cacheRun.setAgentName("AgentName");
-                cacheRun.setMigratedBy("Test");
-                cacheRun.setRequestedDate("2019-07-30 00:00:00.0");
-                cacheRun.setSumInfoId(""+CacheCSID[i]);
-                cacheRun.setCacheRunSeed("1");
-                if(!isNullValue(cacheRun.getCacheRunSeed()) || !isNullValue(cacheRun.getCacheRunProd())) {
-                    cacheRunList.add(cacheRun);
-                }
-            }
-        }
 
         list.addAll(tsdList);
         list.addAll(docDownloadList);
-        list.addAll(cacheRunList);
 
         return list;
     }

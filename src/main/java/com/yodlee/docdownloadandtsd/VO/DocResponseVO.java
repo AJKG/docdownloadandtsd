@@ -31,7 +31,7 @@ public class DocResponseVO {
     }
 
     @JsonProperty
-    public String getIsDocPresent(String message){return isDocPresent;}
+    public String getIsDocPresent(){return isDocPresent;}
 
     public void  setIsDocPresent(String isDocPresent){ this.isDocPresent = isDocPresent;}
 

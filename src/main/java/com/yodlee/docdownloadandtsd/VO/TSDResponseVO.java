@@ -32,7 +32,7 @@ public class TSDResponseVO {
     }
 
     @JsonProperty
-    public String getIsTSDPresent(String message){return isTSDPresent;}
+    public String getIsTSDPresent(){return isTSDPresent;}
 
     public void  setIsTSDPresent(String isTSDPresent){ this.isTSDPresent = isTSDPresent;}
 

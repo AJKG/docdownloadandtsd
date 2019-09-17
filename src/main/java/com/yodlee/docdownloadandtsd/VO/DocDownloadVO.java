@@ -9,6 +9,7 @@ public class DocDownloadVO {
     private String requestedDate;
     private String sumInfoId;
     private String agentName;
+    private boolean recertification;
 
     public String getSumInfoId() {
         return sumInfoId;
@@ -79,5 +80,13 @@ public class DocDownloadVO {
                 ", requestedDate='" + requestedDate + '\'' +
                 ", sumInfoId='" + sumInfoId + '\'' +
                 '}';
+    }
+
+    public boolean isRecertification() {
+        return recertification;
+    }
+
+    public void setRecertification(boolean recertification) {
+        this.recertification = recertification;
     }
 }

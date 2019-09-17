@@ -10,7 +10,9 @@ package com.yodlee.docdownloadandtsd.DAO;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.yodlee.docdownloadandtsd.Services.DumpReadService;
 import com.yodlee.docdownloadandtsd.VO.ItemDetailsVO;
+import com.yodlee.docdownloadandtsd.VO.SplunkItemDetailsVO;
 import com.yodlee.docdownloadandtsd.authenticator.Authorization;
 import com.yodlee.docdownloadandtsd.splunk.SSLSecurityProtocol;
 import org.json.JSONArray;
@@ -42,6 +44,12 @@ import java.util.Map;
 
 @Service
 public class SplunkRepository {
+
+	@Autowired
+	DumpReadService dumpReadService;
+
+	@Autowired
+	DBAccessRepositoryImpl dbAccessRepository;
 
 
 	@Inject
@@ -103,7 +111,10 @@ public class SplunkRepository {
 
 		String splunkPasswordTemp=authorization.decrypt(splunkPassword);
 
+
 		System.out.println("Password for Splunk: "+splunkPasswordTemp);
+
+
 		params.add("username", splunkUserId);
 		params.add("password", splunkPasswordTemp);
 
@@ -640,77 +651,6 @@ public class SplunkRepository {
 
 	}
 
-	// getting users from Splunk in case Yuva is not giving the response //
-	public JSONArray getUsersFromSplunk(String suminfo) throws Exception{
-
-		System.out.println("...getUsersFromSplunk..."+suminfo);
-		String query2="";
-		if(suminfo!=null && !suminfo.isEmpty()) {
-			query2="search index=itemerrors sourcetype=item_errors SUM_INFO_ID="+suminfo+" TYPE_OF_ERROR=0 DBID!=sdbcaf06  CACHE_ITEM_ID!=-1 MEM_SITE_ACC_ID!=-1 |eval cachMSA=CACHE_ITEM_ID.MEM_SITE_ACC_ID | dedup cachMSA | eval temp=CACHE_ITEM_ID.DBID | dedup temp |eval MATCH=if(NEW_TRANSACTIONS>2 AND NUM_ITEM_ACCOUNTS>1 AND NUM_SUCCESSFUL_REFRESH>50,1,0)| Table SUM_INFO_ID,MEM_SITE_ACC_ID,CACHE_ITEM_ID,DBID,NUM_SUCCESSFUL_REFRESH,NUM_ITEM_ACCOUNTS,NEW_TRANSACTIONS MATCH |sort 0 -MATCH| Head 40";
-		}
-
-		System.out.println("splunkSession at the top  :"+splunkSession);
-		clearSession();
-
-		if (splunkSession == null) {
-			login();
-		}
-
-		String queryString= query2;
-
-		System.out.println(queryString);
-
-		String duration="-2d@h";
-		String sid = getSid(false,queryString,duration);
-		String url = REST_URL+"/services/search/jobs/" + sid + "/results?output_mode=json";
-
-		System.out.println("url:"+url);
-		System.out.println("splunkSession :"+splunkSession);
-
-		Map<String, String> params = new HashMap<String, String>();
-		params.put("Authorization", "Splunk " + splunkSession);
-
-		String response=get(url,params); 
-		System.out.println("....response: "+response);
-
-		JSONObject responseObject = new JSONObject(response);
-		JSONArray resultArray = responseObject.getJSONArray("results");
-
-		JSONArray splunk_return_Array = new JSONArray();
-
-		int resultArraylength;
-		if(resultArray.length()>5){
-			resultArraylength = 5;
-		}else{
-			resultArraylength = resultArray.length();
-		}
-
-		for(int i=0;i<resultArraylength;i++) {
-
-			JSONObject agentObject = (JSONObject) resultArray.get(i);
-
-			JSONObject obj = new JSONObject();
-
-			obj.put("cacheItemId", agentObject.getString("CACHE_ITEM_ID"));
-			obj.put("memSiteAccId", agentObject.getString("MEM_SITE_ACC_ID"));
-
-			if(dbMapping.get(agentObject.getString("DBID")) != null) {
-				obj.put("dataBase",dbMapping.get(agentObject.getString("DBID")));
-				System.out.println("...DB Name Altered : "+dbMapping.get(agentObject.getString("DBID")));
-			}else {
-				obj.put("dataBase", agentObject.getString("DBID"));
-			}
-
-			splunk_return_Array.put(obj);
-
-		}
-
-		System.out.println("...size : "+splunk_return_Array.length());
-		System.out.println(splunk_return_Array);
-		clearSession();
-		return splunk_return_Array;
-	}
-
 
 	//Method to get agentname from the suminfo provided //
 
@@ -760,5 +700,131 @@ public class SplunkRepository {
 		splunkSession = null;
 	}
 
+	public String getMFATypefromDump(String sumInfo)throws Exception{
+
+		// System.out.println("splunkSession at the top  :"+splunkSession);
+
+		if (splunkSession == null) {
+			login();
+		}
+
+		String queryString="| savedsearch Fetch_Dumps sum_info="+sumInfo;
+		String duration="-5d@h";
+		String sid = getSid(false,queryString,duration);
+		String url = REST_URL+"/services/search/jobs/" + sid + "/results?output_mode=json";
+		System.out.println("url:"+url);
+		System.out.println("splunkSession :"+splunkSession);
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("Authorization", "Splunk " + splunkSession);
+		String response=get(url,params);
+		System.out.println("Splunk Response: "+response);
+		response=response.substring(response.indexOf("results")+"results".length()+2);
+
+
+		SplunkItemDetailsVO[] itemDetails=new ObjectMapper().readValue(response, SplunkItemDetailsVO[].class);
+
+
+		if(itemDetails.length==0){
+			System.out.println("CSID: "+sumInfo+" : no user found");
+			return "No User Found";
+		}
+
+
+
+		for (SplunkItemDetailsVO splunkItemDetailsVO : itemDetails) {
+			System.out.println("SplunkRepository: "+splunkItemDetailsVO.toString());
+			dbAccessRepository.AddUserResponse(splunkItemDetailsVO);
+		}
+
+
+		HashMap<String, String> dumpLinkmap = dumpReadService.extractDumpLink(itemDetails, sumInfo, false);
+		System.out.println("dump Link Map is done.");
+
+
+		String MFAType = "";
+		for(Map.Entry me : dumpLinkmap.entrySet()) {
+			String cii = me.getKey().toString();
+			String dumplink = me.getValue().toString();
+
+			MFAType = dumpReadService.findXml(dumplink, cii,false, sumInfo);
+			System.out.println("Printing MFA Type: "+MFAType);
+
+		}
+
+		return MFAType;
+
+	}
+
+
+	// getting users from Splunk in case Yuva is not giving the response //
+	public JSONArray getUsersFromSplunk(String suminfo) throws Exception{
+
+		System.out.println("...getUsersFromSplunk..."+suminfo);
+		String query2="";
+		if(suminfo!=null && !suminfo.isEmpty()) {
+			query2="search index=itemerrors sourcetype=item_errors SUM_INFO_ID="+suminfo+" TYPE_OF_ERROR=0 DBID!=sdbcaf06  CACHE_ITEM_ID!=-1 MEM_SITE_ACC_ID!=-1 |eval cachMSA=CACHE_ITEM_ID.MEM_SITE_ACC_ID | dedup cachMSA | eval temp=CACHE_ITEM_ID.DBID | dedup temp |eval MATCH=if(NEW_TRANSACTIONS>2 AND NUM_ITEM_ACCOUNTS>1 AND NUM_SUCCESSFUL_REFRESH>50,1,0)| Table SUM_INFO_ID,MEM_SITE_ACC_ID,CACHE_ITEM_ID,DBID,NUM_SUCCESSFUL_REFRESH,NUM_ITEM_ACCOUNTS,NEW_TRANSACTIONS MATCH |sort 0 -MATCH| Head 5";
+		}
+
+		System.out.println("splunkSession at the top  :"+splunkSession);
+		clearSession();
+
+		if (splunkSession == null) {
+			login();
+		}
+
+		String queryString= query2;
+
+		System.out.println(queryString);
+
+		String duration="-2d@h";
+		String sid = getSid(false,queryString,duration);
+		String url = REST_URL+"/services/search/jobs/" + sid + "/results?output_mode=json";
+
+		System.out.println("url:"+url);
+		System.out.println("splunkSession :"+splunkSession);
+
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("Authorization", "Splunk " + splunkSession);
+
+		String response=get(url,params);
+		System.out.println("....response: "+response);
+
+		JSONObject responseObject = new JSONObject(response);
+		JSONArray resultArray = responseObject.getJSONArray("results");
+
+		JSONArray splunk_return_Array = new JSONArray();
+
+		int resultArraylength;
+		if(resultArray.length()>5){
+			resultArraylength = 5;
+		}else{
+			resultArraylength = resultArray.length();
+		}
+
+		for(int i=0;i<resultArraylength;i++) {
+
+			JSONObject agentObject = (JSONObject) resultArray.get(i);
+
+			JSONObject obj = new JSONObject();
+
+			obj.put("cacheItemId", agentObject.getString("CACHE_ITEM_ID"));
+			obj.put("memSiteAccId", agentObject.getString("MEM_SITE_ACC_ID"));
+
+			if(dbMapping.get(agentObject.getString("DBID")) != null) {
+				obj.put("dataBase",dbMapping.get(agentObject.getString("DBID")));
+				System.out.println("...DB Name Altered : "+dbMapping.get(agentObject.getString("DBID")));
+			}else {
+				obj.put("dataBase", agentObject.getString("DBID"));
+			}
+
+			splunk_return_Array.put(obj);
+
+		}
+
+		System.out.println("...size : "+splunk_return_Array.length());
+		System.out.println(splunk_return_Array);
+		clearSession();
+		return splunk_return_Array;
+	}
 }
 
