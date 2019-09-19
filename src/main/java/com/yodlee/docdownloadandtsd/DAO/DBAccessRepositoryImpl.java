@@ -8,8 +8,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 
 @Repository
@@ -117,15 +116,17 @@ public class DBAccessRepositoryImpl implements MongoAccess {
         if(sumInfo == null || sumInfo.toLowerCase().contains("all")){
               TSDMap = mongoTemplate.findAll(TSDResponseVO.class,"TSD");
 
-        }else if(sumInfo.matches("\\d+")) {
-            Query query = new Query();
-            query.addCriteria(Criteria.where("_id").is(sumInfo));
-
-           TSDMap = mongoTemplate.find(query, TSDResponseVO.class, "TSD");
-
         }else{
-            throw new Exception("Input provided is not in proper format");
+          String arrSI[] = sumInfo.split(",");
+          HashSet<String> arrSI2 = new HashSet<>(Arrays.asList(arrSI));
+
+            Query query = new Query();
+            query.addCriteria(Criteria.where("_id").in(arrSI2));
+
+            TSDMap = mongoTemplate.find(query, TSDResponseVO.class, "TSD");
         }
+
+
         return TSDMap;
     }
 

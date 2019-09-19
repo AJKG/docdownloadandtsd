@@ -27,6 +27,10 @@ import com.yodlee.docdownloadandtsd.exceptionhandling.ToolsResponseHandler;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.parser.Parser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -961,7 +965,7 @@ if(batchStatusId==4) {
 	}
 
 	public ArrayList<FirememExtractedResponseForTSD> retriveDataFromFirememForTSD(HashMap<String, HashMap<String,Object>> jDapItemListFromBatch, String tsd, TransactionSelectionDurationVO tsdvo)
-			throws JSONException, IOException, ParseException {
+			throws Exception {
 		logger.info("######################################### retriveDataFromFiremem#########################################");
 		ClientHttpRequestFactory requestFactory = getClientHttpRequestFactory();
 		RestTemplate restTemplate = new RestTemplate(requestFactory);
@@ -1024,61 +1028,23 @@ if(batchStatusId==4) {
 
 			if(!rpaldaRepository.isNullValue(jDapFirememXML)) {
 				String finalXml=jDapFirememXML;
-				int count = 0;
-				if(count == 0 && finalXml.contains("<oldestTxnDate") && finalXml.contains("</oldestTxnDate>")) {
-					count = countOccurences(finalXml, "<oldestTxnDate");
+				System.out.println("Printing FinalXml: "+finalXml);
+				List<String> occurenceCount = new ArrayList();
+				if(finalXml.contains("<oldestTxnDate") && finalXml.contains("</oldestTxnDate>")) {
+					occurenceCount = countOccurences(finalXml, "oldestTxnDate");
+				}else if(finalXml.contains("<postDate") && finalXml.contains("</postDate>")) {
+					occurenceCount = countOccurences(finalXml, "postDate");
+				}else if(finalXml.contains("<date") && finalXml.contains("</date>")) {
+					occurenceCount = countOccurences(finalXml, "date");
 				}
-				if(count == 0 && finalXml.contains("<postDate") && finalXml.contains("</postDate>")) {
-					count = countOccurences(finalXml, "<postDate");
-				}
-				if(count == 0 && finalXml.contains("<date") && finalXml.contains("</date>")) {
-					count = countOccurences(finalXml, "<date");
-				}
 
+				System.out.println("Checking the no. of accounts in TSD: "+occurenceCount.size());
+				for(String oldestTxnNew : occurenceCount) {
 
-				for(int i=0;i <count ;i++) {
+					System.out.println("oldest=="+oldestTxnNew);
 
-					if(finalXml.contains("<oldestTxnDate") && finalXml.contains("</oldestTxnDate>")) {
-
-						int ind = ordinalIndexOf(finalXml, "<oldestTxnDate", i);
-						oldestTxnDate=finalXml.substring(finalXml.indexOf("<oldestTxnDate",ind),finalXml.indexOf("</oldestTxnDate>",ind));
-						if(oldestTxnDate.contains(">")) {
-							oldestTxnDate=oldestTxnDate.substring(oldestTxnDate.indexOf(">")+">".length());
-						}
-						if(oldestTxnDate.length()>10) {
-							oldestTxnDate=oldestTxnDate.substring(0,10);
-						}
-
-					}else if(finalXml.contains("<postDate") && finalXml.contains("</postDate>")) {
-
-						int ind = ordinalIndexOf(finalXml, "<postDate", i);
-
-						oldestTxnDate=finalXml.substring(finalXml.indexOf("<postDate",ind),finalXml.indexOf("</postDate>",ind));
-						if(oldestTxnDate.contains(">")) {
-							oldestTxnDate=oldestTxnDate.substring(oldestTxnDate.indexOf(">")+">".length());
-						}
-						if(oldestTxnDate.length()>10) {
-							oldestTxnDate=oldestTxnDate.substring(0,10);
-						}
-
-					} else if(finalXml.contains("<date") && finalXml.contains("</date>")) {
-
-						int ind = ordinalIndexOf(finalXml, "<date", i);
-
-						oldestTxnDate=finalXml.substring(finalXml.indexOf("<date",ind),finalXml.indexOf("</date>",ind));
-						if(oldestTxnDate.contains(">")) {
-							oldestTxnDate=oldestTxnDate.substring(oldestTxnDate.indexOf(">")+">".length());
-						}
-						if(oldestTxnDate.length()>10) {
-							oldestTxnDate=oldestTxnDate.substring(0,10);
-						}
-
-					}
-
-					System.out.println("oldest=="+oldestTxnDate);
-
-					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-					Date oldestTxn = sdf.parse(oldestTxnDate);
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+					Date oldestTxn = sdf.parse(oldestTxnNew);
 					Date eDate = new Date();
 
 					long diffOfDays=Math.abs(eDate.getTime()/(1000*24*60*60)-oldestTxn.getTime()/(1000*24*60*60));
@@ -1087,13 +1053,12 @@ if(batchStatusId==4) {
 
 					if(lastDiffDays < diffOfDays) {
 						lastDiffDays = diffOfDays;
-						lastOldestTxnDate = oldestTxnDate;
+						lastOldestTxnDate = oldestTxnNew;
 					}
 
 				}
 
 				if(lastOldestTxnDate != null) {
-
 					if(lastDiffDays > (Integer.parseInt(tsd) - 100)) {
 						TSDResponse.setTsdGenuine(true);
 						TSDResponse.setIsTSDPresent(Long.toString(lastDiffDays));
@@ -1288,18 +1253,14 @@ if(batchStatusId==4) {
 		return dumpLink;
 	}
 
-	public static int countOccurences(String str, String word)
+	public static List<String> countOccurences(String xml, String tag) throws Exception
 	{
-		// split the string by spaces in a
-		String a[] = str.split("\\r?\\n");
+		List<String> count = new ArrayList<>();
 
-		// search for pattern in a
-		int count = 0;
-		for (int i = 0; i < a.length; i++)
-		{
-			// if match found increase count
-			if (a[i].contains(word))
-				count++;
+		Document doc = Jsoup.parse(xml, "", Parser.xmlParser());
+
+		for (Element e : doc.select(tag)) {
+			count.add(e.text());
 		}
 
 		return count;

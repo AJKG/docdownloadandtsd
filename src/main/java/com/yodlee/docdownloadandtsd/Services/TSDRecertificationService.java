@@ -121,7 +121,7 @@ public class TSDRecertificationService {
         String maxTSDFM = null;
 
         if(max_value==-1) {
-            maxTSDFM = "Variation..need to verify the TSD...";
+            maxTSDFM = "-1";
         }else{
             maxTSDFM = Integer.toString(max_value);
         }
@@ -137,7 +137,8 @@ public class TSDRecertificationService {
         tResponse.setAgentName(tsdvo.getAgentName());
         tResponse.setMigratedBy(tsdvo.getMigratedBy());
         tResponse.setTransactionSelectionDurationSeed(tsdvo.getTransactionDurationSeed());
-        tResponse.setTransactionSelectionDurationProd(tsdvo.getTransactionDurationProd());
+        //Overriding the production value based on firemem.
+        tResponse.setTransactionSelectionDurationProd(maxTSDFM);
         tResponse.setRequestedDate(tsdvo.getRequestedDate());
         tResponse.setMetaDataType("TransactionSelectionDuration");
 

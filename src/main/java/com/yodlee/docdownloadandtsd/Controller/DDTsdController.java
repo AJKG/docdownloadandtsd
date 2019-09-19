@@ -198,17 +198,31 @@ public class DDTsdController {
     @ResponseBody
     public List<TSDResponseVO> getTSDResponseFromDB(String sumInfo) throws Exception{
 
-        List<TSDResponseVO> TSDMap = dbAccessRepository.getTSDResponseFromDB(sumInfo);
+        List<TSDResponseVO> TSDMap = new ArrayList<TSDResponseVO>();
 
-        if(TSDMap.size()==0){
 
-            TSDResponseVO tsdResponseVO = new TSDResponseVO();
-            tsdResponseVO.setSumInfoId(sumInfo);
-            tsdResponseVO.setIsTSDPresent("Sum_Info_Id is being processed. Please wait for sometime.");
-            System.out.println("Inserting the Sum_info for Doc Response");
-            dbAccessRepository.AddTSDResponseToDB(tsdResponseVO);
+            if(!sumInfo.contains(",")) {
+                TSDMap = dbAccessRepository.getTSDResponseFromDB(sumInfo);
+            }
 
-            HashMap<Object, HashMap<String, Object>> finalResponse = getDBPushDifference(sumInfo, "TSD");
+        if(TSDMap.size()==0 || TSDMap.isEmpty()){
+
+            String arrTSD[] = sumInfo.split(",");
+
+            for(Object sumInfoI : arrTSD) {
+                if(!sumInfoI.toString().matches("\\d+")){
+                   System.out.println("Sum_Info_ID is not in proper format"+sumInfoI.toString());
+                   continue;
+                }
+                TSDResponseVO tsdResponseVO = new TSDResponseVO();
+                tsdResponseVO.setSumInfoId(sumInfoI.toString());
+                tsdResponseVO.setIsTSDPresent("Sum_Info_Id is being processed. Please wait for sometime.");
+                System.out.println("Inserting the Sum_info for TSD Response");
+                dbAccessRepository.AddTSDResponseToDB(tsdResponseVO);
+            }
+            for(Object sumInfoI : arrTSD){
+                HashMap<Object, HashMap<String, Object>> finalResponse = getDBPushDifference(sumInfoI.toString(), "TSD");
+            }
             TSDMap = dbAccessRepository.getTSDResponseFromDB(sumInfo);
         }
 
