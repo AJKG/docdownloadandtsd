@@ -151,6 +151,7 @@ public class RpaldaRepository {
                 Date date = new Date();
                 tsd.setRequestedDate(date.toString());
                 tsd.setSumInfoId(""+tsdCsid.toString());
+                //HardCoding value as per need.
                 tsd.setTransactionDurationSeed("730");
                 tsd.setTransactionDurationProd("");
                 if(!isNullValue(tsd.getTransactionDurationSeed()) || !isNullValue(tsd.getTransactionDurationProd())) {

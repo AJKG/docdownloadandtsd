@@ -1059,7 +1059,7 @@ if(batchStatusId==4) {
 				}
 
 				if(lastOldestTxnDate != null) {
-					if(lastDiffDays > (Integer.parseInt(tsd) - 100)) {
+					if(lastDiffDays > (Integer.parseInt(tsd) - 10)) {
 						TSDResponse.setTsdGenuine(true);
 						TSDResponse.setIsTSDPresent(Long.toString(lastDiffDays));
 					}else {

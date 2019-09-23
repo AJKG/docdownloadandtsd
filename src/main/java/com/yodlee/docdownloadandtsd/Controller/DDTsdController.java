@@ -205,11 +205,19 @@ public class DDTsdController {
                 TSDMap = dbAccessRepository.getTSDResponseFromDB(sumInfo);
             }
 
+            //Hardcoding SumInfo for testing
+            sumInfo = "16269,8380,7444,1367,5682,5703,5701,5702,5704,11070,36528,5789,5800,5814,5843,8913,1179,13877,5988,6019,26270,6728,6746,6950,6980,7028,7743,7152,7157,28140,8035,9168,9169,7368,9172,7752,7913,1239,1247,7998,8074,8211,8231,8268,8344,8366,8370,8383,8426,8435,8486,8518";
+
+
         if(TSDMap.size()==0 || TSDMap.isEmpty()){
 
             String arrTSD[] = sumInfo.split(",");
 
+            System.out.println("Count of CSID: "+arrTSD.length);
+
+            int count=0;
             for(Object sumInfoI : arrTSD) {
+
                 if(!sumInfoI.toString().matches("\\d+")){
                    System.out.println("Sum_Info_ID is not in proper format"+sumInfoI.toString());
                    continue;
@@ -221,6 +229,8 @@ public class DDTsdController {
                 dbAccessRepository.AddTSDResponseToDB(tsdResponseVO);
             }
             for(Object sumInfoI : arrTSD){
+                count++;
+                System.out.println("Processing Sum_Info_Id Count: "+count);
                 HashMap<Object, HashMap<String, Object>> finalResponse = getDBPushDifference(sumInfoI.toString(), "TSD");
             }
             TSDMap = dbAccessRepository.getTSDResponseFromDB(sumInfo);
